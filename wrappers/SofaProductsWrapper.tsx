@@ -1,9 +1,28 @@
-import { ProductGrid, SortOption } from "@/components/organisms/ProductGrid";
+import { ProductGrid, SortOption } from "@/components/organisms";
 import { sofaProducts, SofaProduct } from "@/lib/mocks/sofaProducts";
+import { FilterState } from "@/components/molecules";
 
-export default function SofaProductsWrapper({ sortOption, visibleProducts }: { sortOption: SortOption; visibleProducts: number }) {
-  // In the future, replace with server-side fetching in a Server Component
-  const sortedProducts: SofaProduct[] = [...sofaProducts].sort((a, b) => {
+export default function SofaProductsWrapper({ sortOption, visibleProducts, filters }: { sortOption: SortOption; visibleProducts: number; filters: FilterState }) {
+  console.log("SofaProductsWrapper sofaProducts:", sofaProducts); // Debug: Log entire array
+
+  // Filter products first
+  const filteredProducts: SofaProduct[] = sofaProducts.filter(product => {
+    if (!product) {
+      console.warn("SofaProductsWrapper: Found undefined/null product in sofaProducts");
+      return false;
+    }
+    if (product.isNew === undefined || product.isOnSale === undefined) {
+      console.warn("SofaProductsWrapper: Invalid product, missing isNew or isOnSale:", product);
+      return false;
+    }
+    return (
+      (!filters.isNew || product.isNew === true) &&
+      (!filters.isOnSale || product.isOnSale === true)
+    );
+  });
+
+  // Sort filtered products
+  const sortedProducts: SofaProduct[] = [...filteredProducts].sort((a, b) => {
     try {
       switch (sortOption) {
         case 'price-asc':
@@ -27,8 +46,11 @@ export default function SofaProductsWrapper({ sortOption, visibleProducts }: { s
     }
   });
 
+  // Slice for visible products
   const products = sortedProducts.slice(0, visibleProducts);
+  console.log("SofaProductsWrapper filters:", filters); // Debug
   console.log("SofaProductsWrapper visibleProducts:", visibleProducts); // Debug
+  console.log("SofaProductsWrapper filteredProducts count:", filteredProducts.length); // Debug
   console.log("SofaProductsWrapper sortedProducts:", products.map(p => p._id)); // Debug
   return <ProductGrid products={products} sortOption={sortOption} columns={3} />;
 }

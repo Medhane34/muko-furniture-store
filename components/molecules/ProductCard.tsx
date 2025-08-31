@@ -15,7 +15,7 @@ interface ProductCardProps {
   badgeText?: string;
 }
 
-export  function ProductCard({ image, title, price, ctaLink, ctaText, badgeText }: ProductCardProps) {
+export function ProductCard({ image, title, price, ctaLink, ctaText, badgeText }: ProductCardProps) {
   // All hooks called unconditionally at the top
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
