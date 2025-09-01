@@ -3,3 +3,4 @@ export * from "./staggerVariants";
 export * from "./buttonVariants";
 export * from "./cardVariants";
 export * from "./modalVariants";
+export * from "./stepVariants";

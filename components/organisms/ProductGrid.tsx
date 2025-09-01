@@ -4,15 +4,23 @@ import { motion, useReducedMotion } from "framer-motion";
 import { staggerContainer, reducedMotion, fadeInUp } from "@/lib/motion";
 import { ProductCard } from "@/components/molecules/ProductCard";
 
+
 export interface Product {
   _id: string;
   name: string;
   description: string;
   price: number;
   imageUrl: string;
-  isNew?: boolean;
-  isOnSale?: boolean;
+  isNew: boolean;
+  isOnSale: boolean;
   slug: string;
+  stock: number;
+  material?: string;
+  dimensions?: string;
+  weight?: string;
+  color?: string;
+  features?: string[];
+  reviews?: { rating: number; comment: string; user: string }[];
 }
 
 export type SortOption = 
@@ -21,7 +29,8 @@ export type SortOption =
   | 'name-asc'
   | 'name-desc'
   | 'newest'
-  | 'on-sale';
+  | 'on-sale'
+  | 'none';
 
 export interface ProductGridProps {
   products: Product[];
