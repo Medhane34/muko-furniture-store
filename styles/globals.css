@@ -1,3 +1,28 @@
 @import "tailwindcss";
 
+/* Gradient text utilities */
+.gradient-text-primary {
+  background: linear-gradient(90deg, #FF3366 0%, #FF9933 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-secondary {
+  background: linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Ensure proper rendering in different browsers */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .gradient-text-primary,
+  .gradient-text-secondary {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
 @config "../tailwind.config.js"
+

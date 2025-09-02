@@ -3,55 +3,46 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { staggerContainer, reducedMotion, fadeInUp } from "@/lib/motion";
 import { ProductCard } from "@/components/molecules/ProductCard";
-
-
-export interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string;
-  isNew: boolean;
-  isOnSale: boolean;
-  slug: string;
-  stock: number;
-  material?: string;
-  dimensions?: string;
-  weight?: string;
-  color?: string;
-  features?: string[];
-  reviews?: { rating: number; comment: string; user: string }[];
-}
-
-export type SortOption = 
-  | 'price-asc'
-  | 'price-desc'
-  | 'name-asc'
-  | 'name-desc'
-  | 'newest'
-  | 'on-sale'
-  | 'none';
+import { Product } from "@/types/product";
+import { SortOption } from "@/types/sort";
 
 export interface ProductGridProps {
   products: Product[];
   sortOption: SortOption;
   columns?: 3 | 4;
   className?: string;
+  onQuickView?: (product: Product) => void; // ✅ This is the prop
 }
 
-export function ProductGrid({ products, sortOption, columns = 4, className = "" }: ProductGridProps) {
+export function ProductGrid({ 
+  products, 
+  sortOption, 
+  columns = 4, 
+  className = "",
+  onQuickView // ✅ This is the prop we want to use
+}: ProductGridProps) {
   const shouldReduceMotion = useReducedMotion();
 
-  console.log("ProductGrid columns:", columns); // Debug
-  console.log("Grid className:", `grid grid-cols-1 sm:grid-cols-2 md:grid-cols-${columns === 3 ? 2 : 3} lg:grid-cols-${columns} gap-6 ${className}`); // Debug
-  console.log("ProductGrid products order:", products.map(p => p._id)); // Debug
+  // ✅ REMOVE THIS - it's overriding the prop!
+  // function onQuickView(product: Product): void {
+  //   throw new Error("Function not implemented.");
+  // }
+
+  // FIX: Static mapping of column classes for Tailwind JIT
+  const gridClassMap = {
+    3: "md:grid-cols-2 lg:grid-cols-3",
+    4: "md:grid-cols-3 lg:grid-cols-4",
+  };
+
+  const gridClasses = gridClassMap[columns];
+  const finalGridClassName = `grid grid-cols-1 sm:grid-cols-2 ${gridClasses} gap-6 ${className}`;
 
   return (
     <motion.div
       variants={shouldReduceMotion ? reducedMotion : staggerContainer}
       initial="hidden"
       animate="visible"
-      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-${columns === 3 ? 2 : 3} lg:grid-cols-${columns} gap-6 ${className}`}
+      className={finalGridClassName}
     >
       {products.length > 0 ? (
         products.map((product, index) => (
@@ -62,14 +53,11 @@ export function ProductGrid({ products, sortOption, columns = 4, className = "" 
             animate="visible"
             transition={{ delay: index * 0.1 }}
           >
-            <ProductCard
-              image={product.imageUrl}
-              title={product.name}
-              price={product.price}
-              ctaLink={`/product/${product.slug}`}
-              ctaText="Inquire"
-              badgeText={product.isNew ? "New" : product.isOnSale ? "On Sale" : undefined}
-            />
+            {/* ✅ Now this will use the onQuickView from props */}
+            <ProductCard 
+              product={product} 
+              onQuickView={onQuickView} // Pass the prop down
+            /> 
           </motion.div>
         ))
       ) : (

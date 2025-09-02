@@ -3,5 +3,7 @@ export { default as ContactInfo } from "./ContactInfo";
 export {  HeroSection } from "./HeroSection";
 export { ProductCard } from "./ProductCard";
 export { FilterGroup } from "./FilterGroup";
-export type { FilterState } from "./FilterGroup";
+export { default as CategoryCard } from "./CategoryCard";
+// ...other molecules
+
 // Add more molecules as you build them

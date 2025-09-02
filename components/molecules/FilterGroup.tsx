@@ -2,11 +2,8 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { fadeInUp } from "@/lib/motion";
+import { FilterState } from "@/types/filter";
 
-export interface FilterState {
-  isNew: boolean;
-  isOnSale: boolean;
-}
 
 interface FilterGroupProps {
   filters: FilterState;
@@ -28,9 +25,9 @@ export function FilterGroup({ filters, onFilterChange, className = "" }: FilterG
       variants={shouldReduceMotion ? undefined : fadeInUp}
       initial="hidden"
       animate="visible"
-      className={`flex flex-col sm:flex-row gap-4 ${className}`}
+      className={`flex flex-col sm:flex-row gap-8 p-8 ${className}`}
     >
-      <label className="flex items-center gap-2 font-sans text-body text-gray-900 dark:text-gray-100">
+      <label className="flex items-center gap-8 font-sans text-body text-gray-900 dark:text-gray-100">
         <input
           type="checkbox"
           checked={filters.isNew}

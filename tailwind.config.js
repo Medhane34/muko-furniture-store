@@ -8,7 +8,6 @@ module.exports = {
     './lib/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
-
   ],
   theme: {
     extend: {
@@ -17,55 +16,99 @@ module.exports = {
         mono: ["var(--font-mono)"],
       },
       colors: {
-        // Brand color: light yellow for primary
         primary: {
-          DEFAULT: "#FFE066", // light yellow
-          dark: "#FFD700",    // gold/yellow for dark mode
+          DEFAULT: "#FFE066",
+          dark: "#FFD700",
         },
-        // You can add more custom colors here
+        // Add gradient colors for easy reference
+        gradient: {
+          from: "#FF3366",
+          to: "#FF9933",
+          secondaryFrom: "#4361EE",
+          secondaryTo: "#3A0CA3",
+        },
+        // Add badge-specific gradients
+      backgroundImage: {
+        'gradient-badge-primary': 'linear-gradient(90deg, #FF3366 0%, #FF9933 100%)',
+        'gradient-badge-secondary': 'linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)',
+        'gradient-badge-success': 'linear-gradient(90deg, #10B981 0%, #059669 100%)',
+        'gradient-badge-warning': 'linear-gradient(90deg, #F59E0B 0%, #D97706 100%)',
+        'gradient-badge-error': 'linear-gradient(90deg, #EF4444 0%, #DC2626 100%)',
+      },
+
       },
       fontSize: {
-        // Responsive font sizes for headings, subheadings, body, small
+        // Your existing font sizes...
         heading: [
-          "1.5rem", // base: 24px
+          "1.5rem",
           {
             lineHeight: "2rem",
-            "@screen sm": { fontSize: "1.875rem" }, // 30px
-            "@screen md": { fontSize: "2.25rem" },  // 36px
-            "@screen lg": { fontSize: "2.5rem" },   // 40px
-            "@screen xl": { fontSize: "3rem" },     // 48px
+            "@screen sm": { fontSize: "1.875rem" },
+            "@screen md": { fontSize: "2.25rem" },
+            "@screen lg": { fontSize: "2.5rem" },
+            "@screen xl": { fontSize: "3rem" },
           },
         ],
         subheading: [
-          "1.25rem", // base: 20px
+          "1.25rem",
           {
             lineHeight: "1.75rem",
-            "@screen sm": { fontSize: "1.5rem" },   // 24px
-            "@screen md": { fontSize: "1.75rem" },  // 28px
-            "@screen lg": { fontSize: "2rem" },     // 32px
-            "@screen xl": { fontSize: "2.25rem" },  // 36px
+            "@screen sm": { fontSize: "1.5rem" },
+            "@screen md": { fontSize: "1.75rem" },
+            "@screen lg": { fontSize: "2rem" },
+            "@screen xl": { fontSize: "2.25rem" },
           },
         ],
         body: [
-          "0.875rem", // base: 14px
+          "0.875rem",
           {
             lineHeight: "1.25rem",
-            "@screen sm": { fontSize: "1rem" },     // 16px
-            "@screen md": { fontSize: "1.125rem" }, // 18px
-            "@screen lg": { fontSize: "1.125rem" }, // 18px
-            "@screen xl": { fontSize: "1.25rem" },  // 20px
+            "@screen sm": { fontSize: "1rem" },
+            "@screen md": { fontSize: "1.125rem" },
+            "@screen lg": { fontSize: "1.125rem" },
+            "@screen xl": { fontSize: "1.25rem" },
           },
         ],
         small: [
-          "0.75rem", // base: 12px
+          "0.75rem",
           {
             lineHeight: "1rem",
-            "@screen sm": { fontSize: "0.875rem" }, // 14px
-            "@screen md": { fontSize: "0.875rem" }, // 14px
-            "@screen lg": { fontSize: "1rem" },     // 16px
-            "@screen xl": { fontSize: "1rem" },     // 16px
+            "@screen sm": { fontSize: "0.875rem" },
+            "@screen md": { fontSize: "0.875rem" },
+            "@screen lg": { fontSize: "1rem" },
+            "@screen xl": { fontSize: "1rem" },
           },
         ],
+      },
+      // Add animations
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-up': 'slideUp 0.5s ease-out',
+        'scale-in': 'scaleIn 0.3s ease-out',
+        'badge-pulse': 'badgePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'badge-bounce': 'badgeBounce 1s infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        scaleIn: {
+          '0%': { transform: 'scale(0.9)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        badgePulse: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.7' },
+        },
+        badgeBounce: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-3px)' },
+        },
       },
       screens: {
         xs: "480px",

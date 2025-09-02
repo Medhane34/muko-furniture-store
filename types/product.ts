@@ -14,6 +14,12 @@ export interface Product {
   colors?: string[];
   features?: string[];
   reviews?: { rating: number; comment: string; user: string }[];
+   rating?: {
+    average: number;
+    count: number;
+  };
   sku: string;           // New required field
-
+  originalPrice?: number; // NEW: For showing a discount
+    promotionText?: string;
+isFeatured: boolean;
 }

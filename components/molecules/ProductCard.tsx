@@ -1,111 +1,131 @@
+// components/molecules/ProductCard.tsx
 'use client';
 
-import { motion, useReducedMotion } from "framer-motion";
-import { cardVariants, staggerContainer, staggerItem, buttonVariants, reducedMotion } from "@/lib/motion";
-import { Image } from "@heroui/image";
+import { motion } from "framer-motion";
+import { cardVariants } from "@/lib/motion";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { StarRating } from '@/components/atoms/StarRating';
+import { Product } from '@/types/product';
+import { MoreHorizontal } from "lucide-react";
 
 interface ProductCardProps {
-  image: string;
-  title: string;
-  price: number;
-  ctaLink: string;
-  ctaText: string;
-  badgeText?: string;
+  product: Product;
+  onQuickView?: (product: Product) => void; // New callback prop
 }
 
-export function ProductCard({ image, title, price, ctaLink, ctaText, badgeText }: ProductCardProps) {
-  // All hooks called unconditionally at the top
-  const [isMounted, setIsMounted] = useState(false);
+export function ProductCard({ product, onQuickView }: ProductCardProps) { // ✅ Destructure onQuickView here
   const router = useRouter();
-  const shouldReduceMotion = useReducedMotion();
+  const { name, price, originalPrice, imageUrl, slug, isNew, isOnSale, colors, rating, promotionText } = product;
+  const badgeText = isNew ? "NEW" : isOnSale ? "SALE" : undefined;
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const handleClick = () => {
+    router.push(`/product/${slug}`);
+  };
 
-  // Common JSX props
-  const articleProps = isMounted && !shouldReduceMotion ? {
-    variants: cardVariants,
-    initial: "hidden",
-    animate: "visible",
-    whileHover: "hover",
-    whileTap: "tap",
-  } : {};
-
-  const badgeProps = isMounted && !shouldReduceMotion ? {
-    variants: staggerItem,
-  } : {};
-
-  const infoProps = isMounted && !shouldReduceMotion ? {
-    variants: staggerContainer,
-    initial: "hidden",
-    animate: "visible",
-  } : {};
-
-  const textProps = isMounted && !shouldReduceMotion ? {
-    variants: staggerItem,
-  } : {};
-
-  const buttonProps = isMounted && !shouldReduceMotion ? {
-    variants: buttonVariants,
-    initial: "hidden",
-    animate: "visible",
-    whileHover: "hover",
-    whileTap: "tap",
-  } : {};
+  const handleQuickView = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent triggering the main card click
+    onQuickView?.(product); // ✅ This will now use the prop
+  };
 
   return (
     <motion.article
-      {...articleProps}
-      className="bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs mx-auto"
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="group w-full flex flex-col cursor-pointer"
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          handleClick();
+        }
+      }}
     >
-      {/* Product Image */}
-      <div className="relative h-48">
-        <Image
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
-        {badgeText && (
-          <motion.span
-            {...badgeProps}
-            className="absolute top-2 right-2 bg-primary text-gray-900 text-small font-sans px-2 py-1 rounded-full"
-          >
-            {badgeText}
-          </motion.span>
+      {/* Image Wrapper */}
+      <div className="relative mb-4 overflow-hidden">
+        <div className="relative" style={{ aspectRatio: '3/4' }}>
+          <Image
+            src={imageUrl}
+            alt={name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+        
+        {/* NEW: Quick View Trigger Button */}
+        <button
+          onClick={handleQuickView}
+          className="absolute bottom-3 right-3 p-1.5 bg-white/90 rounded-full backdrop-blur-sm hover:bg-white transition-colors shadow-sm"
+          aria-label="Quick view"
+        >
+          <MoreHorizontal size={16} className="text-gray-700" />
+        </button>
+        
+        {/* Promotion Badge */}
+        {promotionText && (
+          <div className="absolute top-3 right-3">
+            <span className="bg-white text-gray-900 text-xs font-sans font-medium px-2 py-1 rounded backdrop-blur-sm border border-white/20">
+              {promotionText}
+            </span>
+          </div>
+        )}
+        
+        {colors && colors.length > 3 && (
+          <div className="absolute bottom-3 left-3">
+            <span className="bg-white/90 text-gray-900 text-xs font-sans font-medium px-2 py-1 rounded-full">
+              +{colors.length - 3}
+            </span>
+          </div>
         )}
       </div>
 
-      {/* Product Info */}
-      <motion.div
-        {...infoProps}
-        className="p-4 flex flex-col gap-2"
-      >
-        <motion.h3
-          {...textProps}
-          className="font-sans text-subheading text-gray-900 dark:text-gray-100"
-        >
-          {title}
-        </motion.h3>
-        <motion.p
-          {...textProps}
-          className="font-sans text-body text-gray-600 dark:text-gray-300"
-        >
-          ETB {price.toLocaleString()}
-        </motion.p>
+      {/* Details Wrapper */}
+      <div className="flex flex-col gap-2 flex-1">
+        {rating && (
+          <div className="flex items-center gap-1.5">
+            <StarRating rating={rating.average} />
+            <span className="text-xs text-gray-600 dark:text-gray-400">
+              ({rating.count})
+            </span>
+          </div>
+        )}
 
-        {/* CTA Button */}
-        <motion.button
-          {...buttonProps}
-          onClick={isMounted ? () => router.push(ctaLink) : () => {}}
-          className="w-full px-6 py-2 bg-primary text-gray-900 rounded-lg font-sans text-body hover:bg-primary-dark hover:text-gray-900 dark:bg-primary-dark dark:text-gray-100"
-          aria-label={`Inquire about ${title}`}
-        >
-          {ctaText}
-        </motion.button>
-      </motion.div>
+        <h3 className="font-sans text-body font-semibold text-gray-900 dark:text-gray-100 line-clamp-2 leading-tight">
+          {name}
+        </h3>
+
+        <div className="flex items-center gap-2">
+          <span className="font-sans text-subheading font-bold text-gray-900 dark:text-gray-100">
+            ETB {price.toLocaleString()}
+          </span>
+          {originalPrice && originalPrice > price && (
+            <span className="font-sans text-body text-gray-500 line-through">
+              ETB {originalPrice.toLocaleString()}
+            </span>
+          )}
+        </div>
+
+        {colors && colors.length > 0 && (
+          <div className="flex items-center gap-1.5">
+            {colors.slice(0, 3).map((color, index) => (
+              <div
+                key={index}
+                aria-hidden="true"
+                className="w-4 h-4 rounded-full border border-gray-200 shadow-sm"
+                style={{ backgroundColor: color }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </motion.article>
   );
 }
+
+// ✅ REMOVE THIS ENTIRE FUNCTION FROM THE BOTTOM OF THE FILE!
+// function onQuickView(product: Product) {
+//   throw new Error("Function not implemented.");
+// }

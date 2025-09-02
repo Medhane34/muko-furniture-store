@@ -1,208 +1,128 @@
+// components/organisms/HeroSection.tsx
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { fadeInUp } from '@/lib/motion';
-import { Product } from '@/types/product';
 import Image from 'next/image';
-import { X } from 'lucide-react';
-import { colorMap } from '@/lib/colors';
-import { Accordion, AccordionItem } from '@heroui/accordion';
-interface HeroSectionProps {
-  product: Product;
+import { Button } from '@/components/atoms/Button';
+import { Badge } from '@/components/atoms/Badge';
+
+export interface HeroSectionProps {
+  imageUrl: string;
+  imageAlt: string;
+  badgeText?: string;
+  headline: string;
+  subheadline?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  ctaOnClick?: () => void;
+  overlayOpacity?: number;
+  contentWidth?: 'narrow' | 'medium' | 'wide';
+  minHeight?: 'sm' | 'md' | 'lg' | 'xl';
+  className?: string;
 }
 
-export function ProductHeroSection({ product }: HeroSectionProps) {
-  const [isZoomed, setIsZoomed] = useState(false);
-  const modalRef = useRef<HTMLDivElement>(null);
-const defaultContent =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+// Helper functions
+const getMinHeightClass = (size: string) => {
+  const sizes = {
+    sm: 'min-h-[400px] md:min-h-[450px]',
+    md: 'min-h-[500px] md:min-h-[550px]',
+    lg: 'min-h-[600px] md:min-h-[650px]',
+    xl: 'min-h-[700px] md:min-h-[750px]',
+  };
+  return sizes[size as keyof typeof sizes] || sizes.lg;
+};
 
-  // Handle Escape key to close modal
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsZoomed(false);
-      }
-    };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, []);
+const getContentWidthClass = (width: string) => {
+  const widths = {
+    narrow: 'max-w-md',
+    medium: 'max-w-lg',
+    wide: 'max-w-xl',
+  };
+  return widths[width as keyof typeof widths] || widths.medium;
+};
 
-  // Handle click outside to close modal
-  const handleClickOutside = (event: React.MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-      setIsZoomed(false);
+export function HeroSection({
+  imageUrl,
+  imageAlt,
+  badgeText,
+  headline,
+  subheadline,
+  ctaText,
+  ctaLink,
+  ctaOnClick,
+  overlayOpacity = 40,
+  contentWidth = 'medium',
+  minHeight = 'lg',
+  className = ''
+}: HeroSectionProps) {
+  
+  const handleCtaClick = () => {
+    if (ctaOnClick) {
+      ctaOnClick();
+    } else if (ctaLink) {
+      window.location.href = ctaLink;
     }
   };
 
-  console.log('HeroSection product:', product); // Debug
-  console.log('HeroSection isZoomed:', isZoomed); // Debug
-
   return (
-    <>
-      <motion.div
-        variants={fadeInUp}
-        initial="hidden"
-        animate="visible"
-        className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-      >
-        {/* Left Column: Product Image */}
-        <div className="flex flex-col items-center">
-          <div className="relative w-full h-96 lg:h-[500px]">
-            <Image
-              src={product.imageUrl || '/images/placeholder.jpg'}
-              alt={product.name}
-              fill
-              className="object-cover rounded-lg"
-              priority
-            />
-          </div>
-          <motion.button
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
-            onClick={() => {
-              setIsZoomed(true);
-              console.log('Zoom Image clicked'); // Debug
-            }}
-            className="-mt-8 z-2 px-4 py-2 bg-primary text-gray-900 rounded-lg font-sans text-body hover:bg-primary-dark"
-            aria-label="Zoom image"
-          >
-            Zoom Image
-          </motion.button>
-        </div>
+    <section className={`relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden ${getMinHeightClass(minHeight)} ${className}`}>
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src={imageUrl}
+          alt={imageAlt}
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        {/* Overlay */}
+        <div 
+          className="absolute inset-0 bg-black"
+          style={{ opacity: `${overlayOpacity}%` }}
+          aria-hidden="true"
+        />
+      </div>
 
-        {/* Right Column: Product Details */}
-        <div className="flex flex-col gap-4">
-          <motion.h1
-            variants={fadeInUp}
-            className="font-sans text-heading text-gray-900 dark:text-gray-100"
-          >
-            {product.name}
-          </motion.h1>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-600 dark:text-gray-300"
-          >
-            {product.description}
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-subheading font-bold text-gray-900 dark:text-gray-100"
-          >
-            ${product.price.toFixed(2)}
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-900 dark:text-gray-100"
-          >
-            Stock: {product.stock > 0 ? `${product.stock} available` : 'Out of stock'}
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-900 dark:text-gray-100"
-          >
-            Material: {product.material || 'N/A'}
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-900 dark:text-gray-100"
-          >
-            Dimensions: {product.dimensions || 'N/A'}
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-900 dark:text-gray-100"
-          >
-            Weight: {product.weight || 'N/A'}
-          </motion.p>
-          
-          {product.colors && product.colors.length > 0 ? (
-            <motion.div
-              variants={fadeInUp}
-              className="flex flex-wrap gap-2 mt-2"
-              aria-label={`Available colors: ${product.colors.join(', ')}`}
+      {/* Content Container */}
+      <div className="relative container mx-auto px-4 h-full flex items-center">
+        {/* Content Column - Left aligned */}
+        <div className={`py-56 ${getContentWidthClass(contentWidth)}`}>
+          {/* Badge */}
+          {badgeText && (
+            <Badge 
+
+              color="primary" 
+              className="mb-4 md:mb-6"
             >
-              <span className="font-sans text-body text-gray-900 dark:text-gray-100">
-                Colors:
-              </span>
-              {product.colors.slice(0, 4).map((color) => (
-                <div
-                  key={color}
-                  className="w-6 h-6 rounded-full border border-gray-300"
-                  style={{ backgroundColor: colorMap[color] || '#000000' }}
-                  aria-hidden="true"
-                />
-              ))}
-            </motion.div>
-          ) : (
-            <motion.p
-              variants={fadeInUp}
-              className="font-sans text-body text-gray-900 dark:text-gray-100"
-            >
-              Colors: N/A
-            </motion.p>
+              {badgeText}
+            </Badge>
           )}
           
-        <Accordion>
-            <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
-              {defaultContent}
-            </AccordionItem>
-            <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
-              {defaultContent}
-            </AccordionItem>
-            <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
-              {defaultContent}
-            </AccordionItem>
-          </Accordion>
-
-          <motion.button
-
-            variants={fadeInUp}
-            className="px-6 py-2 bg-primary text-gray-900 rounded-lg font-sans text-body hover:bg-primary-dark w-max"
-            aria-label="Inquire about product"
-          >
-            Inquire
-          </motion.button>
+          {/* Headline */}
+          <h1 className="font-sans text-3xl md:text-4xl lg:text-heading font-bold text-white mb-4 md:mb-6">
+            {headline}
+          </h1>
           
-        </div>
-      </motion.div>
-
-      {/* Full-Screen Modal */}
-      <AnimatePresence>
-        {isZoomed && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-            onClick={handleClickOutside}
-          >
-            <motion.div
-              ref={modalRef}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl max-h-[90vh] w-full h-full"
+          {/* Subheadline */}
+          {subheadline && (
+            <p className="font-sans text-lg md:text-xl lg:text-subheading text-white/90 mb-6 md:mb-8 leading-relaxed">
+              {subheadline}
+            </p>
+          )}
+          
+          {/* CTA Button */}
+          {ctaText && (
+            <Button
+              variant="solid"
+              size="lg"
+              onClick={handleCtaClick}
+              className="bg-white text-gray-900 hover:bg-gray-100 hover:text-gray-900 transition-colors"
             >
-              <Image
-                src={product.imageUrl || '/images/placeholder.jpg'}
-                alt={product.name}
-                fill
-                className="object-contain"
-              />
-              <button
-                onClick={() => setIsZoomed(false)}
-                className="absolute top-4 right-4 p-2 text-gray-100 hover:text-primary"
-                aria-label="Close zoom"
-              >
-                <X size={24} />
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+              {ctaText}
+            </Button>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }

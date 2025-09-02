@@ -3,14 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { fadeInUp } from "@/lib/motion";
 import { Select, SelectItem } from "@heroui/select";
-
-export type SortOption = 
-  | 'price-asc'
-  | 'price-desc'
-  | 'name-asc'
-  | 'name-desc'
-  | 'newest'
-  | 'on-sale';
+import { SortOption } from '@/types/sort'; // Import from central location
 
 interface SortControlsProps {
   sortOption: SortOption;
