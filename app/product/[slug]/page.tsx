@@ -8,6 +8,7 @@ import { ProductHeroSection, ProductSteps } from '@/components/';
 import { RelatedProductsSection } from '@/components/organisms';
 import { notFound } from 'next/navigation';
 import ProductSpecsSection from '@/components/features/product/ProductSpecsSection';
+import { CTAForm } from '@/components/features/product/CTAForm';
 
 // Mock data for beds and dining tables
 const bedProducts: Product[] = [
@@ -29,8 +30,8 @@ const bedProducts: Product[] = [
     reviews: [
       { rating: 5, comment: 'Best bed ever!', user: 'Bob' },
     ],
-      sku: "MKO-SF-220-BL",
-
+    sku: "MKO-SF-220-BL",
+    isFeatured: false
   },
   // Add more beds
 ];
@@ -49,13 +50,13 @@ const diningTableProducts: Product[] = [
     material: 'Oak Wood',
     dimensions: '120x80 cm',
     weight: '40 kg',
-    colors: ["gray","white","blue","black"],
+    colors: ["gray", "white", "blue", "black"],
     features: ['Extendable', 'Scratch-resistant', 'Easy to clean'],
     reviews: [
       { rating: 4, comment: 'Beautiful table', user: 'Alice' },
     ],
-      sku: "MKO-SF-220-BL",
-
+    sku: "MKO-SF-220-BL",
+    isFeatured: false
   },
   // Add more dining tables
 ];
@@ -82,7 +83,7 @@ export default  function ProductDetailPage({ params }: ProductDetailPageProps) {
   let product: Product | null = null;
   let category: Category | '' = '';
   for (const [cat, products] of Object.entries(categoryProducts) as [Category, Product[]][]) {
-    product = products.find(p => p.slug === slug);
+    product = products.find(p => p.slug === slug) ?? null;
     if (product) {
       category = cat;
       break;
@@ -111,6 +112,11 @@ export default  function ProductDetailPage({ params }: ProductDetailPageProps) {
         category={category}
         currentProductSlug={slug}
         products={categoryProducts[category]}
+      />
+      <CTAForm
+        product={product}
+        onSubmit={(data) => console.log('Order:', data)}
+        heading="Order Now"
       />
     </section>
   );

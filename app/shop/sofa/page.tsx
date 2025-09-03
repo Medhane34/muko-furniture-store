@@ -47,7 +47,8 @@ export default function SofaProductsPage() {
   ];
 
   return (
-    <><HeroSection
+    <>
+    <HeroSection
       imageUrl="/features/ui/homepage-hero.jpg"
       imageAlt="Modern furniture collection showcasing sofas, chairs, and tables in a beautifully designed living space"
       badgeText="New Collection 2024"

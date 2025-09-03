@@ -1,4 +1,3 @@
-// components/organisms/HeroSection.tsx
 'use client';
 
 import Image from 'next/image';
@@ -63,6 +62,11 @@ export function HeroSection({
     }
   };
 
+  // Split headline for highlighting last two words
+  const words = headline.trim().split(/\s+/);
+  const mainText = words.length > 2 ? words.slice(0, -2).join(' ') : (words.length === 1 ? '' : words[0]);
+  const highlightText = words.length >= 2 ? words.slice(-2).join(' ') : (words[0] || '');
+
   return (
     <section className={`relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden ${getMinHeightClass(minHeight)} ${className}`}>
       {/* Background Image */}
@@ -90,7 +94,6 @@ export function HeroSection({
           {/* Badge */}
           {badgeText && (
             <Badge 
-
               color="primary" 
               className="mb-4 md:mb-6"
             >
@@ -98,9 +101,17 @@ export function HeroSection({
             </Badge>
           )}
           
-          {/* Headline */}
+          {/* Headline with highlighted last two words */}
           <h1 className="font-sans text-3xl md:text-4xl lg:text-heading font-bold text-white mb-4 md:mb-6">
-            {headline}
+            {mainText}
+            {mainText && ' '}
+            <span className="text-primary animate-scale-in">
+              {highlightText}
+            </span>
+            {/* Alternative: Gradient highlight */}
+            {/* <span className="bg-gradient-to-r from-gradient-from to-gradient-to text-transparent bg-clip-text animate-scale-in">
+              {highlightText}
+            </span> */}
           </h1>
           
           {/* Subheadline */}

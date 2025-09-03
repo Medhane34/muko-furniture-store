@@ -20,6 +20,14 @@ module.exports = {
           DEFAULT: "#FFE066",
           dark: "#FFD700",
         },
+        text: {
+        light: "#1F2937", // dark gray for light theme
+        dark: "#F9FAFB",  // near white for dark theme
+      },
+      background: {
+        light: "#F9FAFB",
+        dark: "#080404",
+      },
         // Add gradient colors for easy reference
         gradient: {
           from: "#FF3366",
