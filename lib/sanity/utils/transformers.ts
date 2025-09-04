@@ -2,70 +2,96 @@ import { Product } from '@/types/product';
 
 export interface SanityProduct {
   _id: string;
-  name: string;
-  description: string;
-  price: number;
-  images?: Array<{
-    asset?: {
-      url?: string;
-    };
-  }>;
-  isNew?: boolean;
-  isOnSale?: boolean;
-  slug?: {  // Make slug optional
-    current?: string;  // Make current optional
+  basicInfo: {
+    name: string;
+    slug: { current: string };
+    sku: string;
   };
-  stock: number;
-  material?: string;
-  dimensions?: string;
-  weight?: string;
-  colors?: string[];
+  description: string;
+  pricingStatus: {
+    price: number;
+    originalPrice?: number;
+    stock: number;
+    status: string;
+  };
+  media: {
+    images?: Array<{
+      asset?: {
+        url?: string;
+      };
+    }>;
+  };
+  specifications: {
+    material?: string;
+    dimensions?: string;
+    weight?: string;
+    colors?: string[];
+  };
   features?: string[];
+  statusFlags: {
+    isNew?: boolean;
+    isOnSale?: boolean;
+    isFeatured?: boolean;
+    promotionText?: string;
+  };
   reviews?: Array<{
     rating: number;
     comment: string;
     user: string;
+    date: string;
   }>;
+  organization: {
+    category: {
+      slug: any; name: string 
+};
+    tags: string[];
+  };
+  seo: {
+    metaTitle?: string;
+    metaDescription?: string;
+  };
   rating?: {
     average: number;
     count: number;
   };
-  sku: string;
-  originalPrice?: number;
-  promotionText?: string;
-  isFeatured?: boolean;
 }
 
 export function transformSanityProduct(sanityProduct: SanityProduct): Product {
-  // Safe slug extraction with fallbacks
-  const slug = sanityProduct.slug?.current || 
-               sanityProduct.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 
-               `product-${sanityProduct._id}`;
-  
+  // Safe slug extraction
+  const slug =
+    sanityProduct.basicInfo.slug?.current ||
+    sanityProduct.basicInfo.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') ||
+    `product-${sanityProduct._id}`;
+
   // Safe image URL extraction
-  const imageUrl = sanityProduct.images?.[0]?.asset?.url || '/images/placeholder.jpg';
-  
+  const imageUrl = sanityProduct.media.images?.[0]?.asset?.url || '/images/placeholder.jpg';
+
+  // Debug log
+  console.log('Sanity Product:', JSON.stringify(sanityProduct, null, 2));
+console.log('transformSanityProduct: Raw statusFlags:', sanityProduct.statusFlags); // Debug
+  console.log('transformSanityProduct: Raw promotionText:', sanityProduct.statusFlags.promotionText); // Debug
+  console.log('transformSanityProduct: Transformed promotionText:', sanityProduct.statusFlags.promotionText || undefined); // Debug
   return {
     _id: sanityProduct._id,
-    name: sanityProduct.name || 'Unnamed Product',
+    name: sanityProduct.basicInfo.name || 'Unnamed Product',
     description: sanityProduct.description || '',
-    price: sanityProduct.price || 0,
+    price: sanityProduct.pricingStatus.price || 0,
     imageUrl: imageUrl,
-    isNew: sanityProduct.isNew || false,
-    isOnSale: sanityProduct.isOnSale || false,
-    slug: slug, // Use the safely extracted slug
-    stock: sanityProduct.stock || 0,
-    material: sanityProduct.material,
-    dimensions: sanityProduct.dimensions,
-    weight: sanityProduct.weight,
-    colors: sanityProduct.colors || [],
+    isNew: sanityProduct.statusFlags.isNew || false,
+    isOnSale: sanityProduct.statusFlags.isOnSale || false,
+    slug: slug,
+    stock: sanityProduct.pricingStatus.stock || 0,
+    material: sanityProduct.specifications.material,
+    dimensions: sanityProduct.specifications.dimensions,
+    weight: sanityProduct.specifications.weight,
+    colors: sanityProduct.specifications.colors || [],
     features: sanityProduct.features || [],
-    reviews: sanityProduct.reviews || [],
-    rating: sanityProduct.rating,
-    sku: sanityProduct.sku || `SKU-${sanityProduct._id}`,
-    originalPrice: sanityProduct.originalPrice,
-    promotionText: sanityProduct.promotionText,
-    isFeatured: sanityProduct.isFeatured || false
+    reviews: [], // No longer used
+    rating: sanityProduct.rating || { average: 0, count: 0 }, // Use new rating field
+    sku: sanityProduct.basicInfo.sku || `SKU-${sanityProduct._id}`,
+originalPrice: sanityProduct.pricingStatus.originalPrice, // Updated: Fetch from nested field (remove fallback if always present)    promotionText: sanityProduct.statusFlags.promotionText,
+promotionText: sanityProduct.statusFlags.promotionText || undefined,    
+isFeatured: sanityProduct.statusFlags.isFeatured || false,
   };
 }
 

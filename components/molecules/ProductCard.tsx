@@ -18,9 +18,12 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) { // ✅
   const router = useRouter();
   const { name, price, originalPrice, imageUrl, slug, isNew, isOnSale, colors, rating, promotionText } = product;
   const badgeText = isNew ? "NEW" : isOnSale ? "SALE" : undefined;
+console.log('ProductCard: product.promotionText:', promotionText); // Debug
 
+console.log('ProductCard: product.promotionText:', promotionText); // Debug
+  console.log('ProductCard: promotionText truthiness:', !!promotionText); // Debug
   const handleClick = () => {
-    router.push(`/product/${slug}`);
+    router.push(`/product/${product.slug}`);
   };
 
   const handleQuickView = (e: React.MouseEvent) => {

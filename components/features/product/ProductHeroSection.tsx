@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -6,8 +7,8 @@ import { fadeInUp } from '@/lib/motion';
 import { Product } from '@/types/product';
 import Image from 'next/image';
 import { X } from 'lucide-react';
-import { colorMap } from '@/lib/colors';
 import { Accordion, AccordionItem } from '@heroui/accordion';
+
 interface HeroSectionProps {
   product: Product;
 }
@@ -15,10 +16,11 @@ interface HeroSectionProps {
 export function ProductHeroSection({ product }: HeroSectionProps) {
   const [isZoomed, setIsZoomed] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-const defaultContent =
+  const defaultContent =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
-  // Handle Escape key to close modal
+  console.log('ProductHeroSection: product.colors:', product.colors); // Debug
+
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -29,15 +31,14 @@ const defaultContent =
     return () => window.removeEventListener('keydown', handleEscape);
   }, []);
 
-  // Handle click outside to close modal
   const handleClickOutside = (event: React.MouseEvent) => {
     if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
       setIsZoomed(false);
     }
   };
 
-  console.log('HeroSection product:', product); // Debug
-  console.log('HeroSection isZoomed:', isZoomed); // Debug
+  console.log('HeroSection product:', product);
+  console.log('HeroSection isZoomed:', isZoomed);
 
   return (
     <>
@@ -45,11 +46,10 @@ const defaultContent =
         variants={fadeInUp}
         initial="hidden"
         animate="visible"
-        className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start "
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"
       >
-        {/* Left Column: Product Image */}
         <div className="flex flex-col items-center sticky top-4 self-start">
-          <div className="relative w-full h-96 h-96 lg:max-h-[70vh]">
+          <div className="relative w-full h-96 lg:max-h-[70vh]">
             <Image
               src={product.imageUrl || '/images/placeholder.jpg'}
               alt={product.name}
@@ -64,7 +64,7 @@ const defaultContent =
             animate="visible"
             onClick={() => {
               setIsZoomed(true);
-              console.log('Zoom Image clicked'); // Debug
+              console.log('Zoom Image clicked');
             }}
             className="-mt-8 z-2 px-4 py-2 bg-primary text-gray-900 rounded-lg font-sans text-body hover:bg-primary-dark"
             aria-label="Zoom image"
@@ -73,7 +73,6 @@ const defaultContent =
           </motion.button>
         </div>
 
-        {/* Right Column: Product Details */}
         <div className="flex flex-col gap-4">
           <motion.h1
             variants={fadeInUp}
@@ -117,7 +116,6 @@ const defaultContent =
           >
             Weight: {product.weight || 'N/A'}
           </motion.p>
-          
           {product.colors && product.colors.length > 0 ? (
             <motion.div
               variants={fadeInUp}
@@ -127,12 +125,13 @@ const defaultContent =
               <span className="font-sans text-body text-gray-900 dark:text-gray-100">
                 Colors:
               </span>
-              {product.colors.slice(0, 4).map((color) => (
+              {product.colors.slice(0, 4).map((color, index) => (
                 <div
-                  key={color}
+                  key={index}
                   className="w-6 h-6 rounded-full border border-gray-300"
-                  style={{ backgroundColor: colorMap[color] || '#000000' }}
+                  style={{ backgroundColor: color }}
                   aria-hidden="true"
+                  title={color} // Debug: Show hex on hover
                 />
               ))}
             </motion.div>
@@ -144,8 +143,7 @@ const defaultContent =
               Colors: N/A
             </motion.p>
           )}
-          
-        <Accordion>
+          <Accordion>
             <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
               {defaultContent}
             </AccordionItem>
@@ -156,20 +154,16 @@ const defaultContent =
               {defaultContent}
             </AccordionItem>
           </Accordion>
-
           <motion.button
-
             variants={fadeInUp}
             className="px-6 py-2 bg-primary text-gray-900 rounded-lg font-sans text-body hover:bg-primary-dark w-max"
             aria-label="Inquire about product"
           >
             Inquire
           </motion.button>
-          
         </div>
       </motion.div>
 
-      {/* Full-Screen Modal */}
       <AnimatePresence>
         {isZoomed && (
           <motion.div

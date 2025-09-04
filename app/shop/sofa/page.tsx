@@ -15,6 +15,7 @@ import { FeaturedProductsSection } from "@/components/organisms/FeaturedProducts
 
 import { HeroSection } from '@/components/features/product/HeroSection';
 import { SocialProofSection } from "@/components/organisms/SocialProofSection";
+import { FeaturedProductsWrapper } from "@/wrappers/FeaturedProductsWrapper";
 
 export default function SofaProductsPage() {
   const [sortOption, setSortOption] = useState<SortOption>('price-asc');
@@ -63,7 +64,7 @@ export default function SofaProductsPage() {
       
       <section className="container mx-auto px-4 py-8">
       
-        <FeaturedProductsSection
+        {/* <FeaturedProductsSection
           title="Featured Sofas"
           subtitle="Discover our premium sofa collection crafted for comfort and style"
           products={featuredSofas}
@@ -72,8 +73,17 @@ export default function SofaProductsPage() {
           sortOption={sortOption}
           onSortChange={setSortOption}
           productLimit={3} // Show only 3 products
+        /> */}
+        <FeaturedProductsWrapper
+          title="Featured Sofas"
+          subtitle="Discover our premium sofa collection crafted for comfort and style"
+          viewAllLink="/sofa"
+          columns={3}
+          sortOption={sortOption}
+          onSortChange={setSortOption}
+          productLimit={3}
+          categorySlug="sofa"
         />
-        
      
       </section>
      {/* Social Proof Break */}

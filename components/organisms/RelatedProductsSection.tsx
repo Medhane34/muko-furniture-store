@@ -1,8 +1,10 @@
+// components/organisms/RelatedProductSection
 'use client';
 
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/motion';
-import { ProductGrid, Product } from '@/components/organisms';
+import { ProductGrid } from '@/components/organisms';
+import { Product } from '@/types/product';
 
 interface RelatedProductsSectionProps {
   category: string;
@@ -51,7 +53,7 @@ export default function RelatedProductsSection({
       >
         <ProductGrid
           products={relatedProducts}
-          sortOption="none" // No sorting for related products
+          sortOption="price-asc" // No sorting for related products
           columns={3}
         />
       </motion.div>
