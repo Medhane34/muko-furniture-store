@@ -14,6 +14,7 @@ export interface ProductGridProps {
   onQuickView?: (product: Product) => void; // ✅ This is the prop
 }
 
+
 export function ProductGrid({ 
   products, 
   sortOption, 

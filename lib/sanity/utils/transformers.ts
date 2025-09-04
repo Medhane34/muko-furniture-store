@@ -1,3 +1,5 @@
+
+// lib/sanity/utils/transformers.ts
 import { Product } from '@/types/product';
 
 export interface SanityProduct {
@@ -28,7 +30,7 @@ export interface SanityProduct {
     colors?: string[];
   };
   features?: string[];
-  statusFlags: {
+  statusFlags?: {
     isNew?: boolean;
     isOnSale?: boolean;
     isFeatured?: boolean;
@@ -42,8 +44,9 @@ export interface SanityProduct {
   }>;
   organization: {
     category: {
-      slug: any; name: string 
-};
+      slug: any;
+      name: string;
+    };
     tags: string[];
   };
   seo: {
@@ -59,42 +62,46 @@ export interface SanityProduct {
 export function transformSanityProduct(sanityProduct: SanityProduct): Product {
   // Safe slug extraction
   const slug =
-    sanityProduct.basicInfo.slug?.current ||
-    sanityProduct.basicInfo.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') ||
+    sanityProduct.basicInfo?.slug?.current ||
+    sanityProduct.basicInfo?.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') ||
     `product-${sanityProduct._id}`;
 
   // Safe image URL extraction
-  const imageUrl = sanityProduct.media.images?.[0]?.asset?.url || '/images/placeholder.jpg';
+  const imageUrl = sanityProduct.media?.images?.[0]?.asset?.url || '/images/placeholder.jpg';
 
   // Debug log
-  console.log('Sanity Product:', JSON.stringify(sanityProduct, null, 2));
-console.log('transformSanityProduct: Raw statusFlags:', sanityProduct.statusFlags); // Debug
-  console.log('transformSanityProduct: Raw promotionText:', sanityProduct.statusFlags.promotionText); // Debug
-  console.log('transformSanityProduct: Transformed promotionText:', sanityProduct.statusFlags.promotionText || undefined); // Debug
+  console.log('transformSanityProduct: Raw product:', JSON.stringify(sanityProduct, null, 2));
+  console.log('transformSanityProduct: Raw statusFlags:', sanityProduct.statusFlags);
+
   return {
     _id: sanityProduct._id,
-    name: sanityProduct.basicInfo.name || 'Unnamed Product',
+    name: sanityProduct.basicInfo?.name || 'Unnamed Product',
     description: sanityProduct.description || '',
-    price: sanityProduct.pricingStatus.price || 0,
+    price: sanityProduct.pricingStatus?.price || 0,
     imageUrl: imageUrl,
-    isNew: sanityProduct.statusFlags.isNew || false,
-    isOnSale: sanityProduct.statusFlags.isOnSale || false,
+    isNew: sanityProduct.statusFlags?.isNew ?? false,
+    isOnSale: sanityProduct.statusFlags?.isOnSale ?? false,
     slug: slug,
-    stock: sanityProduct.pricingStatus.stock || 0,
-    material: sanityProduct.specifications.material,
-    dimensions: sanityProduct.specifications.dimensions,
-    weight: sanityProduct.specifications.weight,
-    colors: sanityProduct.specifications.colors || [],
+    stock: sanityProduct.pricingStatus?.stock || 0,
+    material: sanityProduct.specifications?.material,
+    dimensions: sanityProduct.specifications?.dimensions,
+    weight: sanityProduct.specifications?.weight,
+    colors: sanityProduct.specifications?.colors || [],
     features: sanityProduct.features || [],
     reviews: [], // No longer used
-    rating: sanityProduct.rating || { average: 0, count: 0 }, // Use new rating field
-    sku: sanityProduct.basicInfo.sku || `SKU-${sanityProduct._id}`,
-originalPrice: sanityProduct.pricingStatus.originalPrice, // Updated: Fetch from nested field (remove fallback if always present)    promotionText: sanityProduct.statusFlags.promotionText,
-promotionText: sanityProduct.statusFlags.promotionText || undefined,    
-isFeatured: sanityProduct.statusFlags.isFeatured || false,
+    rating: sanityProduct.rating || { average: 0, count: 0 },
+    sku: sanityProduct.basicInfo?.sku || `SKU-${sanityProduct._id}`,
+    originalPrice: sanityProduct.pricingStatus?.originalPrice,
+    promotionText: sanityProduct.statusFlags?.promotionText,
+    isFeatured: sanityProduct.statusFlags?.isFeatured ?? false,
   };
 }
 
 export function transformSanityProducts(sanityProducts: SanityProduct[]): Product[] {
-  return sanityProducts.map(transformSanityProduct);
+  return sanityProducts
+    .filter((item) => item != null) // Remove null/undefined items
+    .map((sanityProduct) => {
+      console.log('transformSanityProducts: Processing product ID:', sanityProduct._id);
+      return transformSanityProduct(sanityProduct);
+    });
 }
