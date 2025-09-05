@@ -13,7 +13,7 @@ import { Product } from "@/types/product";
 import AccentHeading from '@/components/atoms/AccentHeading';
 import { FeaturedProductsSection } from "@/components/organisms/FeaturedProductsSection";
 
-import { HeroSection } from '@/components/features/product/HeroSection';
+import { HeroSection } from '@/components/organisms/HeroSection';
 import { SocialProofSection } from "@/components/organisms/SocialProofSection";
 import { FeaturedProductsWrapper } from "@/wrappers/FeaturedProductsWrapper";
 

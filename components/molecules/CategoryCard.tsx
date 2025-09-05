@@ -28,7 +28,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
       }}
       whileHover="hover"
       whileTap="tap"
-      className="relative overflow-hidden rounded-lg group"
+      className="relative overflow-hidden rounded-none group"
     >
       <Link href={href} passHref>
         <div className="relative w-full h-full aspect-[4/3] sm:aspect-square md:aspect-[4/3] lg:aspect-[4/3]">

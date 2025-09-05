@@ -13,6 +13,8 @@ import {
   Clock,
   Award
 } from "lucide-react";
+import AccentHeading from "@/components/atoms/AccentHeading";
+import MainHeadline from "@/components/atoms/MainHeadline";
 
 interface ValueItem {
   icon: React.ComponentType<any>;
@@ -95,7 +97,7 @@ export function ValuesCommitment({
   };
 
   return (
-    <section className={`py-20 md:py-28 bg-gray-50 ${className}`}>
+    <section className={`py-20 md:py-28  dark:bg-background-dark ${className}`}>
       <div className="container mx-auto px-4">
         
         {/* Header */}
@@ -106,12 +108,13 @@ export function ValuesCommitment({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-sans text-heading font-bold text-gray-900 mb-4">
-            {headline}
-          </h2>
-          <p className="font-sans text-body text-gray-600 max-w-2xl mx-auto">
+          <AccentHeading size="sm">
             {subtitle}
-          </p>
+          </AccentHeading>
+          <MainHeadline >
+            {headline}
+          </MainHeadline>
+          
         </motion.div>
 
         {/* Values Grid */}
@@ -191,7 +194,7 @@ export function ValuesCommitment({
           viewport={{ once: true }}
           className="text-center"
         >
-          <h4 className="font-sans font-semibold text-gray-900 mb-8">
+          <h4 className="font-sans font-semibold text-text-black dark:text-text-white mb-8">
             Certified & Recognized
           </h4>
           
@@ -201,7 +204,7 @@ export function ValuesCommitment({
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <TreePine className="text-green-600" size={24} />
               </div>
-              <p className="font-sans text-sm font-medium text-gray-900">Sustainable Forestry</p>
+              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Sustainable Forestry</p>
               <p className="font-sans text-xs text-gray-600">Certified</p>
             </div>
 
@@ -210,7 +213,7 @@ export function ValuesCommitment({
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Users className="text-blue-600" size={24} />
               </div>
-              <p className="font-sans text-sm font-medium text-gray-900">Fair Trade</p>
+              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Fair Trade</p>
               <p className="font-sans text-xs text-gray-600">Practices</p>
             </div>
 
@@ -219,7 +222,7 @@ export function ValuesCommitment({
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Award className="text-primary" size={24} />
               </div>
-              <p className="font-sans text-sm font-medium text-gray-900">Quality</p>
+              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Quality</p>
               <p className="font-sans text-xs text-gray-600">Excellence</p>
             </div>
 
@@ -228,7 +231,7 @@ export function ValuesCommitment({
               <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Shield className="text-amber-600" size={24} />
               </div>
-              <p className="font-sans text-sm font-medium text-gray-900">Proudly</p>
+              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Proudly</p>
               <p className="font-sans text-xs text-gray-600">Ethiopian</p>
             </div>
           </div>

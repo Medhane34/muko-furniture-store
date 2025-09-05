@@ -13,9 +13,11 @@ import { SortOption } from '@/types/sort';
 import { FilterState } from '@/types/filter';
 import { Product } from '@/types/product';
 import { getColorName } from '@/lib/colors';
-import { HeroSection } from '../features/product/HeroSection';
+import { HeroSection } from './HeroSection';
 import ProductFilterSidebar from './ProductFilterSidebar';
 import QuickViewDrawer from './QuickViewDrawer';
+import { CTAForm } from '../features/product/CTAForm';
+import { CTAFormWrapper } from '@/wrappers/CTAFormWrapper';
 
 interface CategoryPageClientProps {
   category: string;
@@ -202,7 +204,6 @@ export function CategoryPageClient({
           product={quickViewProduct}
         />
       </section>
-      {/* <CTAForm /> */}
     </div>
   );
 }

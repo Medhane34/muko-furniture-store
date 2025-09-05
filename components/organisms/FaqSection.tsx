@@ -1,14 +1,15 @@
-// components/organisms/FaqSection.tsx
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Accordion, AccordionItem } from "@heroui/accordion";
-
+import { Badge } from "@/components/atoms/Badge";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
+import MainHeadline from "../atoms/MainHeadline";
 
 export interface FaqItem {
   question: string;
   answer: string;
+  icon?: React.ReactNode;
 }
 
 export interface FaqSectionProps {
@@ -22,12 +23,16 @@ const FaqSection: React.FC<FaqSectionProps> = ({
   faqs,
   className = "",
 }) => {
-  // Open the first item by default
-  const [openKeys, setOpenKeys] = useState<Set<string>>(new Set([faqs[0]?.question]));
+  // Open only the first item by default
+  const [openKeys, setOpenKeys] = useState<Set<string>>(new Set([faqs[0]?.question || ""]));
 
   return (
-    <section className={`py-16 bg-background-light dark:bg-background-dark ${className}`}>
-      <div className="max-w-2xl mx-auto px-4">
+    <section 
+      className={`py-16 bg-background-light dark:bg-background-dark ${className}`} 
+      role="region"
+      aria-labelledby="faq-heading"
+    >
+      <div className="max-w-2xl mx-auto px-2 sm:px-4">
         <motion.div
           className="text-center mb-10"
           initial="hidden"
@@ -35,13 +40,25 @@ const FaqSection: React.FC<FaqSectionProps> = ({
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <h1 className="text-heading mb-2">{heading}</h1>
+          <Badge color="primary" className="mb-4">
+            Support
+          </Badge>
+          {heading && (
+            <MainHeadline 
+              
+              gradientStyle="partial"
+              size="lg"
+              className="mb-2"
+            >
+              {heading}
+            </MainHeadline>
+          )}
         </motion.div>
         <motion.div
           className="w-full"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
         >
           <Accordion
@@ -51,24 +68,29 @@ const FaqSection: React.FC<FaqSectionProps> = ({
             variant="light"
             className="w-full"
             itemClasses={{
-              base: "mb-4 rounded-lg shadow-md bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700",
-              title: "font-semibold text-lg text-left text-gray-900 dark:text-white",
-              content: "text-body text-gray-600 dark:text-gray-300",
+              base: "mb-4 rounded-lg shadow-md bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-600 hover:bg-background-light/50 dark:hover:bg-background-dark/50 transition-colors",
+              title: "font-semibold text-lg text-left text-text-light dark:text-text-dark",
+              content: "text-body text-text-light/80 dark:text-text-dark/80",
             }}
           >
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={faq.question}
                 aria-label={faq.question}
-                title={faq.question}
+                title={
+                  <div className="flex items-center gap-2">
+                    {faq.icon && faq.icon}
+                    {faq.question}
+                  </div>
+                }
                 classNames={{
-                  trigger: "px-6 py-4",
+                  trigger: "px-6 py-4 focus:outline-none", // Removed focus:ring-2 focus:ring-primary
                   content: "px-6 pb-4",
                 }}
               >
                 <motion.p
                   variants={fadeInUp}
-                  className="text-body text-gray-600 dark:text-gray-300"
+                  className="text-body text-text-light/80 dark:text-text-dark/80"
                 >
                   {faq.answer}
                 </motion.p>

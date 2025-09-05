@@ -3,7 +3,7 @@ import { CraftsmanshipShowcase } from "@/components/features/aboutus/Craftsmansh
 import { OurStory } from "@/components/features/aboutus/OurStory";
 import { TeamShowcase } from "@/components/features/aboutus/TeamShowcase";
 import { ValuesCommitment } from "@/components/features/aboutus/ValuesCommitment";
-import { HeroSection } from '@/components/features/product/HeroSection';
+import { HeroSection } from '@/components/organisms/HeroSection';
 import { TestimonialCarousel } from "@/components/organisms/TestimonialCarousel";
 import TestimonialGalaxy from "@/components/organisms/TestimonialGalaxy/TestimonialGalaxy";
 import { title } from "@/components/primitives";
@@ -57,7 +57,7 @@ export default function AboutPage() {
             description: "Serving all major Ethiopian cities"
           }
         ]}
-        imageSrc="/about/founder-story.jpg"
+        imageSrc="/homepage-hero.jpg"
         imageAlt="MUKO Furniture founder in workshop"
         ctaText="Meet Our Artisans"
         ctaLink="/about/team" />
@@ -70,8 +70,8 @@ export default function AboutPage() {
             id: "materials",
             title: "Sustainable Ethiopian Hardwoods",
             description: "We use only ethically sourced woods from managed Ethiopian forests",
-            image: "/craftsmanship/ethiopian-wood.jpg",
-            details: [
+             image: "/homepage-hero.jpg",      
+              details: [
               "Wanza and Zelkova hardwoods",
               "5-year air-drying process",
               "Natural oil finishes only",
@@ -83,7 +83,7 @@ export default function AboutPage() {
             id: "techniques", 
             title: "Generational Knowledge",
             description: "Techniques passed down through generations of Ethiopian craftsmen",
-            image: "/craftsmanship/traditional-joinery.jpg",
+            image: "/homepage-hero.jpg",
             details: [
               "Mortise and tenon joinery",
               "Hand-carved details",
@@ -96,7 +96,7 @@ export default function AboutPage() {
             id: "quality",
             title: "Rigorous Quality Control",
             description: "Every piece undergoes 27 quality checks before delivery",
-            image: "/craftsmanship/quality-check.jpg",
+            image: "/homepage-hero.jpg",
             details: [
               "Weight testing to 300kg",
               "Frame stress testing",
@@ -112,7 +112,7 @@ export default function AboutPage() {
         }}
       />
 
-      <TeamShowcase
+     {/*  <TeamShowcase
         headline="Ethiopian Craftsmen, Global Quality"
         subtitle="Each artisan brings generations of knowledge to every piece they create"
         teamMembers={[
@@ -155,7 +155,7 @@ export default function AboutPage() {
           totalExperience: 225,
           projectsCompleted: 6500
         }}
-      />
+      /> */}
 
       {/* <TestimonialGalaxy 
         testimonials={[{

@@ -1,4 +1,3 @@
-// components/sections/CTASection.tsx
 'use client';
 
 import { motion } from "framer-motion";
@@ -6,6 +5,10 @@ import { fadeInUp, staggerContainer } from "@/lib/motion";
 import Image from "next/image";
 import { Button } from "@/components/atoms/Button";
 import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/atoms/Badge";
+import MainHeadline from "../atoms/MainHeadline";
+import BadgeText from "../atoms/BadgeText";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
 interface CTASectionProps {
   variant?: 'contact' | 'product-inquiry';
@@ -15,20 +18,8 @@ interface CTASectionProps {
   ctaText?: string;
   ctaLink?: string;
   backgroundImage?: string;
-  overlayOpacity?: 20 | 40 | 50 | 60 | 70 | 80; // Limited to specific values
-  textColor?: 'light' | 'dark';
   className?: string;
 }
-
-// Map opacity values to static Tailwind classes
-const opacityClasses = {
-  20: 'bg-opacity-20',
-  40: 'bg-opacity-40',
-  50: 'bg-opacity-50',
-  60: 'bg-opacity-60',
-  70: 'bg-opacity-70',
-  80: 'bg-opacity-80',
-};
 
 export function CTASection({
   variant = 'contact',
@@ -38,93 +29,100 @@ export function CTASection({
   ctaText = "Contact Us Today",
   ctaLink = "/contact",
   backgroundImage = "/shop/sofa/sofa-1.jpg",
-  overlayOpacity = 40, // Default value
-  textColor = 'light',
   className = ""
 }: CTASectionProps) {
   
-  const textStyles = textColor === 'light' 
-    ? 'text-white' 
-    : 'text-gray-900';
-
-  // Use static class mapping
-  const overlayClass = `absolute inset-0 bg-black ${opacityClasses[overlayOpacity]}`;
-
   return (
-    <section className={`relative py-20 md:py-28 overflow-hidden ${className}`}>
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+    <section 
+      className={`relative  overflow-hidden ${className}`} 
+      role="region"
+      aria-label="Call to action section"
+    > 
+      <div className="relative w-full min-h-[400px]">
+        {/* Background Image with Overlay */}
         {backgroundImage && (
           <Image
             src={backgroundImage}
             alt=""
             fill
-            className="object-cover"
-            priority
+            sizes="100vw"
+            className="object-cover z-0"
+            loading="lazy"
+            onError={(e) => {
+              console.error("Image failed to load:", backgroundImage);
+              (e.target as HTMLImageElement).style.display = 'none';
+              (e.target as HTMLImageElement).parentElement!.style.backgroundColor = 'var(--background-light, #F9FAFB)';
+            }}
           />
         )}
-        <div className={overlayClass} /> {/* Use the static class */}
-      </div>
-
-      {/* Content */}
-      <div className="container relative z-10 mx-auto px-4">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center max-w-3xl mx-auto"
-        >
-          {/* Badge */}
-          {badge && (
-            <motion.span
-              variants={fadeInUp}
-              className={`inline-block mb-4 px-4 py-2 rounded-full text-sm font-sans font-medium ${
-                textColor === 'light' 
-                  ? 'bg-white/20 text-white backdrop-blur-sm' 
-                  : 'bg-primary/20 text-gray-900'
-              }`}
-            >
-              {badge}
-            </motion.span>
-          )}
-
-          {/* Heading */}
-          <motion.h2
-            variants={fadeInUp}
-            className={`font-sans text-heading md:text-[2.5rem] font-bold mb-6 ${textStyles}`}
+        <div className="absolute inset-0 bg-background-dark/50 dark:bg-background-dark/70 z-0" />
+        
+        {/* Content Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-center max-w-3xl mx-auto px-6"
           >
-            {heading}
-          </motion.h2>
+            {/* Badge */}
+            {badge && (
+              <motion.div
+            
+                variants={fadeInUp}
+               >
+              <BadgeText 
+                gradient="custom"
+                customGradient="linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)"
+                rounded="md"
+                icon={<CheckIcon className="w-4 h-4" />}
 
-          {/* Subheading */}
-          {subheading && (
-            <motion.p
-              variants={fadeInUp}
-              className={`font-sans text-body md:text-xl mb-8 ${textStyles} ${
-                textColor === 'light' ? 'opacity-90' : 'opacity-80'
-              }`}
-            >
-              {subheading}
-            </motion.p>
-          )}
-
-          {/* CTA Button */}
-          {ctaText && ctaLink && (
-            <motion.div variants={fadeInUp}>
-              <Button
-                variant={textColor === 'light' ? 'solid' : 'solid'}
-                color={textColor === 'light' ? 'secondary' : 'primary'}
-                size="lg"
-                rightIcon={ArrowRight}
-                onClick={() => window.location.href = ctaLink}
-                className="text-center"
               >
-                {ctaText}
-              </Button>
+                {badge}
+              </BadgeText>
+                
+              </motion.div>
+            )}
+
+            {/* Heading */}
+            <motion.div variants={fadeInUp}>
+              <MainHeadline 
+                gradientStyle="partial"
+                size="lg"
+                className="mb-6 text-white"
+              >
+                {heading}
+              </MainHeadline>
             </motion.div>
-          )}
-        </motion.div>
+
+            {/* Subheading */}
+            {subheading && (
+              <motion.p
+                variants={fadeInUp}
+                className="font-sans text-body md:text-xl mb-8 text-white dark:text-text-white opacity-90 dark:opacity-80"
+              >
+                {subheading}
+              </motion.p>
+            )}
+
+            {/* CTA Button */}
+            {ctaText && ctaLink && (
+              <motion.div variants={fadeInUp}>
+                <Button
+                  variant="solid"
+                  color="primary"
+                  size="lg"
+                  rightIcon={ArrowRight}
+                  onClick={() => window.location.href = ctaLink}
+                  className="text-center hover:scale-105 transition-transform"
+                >
+                  {ctaText}
+                </Button>
+              </motion.div>
+            )}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

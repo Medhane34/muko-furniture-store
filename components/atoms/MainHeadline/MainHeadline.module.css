@@ -2,123 +2,31 @@
   font-weight: 700;
   line-height: 1.2;
   margin: 0 0 1rem 0;
-  color: var(--text-primary);
+  color: var(--text-light, #1F2937);
   transition: color 0.3s ease;
-}
-
-/* Size variants */
-.sm {
-  font-size: 1.5rem;
-}
-
-.md {
-  font-size: 2rem;
-}
-
-.lg {
-  font-size: 2.5rem;
-}
-
-.xl {
-  font-size: 3rem;
-}
-
-/* Alignment options */
-.left {
-  text-align: left;
-}
-
-.center {
-  text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-
-/* Full gradient style */
-.fullGradient {
-  background: var(--gradient-primary);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
 }
 
 /* Theme variants */
 .light {
-  color: var(--text-primary-light);
+  --text-primary: var(--text-light, #1F2937);
 }
 
 .dark {
-  color: var(--text-primary-dark);
+  --text-primary: var(--text-dark, #F9FAFB); /* Ensures white text in dark mode */
 }
 
-/* Highlighted text within headline */
+/* Highlighted text */
 .mainHeadline :global(.highlight) {
-  background: var(--gradient-primary);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   font-weight: 800;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .sm {
-    font-size: 1.25rem;
-  }
-  
-  .md {
-    font-size: 1.5rem;
-  }
-  
-  .lg {
-    font-size: 2rem;
-  }
-  
-  .xl {
-    font-size: 2.5rem;
-  }
-}
+/* Keep responsive, high-contrast, reduced-motion as-is */
 
-@media (max-width: 480px) {
-  .sm {
-    font-size: 1.125rem;
-  }
-  
-  .md {
-    font-size: 1.25rem;
-  }
-  
-  .lg {
-    font-size: 1.5rem;
-  }
-  
-  .xl {
-    font-size: 1.75rem;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .mainHeadline {
-    transition: none;
-  }
-}
-
-/* High contrast mode support */
 @media (prefers-contrast: high) {
   .mainHeadline :global(.highlight) {
     background: none;
     -webkit-text-fill-color: currentColor;
-    color: var(--text-high-contrast);
+    color: var(--text-high-contrast, #000);
     text-shadow: none;
-  }
-  
-  .fullGradient {
-    background: none;
-    -webkit-text-fill-color: currentColor;
-    color: var(--text-high-contrast);
   }
 }

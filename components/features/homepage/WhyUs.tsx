@@ -1,9 +1,10 @@
-// components/sections/WhyUs.tsx
 'use client';
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
 import { LucideIcon } from "lucide-react";
+import { Badge } from "@/components/atoms/Badge";
+import MainHeadline from "@/components/atoms/MainHeadline";
 
 interface WhyUsItem {
   icon: LucideIcon;
@@ -22,9 +23,9 @@ interface WhyUsProps {
 }
 
 const backgroundStyles = {
-  white: 'bg-white',
-  gray: 'bg-gray-50',
-  'primary-light': 'bg-primary/5'
+  white: 'bg-white dark:bg-gray-800',
+  gray: 'bg-gray-50 dark:bg-gray-900',
+  'primary-light': 'bg-primary/5 dark:bg-primary/10'
 };
 
 const gridColumns = {
@@ -47,10 +48,10 @@ export function WhyUs({
   const gridStyle = gridColumns[columns];
 
   return (
-    <section className={`py-16 md:py-24 ${bgStyle} ${className}`}>
+    <section className={`py-16 md:py-24 dark:text-text-dark ${className}`}>
       <div className="container mx-auto px-4">
         
-        {/* Header */}
+        {/* Header with Badge and MainHeadline */}
         {(heading || subheading) && (
           <motion.div
             variants={fadeInUp}
@@ -59,58 +60,62 @@ export function WhyUs({
             viewport={{ once: true }}
             className="text-center mb-16"
           >
+            <Badge color="primary" className="mb-4">
+              Our Advantage
+            </Badge>
             {heading && (
-              <h2 className="font-sans text-heading font-bold text-gray-900 mb-4">
+              <MainHeadline 
+                gradientStyle="partial"
+                size="lg"
+                className="mb-4"
+              >
                 {heading}
-              </h2>
+              </MainHeadline>
             )}
             {subheading && (
-              <p className="font-sans text-body text-gray-600 max-w-2xl mx-auto">
+              <p className="font-sans text-subheading text-text-light/80 dark:text-text-dark/80 max-w-2xl mx-auto">
                 {subheading}
               </p>
             )}
           </motion.div>
         )}
 
-        {/* Features Grid - UPDATED LAYOUT */}
+        {/* Features Grid */}
         <motion.div
           variants={animation === 'stagger' ? staggerContainer : undefined}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className={`grid ${gridStyle} gap-8 md:gap-12`}
+          className={`grid ${gridStyle} gap-4 sm:gap-6 md:gap-8`}
         >
           {items.map((item, index) => (
             <motion.div
               key={index}
               variants={animation === 'stagger' ? fadeInUp : undefined}
               className="group"
+              role="region"
+              aria-label={`Why us feature: ${item.title}`}
             >
-              {/* Horizontal Layout: Icon + Text Stack */}
               <div className="flex items-start gap-4">
-                
-                {/* Icon Container */}
                 <motion.div
                   whileHover={{ 
                     scale: 1.1,
+                    rotate: 12,
                     transition: { duration: 0.2 }
                   }}
-                  className="flex-shrink-0 p-2 bg-primary/10 rounded-lg mt-1"
+                  className="flex-shrink-0 p-2 bg-primary/10 dark:bg-primary/20 rounded-lg mt-1"
                 >
                   <item.icon 
                     size={24} 
-                    className="text-primary" 
+                    className="text-primary dark:text-primary-light"
                     aria-hidden="true"
                   />
                 </motion.div>
-
-                {/* Text Stack - Title above Description */}
-                <div className="flex-1 min-w-0"> {/* min-w-0 prevents text overflow */}
-                  <h3 className="font-sans text-subheading font-semibold text-gray-900 mb-2">
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-sans text-subheading font-semibold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">
                     {item.title}
                   </h3>
-                  
-                  <p className="font-sans text-body text-gray-600 leading-relaxed">
+                  <p className="font-sans text-body text-text-light/80 dark:text-text-dark/80 leading-relaxed">
                     {item.description}
                   </p>
                 </div>

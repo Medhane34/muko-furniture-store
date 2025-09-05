@@ -1,27 +1,22 @@
-// components/features/product/CTAFormWrapper.tsx
+// components/features/contact/ContactFormWrapper.tsx
 'use client';
 
 import { useState } from 'react';
-import { useToast } from '@heroui/toast';
 import {addToast, ToastProvider} from "@heroui/toast";
-import { CTAForm } from '@/components/features/product/CTAForm';
-import { Product } from '@/types/product';
+import { ContactForm } from '@/components/features/contact/ContactForm';
 
-interface CTAFormWrapperProps {
-  product: Product;
+interface ContactFormWrapperProps {
   heading: string;
 }
 
-export function CTAFormWrapper({ product, heading }: CTAFormWrapperProps) {
+export function ContactFormWrapper({ heading }: ContactFormWrapperProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (data: {
-    productId: string;
     name: string;
     email: string;
     phone?: string;
-    address: string;
-    quantity: number;
+    message: string;
   }) => {
     setIsLoading(true);
 
@@ -29,47 +24,37 @@ export function CTAFormWrapper({ product, heading }: CTAFormWrapperProps) {
       const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formType: 'order', ...data }),
+        body: JSON.stringify({ formType: 'contact', ...data }),
       });
 
       if (response.ok) {
-        addToast({
+       addToast({
             title: "Success",
             description: "Order submitted successfully!",
             hideIcon: true,
 
           });
-        
       } else {
         const errorData = await response.json();
-        addToast({
+         addToast({
             title: "Error",
             description: "Failed to submit!",
             hideIcon: true,
            color: "danger"
           });
-      
       }
     } catch (error) {
-      console.error('Error submitting order:', error);
+      console.error('Error submitting contact form:', error);
       addToast({
             title: "Error",
             description: "Failed to submit!",
             hideIcon: true,
            color: "danger"
           });
-    
     } finally {
       setIsLoading(false);
     }
   };
 
-  return (
-    <CTAForm
-      product={product}
-      heading={heading}
-      onSubmit={handleSubmit}
-      isLoading={isLoading}
-    />
-  );
+  return <ContactForm heading={heading} onSubmit={handleSubmit} isLoading={isLoading} />;
 }

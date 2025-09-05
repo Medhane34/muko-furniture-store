@@ -6,6 +6,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/atoms/Button";
 import { ZoomIn, Shield, Heart, Award } from "lucide-react";
+import MainHeadline from "@/components/atoms/MainHeadline";
+import AccentHeading from "@/components/atoms/AccentHeading";
 
 interface CraftItem {
   id: string;
@@ -35,7 +37,7 @@ export function CraftsmanshipShowcase({
       id: "materials",
       title: "Premium Materials",
       description: "We source only the finest sustainable hardwoods and luxury fabrics",
-      image: "/craftsmanship/wood-texture.jpg",
+      image: "/homepage-hero.jpg",
       details: [
         "Ethiopian grown hardwoods",
         "European luxury fabrics",
@@ -48,7 +50,7 @@ export function CraftsmanshipShowcase({
       id: "techniques",
       title: "Traditional Techniques",
       description: "Generations of craftsmanship refined for modern comfort",
-      image: "/craftsmanship/technique-detail.jpg",
+      image: "/homepage-hero.jpg",
       details: [
         "Hand-tied spring systems",
         "Traditional joinery (no staples or glue)",
@@ -61,7 +63,7 @@ export function CraftsmanshipShowcase({
       id: "attention",
       title: "Attention to Detail",
       description: "Every stitch, joint, and finish receives meticulous care",
-      image: "/craftsmanship/details.jpg",
+      image: "/homepage-hero.jpg",
       details: [
         "0.1mm precision tolerance",
         "Hand-stitched seams",
@@ -80,8 +82,8 @@ export function CraftsmanshipShowcase({
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className={`py-20 md:py-28 bg-gray-50 ${className}`}>
-      <div className="container mx-auto px-4">
+    <section className={`py-20 md:py-28  dark:bg-background-dark ${className}`}>
+      <div className="container mx-auto px-4 ">
         
         {/* Header */}
         <motion.div
@@ -91,12 +93,13 @@ export function CraftsmanshipShowcase({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-sans text-heading font-bold text-gray-900 mb-4">
-            {headline}
-          </h2>
-          <p className="font-sans text-body text-gray-600 max-w-2xl mx-auto">
+          <AccentHeading size="sm" >
             {subtitle}
-          </p>
+          </AccentHeading>
+          <MainHeadline className="font-sans text-heading font-bold text-gray-900 mb-4">
+            {headline}
+          </MainHeadline>
+          
         </motion.div>
 
         {/* Interactive Tabs Navigation */}
@@ -136,12 +139,12 @@ export function CraftsmanshipShowcase({
             transition={{ duration: 0.5 }}
             className="relative order-2 lg:order-1"
           >
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative aspect-square rounded-none overflow-hidden shadow-2xl">
               <Image
                 src={craftItems[activeTab].image}
                 alt={craftItems[activeTab].title}
                 fill
-                className="object-cover"
+                className="object-cover rounded-none"
               />
               
               {/* Zoom overlay hint */}
@@ -171,10 +174,10 @@ export function CraftsmanshipShowcase({
             className="space-y-6 order-1 lg:order-2"
           >
             <motion.div variants={fadeInUp}>
-              <h3 className="font-sans text-subheading font-bold text-gray-900 mb-2">
+              <h3 className="font-sans text-subheading font-bold text-text-black dark:text-text-white mb-2">
                 {craftItems[activeTab].title}
               </h3>
-              <p className="font-sans text-body text-gray-600">
+              <p className="font-sans text-body text-text-black dark:text-text-white">
                 {craftItems[activeTab].description}
               </p>
             </motion.div>
@@ -184,7 +187,7 @@ export function CraftsmanshipShowcase({
               {craftItems[activeTab].details.map((detail, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                  <span className="font-sans text-body text-gray-700">{detail}</span>
+                  <span className="font-sans text-body text-text-black dark:text-text-white">{detail}</span>
                 </div>
               ))}
             </motion.div>

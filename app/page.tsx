@@ -24,6 +24,7 @@ import { Target, Zap, Users, Shield } from 'lucide-react';
 import FaqSection from "@/components/organisms/FaqSection";
 import { CTASection } from "@/components/organisms/CTASection";
 import { TestimonialSection } from "@/components/organisms/TestimonialSection";
+import { TestimonialCarousel } from "@/components/organisms/TestimonialCarousel";
 
 export default function Home() {
   const whyUsItems = [
@@ -100,20 +101,8 @@ const testimonialsData = [
       ctaHref="#sale"
       showArrow={true} />
       
-{/* About Sneakpeak */}
-      <AboutSneakpeak
-        badge="Since 2023"
-        headline="Transforming Ethiopian Businesses Digitally"
-        description="Aligoo Digital combines cutting-edge technology with deep local market understanding to deliver exceptional results for our clients across Addis Ababa and beyond."
-        imageUrl="/images/about-showcase.jpg"
-        imageAlt="Aligoo Digital Agency Team"
-        ctaText="Learn About Our Journey"
-        ctaLink="/about"
-      />
-
-            <CollectionGrid />
-
-      <WhyUs
+      <CollectionGrid />
+       <WhyUs
         heading="Why Partner with Aligoo Digital?"
         subheading="We combine global expertise with local understanding to deliver exceptional results"
         items={whyUsItems}
@@ -121,121 +110,40 @@ const testimonialsData = [
         backgroundColor="gray"
         animation="stagger"
       />
-<FaqSection heading="FAQs About Our Facebook Ads Service" faqs={faqs} />
-<CTASection
+{/* About Sneakpeak */}
+      <AboutSneakpeak
+        badge="Since 2023"
+        headline="Transforming Ethiopian Businesses Digitally"
+        description="Aligoo Digital combines cutting-edge technology with deep local market understanding to deliver exceptional results for our clients across Addis Ababa and beyond."
+        imageUrl="/homepage-hero.jpg"
+        imageAlt="Aligoo Digital Agency Team"
+        ctaText="Learn About Our Journey"
+        ctaLink="/about"
+      />
+
+          <TestimonialCarousel />
+
+      
+<FaqSection 
+heading="FAQs About Our Facebook Ads Service" faqs={faqs} 
+  className="mt-12"
+/>
+    <CTASection
         badge="Start Your Journey"
         heading="Ready to Elevate Your Digital Presence?"
         subheading="Join 100+ Ethiopian businesses that trust us with their digital success"
         ctaText="Get Free Consultation"
         ctaLink="/contact"
-        backgroundImage="/shop/sofa/sofa-1.jpg"
-        overlayOpacity={20}
-        textColor="light"
+        backgroundImage="/homepage-hero.jpg"
+      
       />
-      <TestimonialSection
+      {/* <TestimonialSection
         title="Success Stories from Ethiopian Businesses"
         subtitle="See how we've helped local companies thrive in the digital space"
         testimonials={testimonialsData}
         backgroundColor="gray"
         layout="carousel"
-      />
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="inline-block max-w-xl text-center justify-center">
-          <span className={title()}>Make&nbsp;</span>
-          <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-          <br />
-          <span className={title()}>
-            websites regardless of your design experience.
-          </span>
-          <div className={subtitle({ class: "mt-4" })}>
-            Beautiful, fast and modern React UI library.
-          </div>
-
-
-        </div>
-
-<MainHeadline>
-  Unleash Your <span className={title({ color: "yellow"})}>Creativity</span>
-</MainHeadline>
-
-<BadgeText 
-  gradient="success" 
-  icon={<CheckIcon className="w-4 h-4" />}
-  rounded="full"
->
-  Verified
-</BadgeText>
-
-// Standard color variants
-<BadgeText color="success" size="sm">
-  Active
-</BadgeText>
-
-<BadgeText color="warning" variant="outline">
-  Pending
-</BadgeText>
-
-// With animation
-<BadgeText 
-  gradient="primary" 
-  animate="pulse"
-  icon={<ClockIcon className="w-4 h-4" />}
->
-  Limited Time
-</BadgeText>
-
-// Custom gradient
-<BadgeText 
-  gradient="custom"
-  customGradient="linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)"
-  rounded="lg"
->
-  Custom Badge
-</BadgeText>
-
-// Multiple badges example
-<div className="flex gap-2 flex-wrap">
-  <BadgeText gradient="primary">New</BadgeText>
-  <BadgeText color="success">Featured</BadgeText>
-  <BadgeText gradient="warning" animate="pulse">Sale</BadgeText>
-</div>
-        <div className="flex gap-3">
-          {/*     <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "none",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link> */}
-        </div>
-        <div className="p-6">
-          {/*  <LinkStyle href="/about" size="lg" state="active">
-       About Us
-     </LinkStyle> */}
-
-        </div>
-        <div className="mt-8">
-          {/* <Snippet hideCopyButton hideSymbol variant="bordered">
-      <span>
-        Get started by editing <Code color="primary">app/page.tsx</Code>
-      </span>
-    </Snippet> */}
-          {/* <motion.button {...buttonHover}>Click Me</motion.button>  */}
-
-
-        </div>
-      </section></>
+      /> */}
+   </>
   );
 }

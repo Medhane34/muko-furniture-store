@@ -15,6 +15,15 @@
   background-clip: text;
 }
 
+/* styles/globals.css */
+.shadow-xl-dark {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.dark .shadow-xl-dark {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
 /* Ensure proper rendering in different browsers */
 @supports (-webkit-background-clip: text) or (background-clip: text) {
   .gradient-text-primary,

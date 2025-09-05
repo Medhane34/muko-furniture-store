@@ -13,7 +13,7 @@ export interface BadgeTextProps {
   /** Custom gradient definition (used when gradient="custom") */
   customGradient?: string;
   /** Border radius */
-  rounded?: 'sm' | 'md' | 'lg' | 'full';
+  rounded?: 'sm' | 'md' | 'lg' | 'full' | 'lg';
   /** Whether to show outline version */
   variant?: 'solid' | 'outline' | 'ghost';
   /** Additional CSS class */

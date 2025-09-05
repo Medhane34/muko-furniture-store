@@ -1,63 +1,44 @@
-// components/features/product/CTAForm.tsx
+// components/features/contact/ContactForm.tsx
 'use client';
 
 import React, { useState } from 'react';
 import { Form } from '@heroui/form';
 import { Input, Textarea } from '@heroui/input';
 import { Button } from '@/components/atoms/Button';
-import { Product } from '@/types/product';
 
-interface CTAFormProps {
-  product: { sku: string; stock: number };
+interface ContactFormProps {
   heading?: string;
-  onSubmit?: (data: { productId: string; name: string; email: string; phone?: string; address: string; quantity: number }) => void;
+  onSubmit?: (data: { name: string; email: string; phone?: string; message: string }) => void;
   theme?: 'light' | 'dark';
-  successMessage?: string;
-  errorMessage?: string;
   isLoading?: boolean;
 }
 
-export function CTAForm({
-  product,
-  heading = 'Place Your Order',
+export function ContactForm({
+  heading = 'Contact Us',
   onSubmit = (data) => console.log(data),
   theme,
-  successMessage,
-  errorMessage,
   isLoading,
-}: CTAFormProps) {
+}: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    address: '',
-    quantity: 1,
+    message: '',
   });
 
-  const handleValueChange = (name: string, value: string | number) => {
+  const handleValueChange = (name: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'quantity' ? parseInt(value as string) || 1 : value,
+      [name]: value,
     }));
-  };
-
-  const handleQuantityChange = (delta: number) => {
-    setFormData((prev) => {
-      const newQty = Math.min(Math.max(prev.quantity + delta, 1), product.stock);
-      return { ...prev, quantity: newQty };
-    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({
-      productId: product.sku,
-      ...formData,
-      quantity: formData.quantity,
-    });
-    if (!errorMessage) {
-      // Reset form only on success
-      setFormData({ name: '', email: '', phone: '', address: '', quantity: 1 });
+    onSubmit(formData);
+    if (!isLoading) {
+      // Reset form only if not loading (assumes success)
+      setFormData({ name: '', email: '', phone: '', message: '' });
     }
   };
 
@@ -71,13 +52,8 @@ export function CTAForm({
           onSubmit={handleSubmit}
           className="flex flex-col gap-4"
           validationBehavior="native"
-          aria-label="Order submission form"
+          aria-label="Contact form"
         >
-          <Input
-            type="hidden"
-            name="productId"
-            value={product.sku}
-          />
           <Input
             label="Name"
             name="name"
@@ -132,13 +108,13 @@ export function CTAForm({
             isDisabled={isLoading}
           />
           <Textarea
-            label="Address"
-            name="address"
-            value={formData.address}
-            onValueChange={(value) => handleValueChange('address', value)}
+            label="Message"
+            name="message"
+            value={formData.message}
+            onValueChange={(value) => handleValueChange('message', value)}
             isRequired
             isClearable
-            maxLength={500}
+            maxLength={1000}
             minRows={4}
             variant="bordered"
             color="primary"
@@ -150,51 +126,6 @@ export function CTAForm({
             }}
             isDisabled={isLoading}
           />
-          <div className="flex flex-col">
-            <label
-              htmlFor="quantity"
-              className="font-sans text-body text-text-dark dark:text-text-light mb-1"
-            >
-              Quantity
-            </label>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => handleQuantityChange(-1)}
-                className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-md text-text-dark dark:text-text-light"
-                aria-label="Decrease quantity"
-                disabled={isLoading}
-              >
-                -
-              </button>
-              <Input
-                type="number"
-                name="quantity"
-                value={formData.quantity.toString()}
-                onValueChange={(value) => handleValueChange('quantity', value)}
-                min={1}
-                max={product.stock}
-                variant="bordered"
-                color="primary"
-                size="md"
-                labelPlacement="outside"
-                classNames={{
-                  input: 'font-sans text-body text-text-dark dark:text-text-light text-center',
-                  inputWrapper: 'bg-background-light dark:bg-background-dark border-gray-300 dark:border-gray-600 w-20',
-                }}
-                isDisabled={isLoading}
-              />
-              <button
-                type="button"
-                onClick={() => handleQuantityChange(1)}
-                className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-md text-text-dark dark:text-text-light"
-                aria-label="Increase quantity"
-                disabled={isLoading}
-              >
-                +
-              </button>
-            </div>
-          </div>
           <Button
             type="submit"
             variant="solid"
@@ -203,15 +134,9 @@ export function CTAForm({
             isLoading={isLoading}
             isDisabled={isLoading}
           >
-            {isLoading ? 'Submitting...' : 'Place Order'}
+            {isLoading ? 'Submitting...' : 'Send Message'}
           </Button>
         </Form>
-        {successMessage && (
-          <p className="text-body text-green-500 mt-4 text-center">{successMessage}</p>
-        )}
-        {errorMessage && (
-          <p className="text-body text-red-500 mt-4 text-center">{errorMessage}</p>
-        )}
       </div>
     </section>
   );

@@ -5,6 +5,9 @@ import { fadeInUp, staggerContainer } from "@/lib/motion";
 import Image from "next/image";
 import { Button } from "@/components/atoms/Button";
 import { Calendar, Users, MapPin, Heart } from "lucide-react";
+import { BodyText } from "@/components/atoms";
+import MainHeadline from "@/components/atoms/MainHeadline";
+import AccentHeading from "@/components/atoms/AccentHeading";
 
 interface OurStoryProps {
   headline?: string;
@@ -27,7 +30,7 @@ interface OurStoryProps {
 
 export function OurStory({
   headline = "Our Story",
-  subtitle = "From humble beginnings to Ethiopia's favorite furniture destination",
+  subtitle = "Our Story",
   foundingYear = "2015",
   founderName = "Michael Kebede",
   founderRole = "Founder & Master Craftsman",
@@ -58,7 +61,7 @@ export function OurStory({
       description: "Furnished over 5000 Ethiopian homes"
     }
   ],
-  imageSrc = "/about/our-story.jpg",
+  imageSrc = "/homepage-hero.jpg",
   imageAlt = "MUKO Furniture early workshop",
   ctaText = "Meet Our Team",
   ctaLink = "/about/team",
@@ -76,12 +79,13 @@ export function OurStory({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-sans text-heading font-bold mb-4">
+          <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)">
+            Our Story 
+          </AccentHeading>
+          <MainHeadline className="font-sans text-heading font-bold mb-4">
             {headline}
-          </h2>
-          <p className="font-sans text-body  max-w-2xl mx-auto">
-            {subtitle}
-          </p>
+          </MainHeadline>
+          
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -118,7 +122,7 @@ export function OurStory({
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 <p className="font-sans text-sm font-semibold dark:text-black">{founderName}</p>
               </div>
-              <p className="font-sans text-xs ">{founderRole}</p>
+              <p className="font-sans text-xs text-black">{founderRole}</p>
               <p className="font-sans text-xs text-primary mt-1">Since {foundingYear}</p>
             </motion.div>
           </motion.div>
@@ -134,13 +138,17 @@ export function OurStory({
             {/* Story Content */}
             <div className="space-y-6">
               {storyContent.map((paragraph, index) => (
-                <motion.p
+                <motion.div
                   key={index}
                   variants={fadeInUp}
-                  className="font-sans text-body text-gray-700 leading-relaxed"
                 >
-                  {paragraph}
-                </motion.p>
+               <BodyText
+                      className="font-sans text-body dark:text-text-white leading-relaxed"
+              >
+                {paragraph}
+              </BodyText>
+                  
+                </motion.div>
               ))}
             </div>
 
@@ -167,21 +175,21 @@ export function OurStory({
                 <div className="p-2 bg-primary/10 rounded-full">
                   <MapPin className="text-primary" size={20} />
                 </div>
-                <span className="font-sans text-sm font-medium text-gray-900">Proudly Ethiopian</span>
+                <span className="font-sans text-sm font-medium dark:text-text-white">Proudly Ethiopian</span>
               </div>
               
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-primary/10 rounded-full">
                   <Heart className="text-primary" size={20} />
                 </div>
-                <span className="font-sans text-sm font-medium text-gray-900">Craftsmanship</span>
+                <span className="font-sans text-sm font-medium dark:text-text-white">Craftsmanship</span>
               </div>
               
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-primary/10 rounded-full">
                   <Users className="text-primary" size={20} />
                 </div>
-                <span className="font-sans text-sm font-medium text-gray-900">Family-Owned</span>
+                <span className="font-sans text-sm font-medium dark:text-text-white">Family-Owned</span>
               </div>
             </motion.div>
 

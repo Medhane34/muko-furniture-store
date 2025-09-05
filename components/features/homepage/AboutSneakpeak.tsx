@@ -5,6 +5,8 @@ import { fadeInUp, staggerContainer } from "@/lib/motion";
 import Image from "next/image";
 import { Button } from "@/components/atoms/Button";
 import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/atoms/Badge";
+import MainHeadline from "@/components/atoms/MainHeadline";
 
 interface AboutSneakpeakProps {
   badge?: string;
@@ -14,7 +16,7 @@ interface AboutSneakpeakProps {
   imageAlt: string;
   ctaText?: string;
   ctaLink?: string;
-  reverse?: boolean; // Option to reverse columns
+  reverse?: boolean;
 }
 
 export function AboutSneakpeak({
@@ -28,9 +30,13 @@ export function AboutSneakpeak({
   reverse = false
 }: AboutSneakpeakProps) {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section 
+      className="py-16 md:py-24 bg-background-light dark:bg-background-dark" 
+      role="region"
+      aria-label="About Aligoo sneak peek"
+    >
       <div className="container mx-auto px-4">
-        <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 items-center`}>
+        <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} gap-6 md:gap-12 items-center`}>
           
           {/* Image Column (50%) */}
           <motion.div 
@@ -46,6 +52,7 @@ export function AboutSneakpeak({
                 alt={imageAlt}
                 fill
                 className="object-cover"
+                loading="lazy"
               />
             </div>
           </motion.div>
@@ -62,24 +69,30 @@ export function AboutSneakpeak({
             {badge && (
               <motion.span 
                 variants={fadeInUp}
-                className="inline-block bg-primary/10 text-primary text-sm font-sans font-medium px-3 py-1 rounded-full"
               >
-                {badge}
+                <Badge color="primary">
+                  {badge}
+                </Badge>
               </motion.span>
             )}
 
             {/* Headline */}
-            <motion.h2 
+            <motion.div 
               variants={fadeInUp}
-              className="font-sans text-heading font-bold text-gray-900"
             >
-              {headline}
-            </motion.h2>
+              <MainHeadline 
+                gradientStyle="partial"
+                size="lg"
+                className="text-left"
+              >
+                {headline}
+              </MainHeadline>
+            </motion.div>
 
             {/* Description */}
             <motion.p 
               variants={fadeInUp}
-              className="font-sans text-body text-gray-600 leading-relaxed"
+              className="font-sans text-body text-text-light/80 dark:text-text-dark/80 leading-relaxed"
             >
               {description}
             </motion.p>
@@ -88,9 +101,11 @@ export function AboutSneakpeak({
             {ctaText && ctaLink && (
               <motion.div variants={fadeInUp}>
                 <Button
-                  variant="outline"
+                  variant="solid"
+                  color="primary"
                   rightIcon={ArrowRight}
                   onClick={() => window.location.href = ctaLink}
+                  className="hover:scale-105 transition-transform"
                 >
                   {ctaText}
                 </Button>

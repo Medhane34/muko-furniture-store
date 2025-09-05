@@ -44,6 +44,11 @@ module.exports = {
         'gradient-badge-error': 'linear-gradient(90deg, #EF4444 0%, #DC2626 100%)',
       },
 
+      // box shadow for dark theme 
+      boxShadow: {
+        'xl-dark': '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2)',
+      },
+
       },
       fontSize: {
         // Your existing font sizes...

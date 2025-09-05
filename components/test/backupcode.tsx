@@ -149,7 +149,7 @@ import { Product } from "@/types/product";
 import AccentHeading from '@/components/atoms/AccentHeading';
 import { FeaturedProductsSection } from "@/components/organisms/FeaturedProductsSection";
 
-import { HeroSection } from '@/components/features/product/HeroSection';
+import { HeroSection } from '@/components/organisms/HeroSection';
 import { SocialProofSection } from "@/components/organisms/SocialProofSection";
 
 export default function SofaProductsPage() {
@@ -265,7 +265,7 @@ import { CraftsmanshipShowcase } from "@/components/features/aboutus/Craftsmansh
 import { OurStory } from "@/components/features/aboutus/OurStory";
 import { TeamShowcase } from "@/components/features/aboutus/TeamShowcase";
 import { ValuesCommitment } from "@/components/features/aboutus/ValuesCommitment";
-import { HeroSection } from '@/components/features/product/HeroSection';
+import { HeroSection } from '@/components/organisms/HeroSection';
 import { TestimonialCarousel } from "@/components/organisms/TestimonialCarousel";
 import TestimonialGalaxy from "@/components/organisms/TestimonialGalaxy/TestimonialGalaxy";
 import { title } from "@/components/primitives";

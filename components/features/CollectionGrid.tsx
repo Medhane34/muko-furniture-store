@@ -1,9 +1,10 @@
-// src/components/organisms/CollectionGrid.tsx
 "use client";
 
 import React from "react";
 import { motion } from "framer-motion";
 import { CategoryCard } from "@/components/molecules/CategoryCard";
+import { Badge } from "@/components/atoms/Badge";
+import MainHeadline from "../atoms/MainHeadline";
 
 interface Category {
   id: string;
@@ -42,6 +43,13 @@ const categories: Category[] = [
     imageSrc: "/homepage-hero.jpg",
     href: "/categories/chairs",
   },
+  {
+    id: "accessories", // Fixed typo from "accesories" and changed title from duplicate "Chairs"
+    title: "Accessories",
+    description: "Enhance your space with style.",
+    imageSrc: "/homepage-hero.jpg",
+    href: "/categories/accessories",
+  },
 ];
 
 const staggerContainer = {
@@ -58,107 +66,76 @@ const staggerContainer = {
 export const CollectionGrid: React.FC = () => {
   return (
     <motion.section
-      className="container mx-auto py-12 px-4"
+      className="container mx-auto py-12 px-4  dark:bg-background-dark"
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
     >
-      {/* Header - Optional */}
+      {/* Header with Headline and Badge */}
       <div className="text-center mb-12">
-        <h2 className="font-sans text-heading font-bold text-gray-900 mb-4">
+        <Badge color="primary" className="mb-4">
+          New Collections
+        </Badge>
+        <MainHeadline  className="font-bold text-text-light dark:text-text-dark mb-4">
           Shop by Category
-        </h2>
-        <p className="font-sans text-body text-gray-600 max-w-2xl mx-auto">
+        </MainHeadline>
+        <p className="font-sans text-subheading text-text-light/90 dark:text-text-dark/90 max-w-2xl mx-auto">
           Discover our curated collections for every room in your home
         </p>
       </div>
 
-      {/* Grid with 30%/70% split */}
-      <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8">
-        
-        {/* First Column - 30% width (Featured Categories) */}
-        <div className="space-y-6">
-          <motion.h3 
-            className="font-sans text-subheading font-semibold text-gray-900 mb-4"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-            }}
-          >
-            Featured Collections
-          </motion.h3>
-          
-          {categories.slice(0, 2).map((category, index) => (
-            <motion.div
-              key={category.id}
-              variants={{
-                hidden: { opacity: 0, scale: 0.9 },
-                visible: { 
-                  opacity: 1, 
-                  scale: 1,
-                  transition: { 
-                    duration: 0.4,
-                    delay: index * 0.1
-                  }
-                }
-              }}
-            >
-              <CategoryCard 
-                {...category} 
-                className="h-full" // Ensure cards fill the height
-              />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Second Column - 70% width (Main Grid) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {categories.slice(2).map((category, index) => (
-            <motion.div
-              key={category.id}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { 
-                    duration: 0.5,
-                    delay: 0.2 + (index * 0.1)
-                  }
-                }
-              }}
-            >
-              <CategoryCard 
-                {...category} 
-                className="h-full" // Ensure cards fill the height
-              />
-            </motion.div>
-          ))}
-          
-          {/* Optional: Add a "View All" card */}
+      {/* 2x3 Grid Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 auto-rows-fr">
+        {categories.map((category, index) => (
           <motion.div
+            key={category.id}
+            className="h-full"
             variants={{
               hidden: { opacity: 0, scale: 0.9 },
               visible: { 
                 opacity: 1, 
                 scale: 1,
-                transition: { duration: 0.5, delay: 0.4 }
+                transition: { 
+                  duration: 0.4,
+                  delay: index * 0.1
+                }
               }
             }}
-            className="flex items-center justify-center bg-gray-50 rounded-lg p-8 hover:bg-gray-100 transition-colors cursor-pointer"
+          >
+            <CategoryCard 
+              {...category} 
+              className="h-full bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow rounded-lg"
+            />
+          </motion.div>
+        ))}
+        
+        {/* View All Card - Styled to match CategoryCard */}
+        <motion.div
+          className="h-full"
+          variants={{
+            hidden: { opacity: 0, scale: 0.9 },
+            visible: { 
+              opacity: 1, 
+              scale: 1,
+              transition: { duration: 0.4, delay: 0.5 }
+            }
+          }}
+        >
+          <div 
+            className="h-full flex items-center justify-center bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer p-8"
             onClick={() => window.location.href = '/categories'}
           >
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-700 mb-2">+</div>
-              <h3 className="font-sans font-semibold text-gray-900 mb-2">
+              <div className="text-4xl font-bold text-primary mb-2">+</div>
+              <h3 className="font-sans text-subheading font-semibold text-text-light dark:text-text-dark mb-2">
                 View All Categories
               </h3>
-              <p className="font-sans text-sm text-gray-600">
+              <p className="font-sans text-body text-text-light/80 dark:text-text-dark/80">
                 Explore our complete collection
               </p>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </motion.section>
   );
