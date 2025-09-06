@@ -10,7 +10,7 @@ import { button as buttonClone } from "@/components/primitives"; // or "@/compon
 
 import { fadeInUp,  } from "@/lib/motion"; //motion variants 
 import { motion } from "framer-motion";
-import { ProductCard, HeroSection } from "@/components/molecules";
+import { ProductCard,  } from "@/components/molecules";
 import MainHeadline from '@/components/atoms/MainHeadline';
 import Highlight from '@/components/atoms/MainHeadline';
 
@@ -25,6 +25,7 @@ import FaqSection from "@/components/organisms/FaqSection";
 import { CTASection } from "@/components/organisms/CTASection";
 import { TestimonialSection } from "@/components/organisms/TestimonialSection";
 import { TestimonialCarousel } from "@/components/organisms/TestimonialCarousel";
+import { HeroSection } from "@/components/organisms/HeroSection";
 
 export default function Home() {
   const whyUsItems = [
@@ -90,16 +91,18 @@ const testimonialsData = [
 ];
 
   return (
-    <><HeroSection
-      badgeText="THE LABOR DAY SALE"
-      headline="Get the Best Prices of the Year"
-      highlight="on Our Newest Styles and Best Sellers!"
-      subheading="We design conversion-focused websites that don’t just look stunning—but are built to attract, engage, and convert your ideal customers."
-      imageUrl="/homepage-hero.jpg"
-      imageAlt="Children jumping on a sofa bed"
-      ctaText="VIEW THE SALE"
-      ctaHref="#sale"
-      showArrow={true} />
+    <>
+    <HeroSection
+          imageUrl="/features/ui/homepage-hero.jpg"
+          imageAlt="Modern furniture collection showcasing sofas, chairs, and tables in a beautifully designed living space"
+          badgeText="New Collection 2024"
+          headline="Transform Your Home with Elegant Furniture"
+          subheadline="Discover handcrafted pieces that blend comfort, style, and functionality for your perfect living space"
+          ctaText="Explore Collection"
+          ctaLink="/collection"
+          minHeight="xl"
+          contentWidth="wide"
+          overlayOpacity={30} />
       
       <CollectionGrid />
        <WhyUs
