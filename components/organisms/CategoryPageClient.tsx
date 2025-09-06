@@ -2,7 +2,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { fadeInUp } from '@/lib/motion';
 import { FeaturedProductsWrapper } from '@/wrappers/FeaturedProductsWrapper';
 import { SocialProofSection } from '@/components/organisms/SocialProofSection';
@@ -18,6 +18,7 @@ import ProductFilterSidebar from './ProductFilterSidebar';
 import QuickViewDrawer from './QuickViewDrawer';
 import { CTAForm } from '../features/product/CTAForm';
 import { CTAFormWrapper } from '@/wrappers/CTAFormWrapper';
+import { Spinner } from '@heroui/spinner';
 
 interface CategoryPageClientProps {
   category: string;
@@ -43,7 +44,8 @@ export function CategoryPageClient({
     priceRange: [0, 50000],
   });
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
-
+/*   const [isLoading, setIsLoading] = useState(true); // loading state management
+ */
   // Debugging: Log products
   console.log('CategoryPageClient products:', products);
 
@@ -118,7 +120,19 @@ export function CategoryPageClient({
   );
 
   const displayedProducts = sortedProducts.slice(0, visibleProducts);
-
+ // Set isGridLoading to false after initial render or "Load More"
+ /*   useEffect(() => {
+     const timer = setTimeout(() => setIsLoading(false), Math.max(200, 0)); // Minimum 200ms to avoid flicker
+     return () => clearTimeout(timer);
+   }, [visibleProducts]);
+ 
+   const handleLoadMore = () => {
+     setIsLoading(true);
+     setVisibleProducts((prev) => prev + 6);
+     const timer = setTimeout(() => setIsLoading(false), Math.max(200, 0)); // Minimum 200ms
+     return () => clearTimeout(timer);
+   }; */
+   
   return (
     <div className="flex flex-col gap-8">
       <HeroSection
@@ -176,13 +190,25 @@ export function CategoryPageClient({
                   />
                 </div>
               </div>
-              <div className="w-full md:w-3/4 lg:w-4/5">
-                <ProductGrid
-                  products={displayedProducts}
-                  sortOption={sortOption}
-                  columns={3}
-                  onQuickView={handleQuickView}
-                />
+               <div className="w-full md:w-3/4 lg:w-4/5">
+                  <ProductGrid
+                    products={displayedProducts}
+                    sortOption={sortOption}
+                    columns={3}
+                    onQuickView={handleQuickView}
+                  /> 
+                {/* {isLoading ? (
+                  <div className="flex items-center justify-center min-h-[20rem] bg-background-light dark:bg-background-dark">
+                    <Spinner size="lg" className="text-text-light dark:text-text-dark" aria-live="polite" role="alert" />
+                  </div>
+                ) : (
+                  <ProductGrid
+                    products={displayedProducts}
+                    sortOption={sortOption}
+                    columns={3}
+                    onQuickView={handleQuickView}
+                  />
+                )} */} 
               </div>
             </div>
           </div>

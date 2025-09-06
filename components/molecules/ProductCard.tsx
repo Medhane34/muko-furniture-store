@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { StarRating } from '@/components/atoms/StarRating';
 import { Product } from '@/types/product';
 import { MoreHorizontal } from "lucide-react";
+import {Skeleton} from "@heroui/skeleton";
+import { useEffect, useRef, useState } from "react";
 
 interface ProductCardProps {
   product: Product;
@@ -18,7 +20,27 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) { // ✅
   const router = useRouter();
   const { name, price, originalPrice, imageUrl, slug, isNew, isOnSale, colors, rating, promotionText } = product;
   const badgeText = isNew ? "NEW" : isOnSale ? "SALE" : undefined;
-console.log('ProductCard: product.promotionText:', promotionText); // Debug
+ 
+  const [isLoaded, setIsLoaded] = useState (false); // loading demo 
+  const loadStartTime = useRef<number | null>(null);
+  
+  useEffect(() => {
+    loadStartTime.current = performance.now(); // Record start time
+    const minLoadTime = setTimeout(() => {
+      if (loadStartTime.current) {
+        const elapsed = performance.now() - loadStartTime.current;
+        if (elapsed < 200) {
+          setIsLoaded(false); // Keep skeleton if under 200ms
+        } else {
+          setIsLoaded(true); // Allow load if minimum exceeded
+        }
+      }
+    }, 200); // Minimum 200ms
+
+    return () => clearTimeout(minLoadTime);
+  }, [imageUrl]); // Re-run if imageUrl changes
+
+  console.log('ProductCard: product.promotionText:', promotionText); // Debug
 
 console.log('ProductCard: product.promotionText:', promotionText); // Debug
   console.log('ProductCard: promotionText truthiness:', !!promotionText); // Debug
@@ -49,15 +71,28 @@ console.log('ProductCard: product.promotionText:', promotionText); // Debug
     >
       {/* Image Wrapper */}
       <div className="relative mb-4 overflow-hidden">
+         <Skeleton 
+      className="rounded-lg" isLoaded={isLoaded}
+      >
         <div className="relative" style={{ aspectRatio: '3/4' }}>
-          <Image
+         
+         <Image
             src={imageUrl}
             alt={name}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
+          onLoadingComplete={() => {
+                if (loadStartTime.current) {
+                  const elapsed = performance.now() - loadStartTime.current;
+                  if (elapsed >= 200) {
+                    setIsLoaded(true); // Set loaded if minimum time met
+                  } // Else, wait for timeout in useEffect
+                }
+              }}
+              loading="lazy"
           />
         </div>
-        
+        </Skeleton>
         {/* NEW: Quick View Trigger Button */}
         <button
           onClick={handleQuickView}
@@ -87,6 +122,9 @@ console.log('ProductCard: product.promotionText:', promotionText); // Debug
 
       {/* Details Wrapper */}
       <div className="flex flex-col gap-2 flex-1">
+      <Skeleton 
+      className="rounded-lg" isLoaded={isLoaded}
+      >
         {rating && (
           <div className="flex items-center gap-1.5">
             <StarRating rating={rating.average} />
@@ -95,11 +133,14 @@ console.log('ProductCard: product.promotionText:', promotionText); // Debug
             </span>
           </div>
         )}
-
+      </Skeleton>
+          <Skeleton 
+      className="rounded-lg" isLoaded={isLoaded}
+      >
         <h3 className="font-sans text-body font-semibold text-gray-900 dark:text-gray-100 line-clamp-2 leading-tight">
           {name}
         </h3>
-
+</Skeleton>
         <div className="flex items-center gap-2">
           <span className="font-sans text-subheading font-bold text-gray-900 dark:text-gray-100">
             ETB {price.toLocaleString()}

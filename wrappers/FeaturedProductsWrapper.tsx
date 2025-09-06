@@ -7,6 +7,7 @@ import { transformSanityProducts } from '@/lib/sanity/utils/transformers';
 import { Product } from '@/types/product';
 import { FeaturedProductsSection, FeaturedProductsSectionProps } from '@/components/organisms/FeaturedProductsSection';
 import { SanityProduct } from '@/lib/sanity/utils/transformers';
+import { Spinner } from '@heroui/spinner';
 
 interface FeaturedProductsWrapperProps extends Omit<FeaturedProductsSectionProps, 'products'> {
   categorySlug: string;
@@ -42,7 +43,10 @@ export function FeaturedProductsWrapper({ categorySlug, ...props }: FeaturedProd
   return (
     <>
       {loading ? (
-        <div className="text-center py-8">Loading featured products...</div>
+        <div className="flex justify-center py-38">
+        <Spinner classNames={{label: "text-foreground mt-4 text-center"}} label="spinner" variant="spinner" /> 
+        </div>
+              
       ) : error ? (
         <div className="text-center py-8 text-red-600">{error}</div>
       ) : (
