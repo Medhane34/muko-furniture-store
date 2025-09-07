@@ -70,11 +70,14 @@ export default function LocationsSection() {
     <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
       {/* Section Header */}
       <div className="text-center mb-12 lg:mb-16">
-      <AccentHeading size='sm' align='center'
-        gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)"
-        >
-         Our Locations 
-        </AccentHeading>
+    
+        <BadgeText
+          gradient="custom"
+          customGradient="linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)"
+          rounded="lg"icon={<MapPinIcon className="w-4 h-4" />} 
+          >
+          Our location
+          </BadgeText>
         <MainHeadline>Visit Our Showrooms</MainHeadline>
         <p className="text-body text-text-light dark:text-text-dark mt-4 max-w-3xl mx-auto">
           Experience the quality and craftsmanship of Muko furniture in person. Our expert staff is ready to assist you at any of our locations across Addis Ababa.

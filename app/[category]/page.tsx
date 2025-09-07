@@ -77,7 +77,8 @@ interface CategoryPageProps {
 }
 
 async function fetchCategoryData(category: string) {
-  const validCategories = ['sofas', 'dining', 'beds', 'chairs', 'accessories'];
+/*   const validCategories = ['sofas', 'dinning', 'beds', 'chairs', 'accessories'];
+ */ const validCategories = ['decor', 'sofa', 'all', 'beds', 'dining', 'chairs'];
   if (!validCategories.includes(category)) {
     notFound();
   }

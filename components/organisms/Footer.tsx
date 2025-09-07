@@ -74,11 +74,11 @@ const Footer = () => (
         <NavigationGroup
           title="Shop"
           links={[
-            { label: "Beds", href: "/products/beds" },
-            { label: "Sofas", href: "/products/sofas" },
-            { label: "Dining Tables", href: "/products/dining-tables" },
-            { label: "Chairs", href: "/products/chairs" },
-            { label: "All Products", href: "/products" },
+            { label: "Beds", href: "/beds" },
+            { label: "Sofas", href: "/sofa" },
+            { label: "Dining Tables", href: "/dining" },
+            { label: "Chairs", href: "/chairs" },
+            { label: "All Products", href: "/all" },
           ]}
         />
       </motion.div>

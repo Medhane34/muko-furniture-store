@@ -9,6 +9,9 @@ import MainHeadline from '@/components/atoms/MainHeadline';
 import { Button } from '@/components/atoms/Button';
 import { ArrowRight } from 'lucide-react';
 import { SectionHeading } from '../atoms/SectionHeading';
+import AccentHeading from '../atoms/AccentHeading';
+import { BodyText } from '../atoms';
+import { Link } from '@heroui/link';
 
 export interface FeaturedProductsSectionProps {
   title: string;
@@ -42,13 +45,14 @@ export function FeaturedProductsSection({
         {/* Heading Sidebar (20% on desktop, full width on mobile) */}
         <div className="w-full lg:w-1/5">
           <div className="sticky top-24 space-y-6">
-            <SectionHeading 
-              title={title}
-              subtitle={subtitle}
-              level="h2"
-              className="lg:text-left"
-            />
-        
+         <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)" className='justify-start'>
+           Curated 
+        </AccentHeading>
+        <MainHeadline>
+       {title}
+        </MainHeadline>
+            
+        <BodyText>{subtitle}</BodyText>
             
             {viewAllLink && (
               <Button
@@ -59,10 +63,12 @@ export function FeaturedProductsSection({
                 className="w-full lg:w-auto"
                 aria-label={`View all ${title}`}
               >
+                <Link href='#collection'>
                 View All
+                </Link>
               </Button>
             )}
-          </div>
+          </div>od
         </div>
 
         {/* Product Grid (80% on desktop, full width on mobile) */}

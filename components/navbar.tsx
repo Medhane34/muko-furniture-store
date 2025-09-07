@@ -55,7 +55,7 @@ export const Navbar = () => {
   return (
     <HeroUINavbar maxWidth="full" position="sticky">
       <NavbarContent className="grid grid-cols-3 w-full items-center justify-self-start" >
-        <NavbarBrand as="li" className="gap-3 max-w-fit pt-3" >
+        {/* <NavbarBrand as="li" className="gap-3 max-w-fit pt-3" >
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Image
                       src="/muko_logo.png"
@@ -66,47 +66,46 @@ export const Navbar = () => {
                     
                     />
           </NextLink>
-        </NavbarBrand>
+        </NavbarBrand> */}
+
+        {/* Left: Logo */}
+    <NavbarBrand as="li" className="gap-3 max-w-fit pt-3">
+      <NextLink className="flex justify-start items-center gap-1" href="/">
+        <Image
+          src="/muko_logo.png"
+          alt="Muko Furniture Logo"
+          width={150}
+          height={150}
+          className="object-cover"
+        />
+      </NextLink>
+    </NavbarBrand>
   
         {/* Center: Navigation */}
         <div className="justify-self-center pt-3">
           <DesktopNavigation navItems={navigationConfig} />
         </div>
+      {/* Right: Theme Switch & Mobile Toggle */}
+    <div className="flex items-center justify-end gap-2 pr-4">
+      {/* ThemeSwitch visible on all screen sizes */}
+      <ThemeSwitch />
 
-      </NavbarContent>
-    
-    
-
-      <NavbarContent className="sm:hidden basis-1 " justify="end">
-        <ThemeSwitch />
+      {/* Mobile toggle only visible on small screens */}
+      <div className="sm:hidden">
         <NavbarMenuToggle />
+      </div>
+    </div>
+
       </NavbarContent>
-     <NavbarMenu>
-      
-       {/*  {searchInput}
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </div> */}
-        <div className="mx-4 mt-2">
-    <MobileNavigation />
-  </div>
-      </NavbarMenu> 
-    </HeroUINavbar>
+    
+    {/* Mobile Menu */}
+  <NavbarMenu>
+    <div className="mx-4 mt-2">
+      <MobileNavigation />
+    </div>
+  </NavbarMenu>
+</HeroUINavbar>
+
+    
   );
 };

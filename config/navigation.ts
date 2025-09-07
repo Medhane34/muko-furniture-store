@@ -38,7 +38,7 @@ export const navigationConfig: NavigationItem[] = [
     href: "/collections/living-room",
     subCategories: [
       { label: "All Living Room", href: "/collections/living-room" },
-      { label: "Sofas & Loveseats", href: "/collections/sofas-loveseats" },
+      { label: "Sofas & Loveseats", href: "/sofa" },
       { label: "Sectionals", href: "/collections/sectionals" },
       { label: "Recliners", href: "/collections/recliners" },
       { label: "Accent Chairs", href: "/collections/accent-chairs" },
@@ -52,19 +52,19 @@ export const navigationConfig: NavigationItem[] = [
       {
         name: "Addis Ababa Sectional",
         href: "/product/addis-ababa-sectional",
-        imageSrc: "/images/featured/featured-sofa-1.jpg",
+        imageSrc: "/features/Category/sofa-hero.png",
         price: "ETB 12,499",
         oldPrice: "ETB 14,999",
       },
       {
         name: "Modern Leather Loveseat",
         href: "/product/modern-leather-loveseat",
-        imageSrc: "/images/featured/featured-sofa-2.jpg",
+        imageSrc: "/homepage-hero.jpg",
         price: "ETB 8,900",
       },
     ],
     promo: {
-      imageSrc: "/images/promo/living-room-set.jpg",
+      imageSrc: "/homepage-hero.jpg",
       title: "Create Your Perfect Space",
       description: "Explore our curated living room sets and save up to 20%.",
       ctaText: "Shop Living Room Sets",
@@ -87,18 +87,18 @@ export const navigationConfig: NavigationItem[] = [
       {
         name: "King Size Platform Bed",
         href: "/product/king-platform-bed",
-        imageSrc: "/images/featured/featured-bed-1.jpg",
+        imageSrc: "/homepage-hero.jpg",
         price: "ETB 9,999",
       },
       {
         name: "5-Drawer Double Dresser",
-        href: "/product/5-drawer-dresser",
+        href: "/homepage-hero.jpg",
         imageSrc: "/images/featured/featured-dresser-1.jpg",
         price: "ETB 7,200",
       },
     ],
     promo: {
-      imageSrc: "/images/promo/bedroom-set.jpg",
+      imageSrc: "/homepage-hero.jpg",
       title: "Restful Nights",
       description: "Complete your sanctuary with a matched bedroom set.",
       ctaText: "Shop Bedroom Sets",

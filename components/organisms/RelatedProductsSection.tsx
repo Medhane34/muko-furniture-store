@@ -5,6 +5,10 @@ import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/motion';
 import { ProductGrid } from '@/components/organisms';
 import { Product } from '@/types/product';
+import { CheckIcon } from 'lucide-react';
+import BadgeText from '../atoms/BadgeText';
+import MainHeadline from '../atoms/MainHeadline';
+import { BarsArrowDownIcon } from '@heroicons/react/24/outline';
 
 interface RelatedProductsSectionProps {
   category: string;
@@ -37,14 +41,24 @@ export default function RelatedProductsSection({
 
   return (
     <section className={`py-8 ${className}`}>
-      <motion.h3
+      <motion.div
         variants={fadeInUp}
         initial="hidden"
         animate="visible"
-        className="font-sans text-heading text-gray-900 dark:text-gray-100 mb-6"
+        className="font-sans text-heading text-gray-900 dark:text-gray-100 mb-6 text-center"
       >
-        Related {category.charAt(0).toUpperCase() + category.slice(1)}
-      </motion.h3>
+        <BadgeText
+      gradient="custom"
+      customGradient="linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)"
+      rounded="lg"icon={<BarsArrowDownIcon className="w-4 h-4" />} 
+      >
+      Related {category.charAt(0).toUpperCase() + category.slice(1)}
+      </BadgeText>
+      <MainHeadline size='lg'>
+        Find Related products 
+      </MainHeadline>
+        
+      </motion.div>
       <motion.div
         variants={staggerContainer}
         initial="hidden"

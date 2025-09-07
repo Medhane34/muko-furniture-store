@@ -10,6 +10,8 @@ import { X, Share2 } from 'lucide-react';
 import { Accordion, AccordionItem } from '@heroui/accordion';
 import { StarRating } from '@/components/atoms';
 import BadgeText from '@/components/atoms/BadgeText';
+import { CheckBadgeIcon, MagnifyingGlassPlusIcon } from '@heroicons/react/24/outline';
+import { Divider } from '@heroui/divider';
 
 interface HeroSectionProps {
   product: Product;
@@ -108,18 +110,19 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
             initial="hidden"
             animate="visible"
             onClick={() => setIsZoomed(true)}
-            className="-mt-8 z-2 px-4 py-2 bg-primary text-gray-900 rounded-lg font-sans text-body hover:bg-primary-dark"
+            className="-mt-11 z-2 px-4 py-2 bg-primary text-gray-900 rounded-full font-sans text-body hover:bg-primary-dark flex items-center gap-2"
             aria-label="Zoom image"
           >
+            <MagnifyingGlassPlusIcon className='w-5 h-5' />
             Zoom Image
           </motion.button>
         </div>
 
         {/* Info Column - UPDATED LAYOUT */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
           {/* Category Tag - NEW */}
           <motion.p variants={fadeInUp} className="font-sans text-small text-primary font-semibold">
-            Living Room • Sofas
+            {product.category.name}
           </motion.p>
 
           {/* Product Name & Description */}
@@ -129,23 +132,23 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
           <motion.p variants={fadeInUp} className="font-sans text-body text-text-light/70 dark:text-text-dark/70">
             {product.description}
           </motion.p>
-
+<Divider />
           {/* Price & Rating Group - UPDATED */}
-          <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-6 p-4 rounded-lg">
-            <div className="flex items-center gap-4">
-              <p className="font-sans text-subheading font-bold text-text-light dark:text-text-dark">
+          <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-6  rounded-lg">
+            <div className="flex gap-18">
+              <p className="font-sans text-xl font-bold text-text-light dark:text-text-dark text-left">
                 ETB {product.price.toFixed(2)}
               </p>
               <br/>
-              <div className="flex items-center gap-2">
-                <StarRating rating={ratingAverage} size={14} />
-                <span className="text-sm text-text-light/70 dark:text-text-dark/70">
+              <div className="flex items-right gap-2 pt-2">
+                <StarRating rating={ratingAverage} size={10} />
+                <span className="text-sm text-text-light/70 dark:text-text-dark/70 underline">
                   ({ratingCount} reviews)
                 </span>
               </div>
             </div>
             {/* Stock Status - MOVED TO NEW LINE */}
-            <p className={`font-sans text-body w-full mt-2 ${product.stock > 0 ? 'text-success' : 'text-danger'}`}>
+            <p className={`font-sans text-body w-full -mt-[2] ${product.stock > 0 ? 'text-success' : 'text-danger'}`}>
               {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
             </p>
           </motion.div>
@@ -161,10 +164,10 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
 
           {/* Color Swatches - MOVED HERE with proper label */}
           {product.colors && product.colors.length > 0 && (
-            <motion.div variants={fadeInUp} className="flex flex-col gap-2">
-              <p className="font-sans text-small font-semibold text-text-light/70 dark:text-text-dark/70">Available Colors</p>
-              <div className="flex flex-wrap gap-2">
-                {product.colors.slice(0, 6).map((color, index) => (
+            <motion.span variants={fadeInUp} className="flex flex-col gap-2">
+{/*               <p className="font-sans text-small font-semibold text-text-light/70 dark:text-text-dark/70"> Colors</p>
+ */}              <span className="flex flex-wrap gap-2 ">
+                Colors: {product.colors.slice(0, 6).map((color, index) => (
                   <div
                     key={index}
                     className="w-8 h-8 rounded-full border-2 border-default-200 hover:border-primary transition-colors cursor-pointer"
@@ -173,12 +176,12 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
                     title={color}
                   />
                 ))}
-              </div>
-            </motion.div>
+              </span>
+            </motion.span>
           )}
-
+  <Divider />
           {/* Specifications Group - UPDATED (removed colors) */}
-          <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg">
+          <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 rounded-lg align">
             <div>
               <p className="font-sans text-small font-semibold text-text-light/70 dark:text-text-dark/70">Material</p>
               <p className="font-sans text-body text-text-light dark:text-text-dark">{product.material || 'Solid Wood'}</p>
@@ -192,7 +195,7 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
               <p className="font-sans text-body text-text-light dark:text-text-dark">{product.weight || 'N/A'}</p>
             </div>
           </motion.div>
-
+<Divider />
           {/* Accordion - Enhanced Content */}
           <motion.div variants={fadeInUp}>
             <Accordion variant="splitted">
@@ -205,13 +208,13 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
           </motion.div>
 
           {/* Action Buttons Group */}
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 mt-4">
-            <button className="flex-1 px-6 py-3 bg-primary text-gray-900 rounded-lg font-sans font-semibold hover:bg-primary-dark transition-colors">
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 mt-3 align-left">
+            <button className="flex-1 py-3 bg-primary text-gray-900 rounded-lg font-sans font-semibold hover:bg-primary-dark transition-colors">
               Inquire About Product
             </button>
             <button 
               onClick={handleShare}
-              className="flex items-center justify-center gap-2 px-6 py-3 border-2 border-default-200 text-text-light dark:text-text-dark rounded-lg font-sans font-semibold hover:border-primary transition-colors"
+              className="flex items-left justify-left gap-2 py-3 border-2 border-default-200 text-text-light dark:text-text-dark rounded-lg font-sans font-semibold hover:border-primary transition-colors"
             >
               <Share2 size={18} />
               Share

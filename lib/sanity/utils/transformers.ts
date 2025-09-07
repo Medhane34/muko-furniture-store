@@ -94,6 +94,7 @@ export function transformSanityProduct(sanityProduct: SanityProduct): Product {
     originalPrice: sanityProduct.pricingStatus?.originalPrice,
     promotionText: sanityProduct.statusFlags?.promotionText,
     isFeatured: sanityProduct.statusFlags?.isFeatured ?? false,
+    category: sanityProduct.organization?.category || undefined, // Extract category
   };
 }
 

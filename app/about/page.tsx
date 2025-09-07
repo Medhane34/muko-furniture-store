@@ -29,8 +29,8 @@ export default function AboutPage() {
               headline="Our Story of Trusted Curation"
               subtitle="A journey of passion, craftsmanship, and Ethiopian pride"
               foundingYear="2015"
-              founderName="Michael Kebede"
-              founderRole="Founder & Master Craftsman"
+              founderName="Kokeb & Tati"
+              founderRole="Founders"
               storyContent={[
               "Muko Home Center began with a clear vision: to bridge the gap between international furniture quality and the Ethiopian home. Founder Michael Kebede recognized a desire for diverse, well-crafted, and stylish pieces that were otherwise difficult to source.",
           "We meticulously build relationships with trusted manufacturers across the globe, selecting only pieces that meet our rigorous standards for durability, design, and value. Our reputation grew not from a workshop, but from our unwavering eye for quality and commitment to customer delight.",

@@ -86,7 +86,10 @@ export default function ContactMethods() {
   return (
     <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-12">
-        <AccentHeading size='sm'>Get in touch </AccentHeading>
+        <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)">
+          Get in Touch 
+        </AccentHeading>
+      
         <MainHeadline>Quick Contact Methods </MainHeadline>
       </div>
 

@@ -149,7 +149,7 @@ export function CategoryPageClient({
       />
       <section className="container mx-auto px-4 py-8">
         <FeaturedProductsWrapper
-          title={`Featured ${categoryData.name || category}`}
+          title={` Featured ${categoryData.name || category}`}
           subtitle={`Discover our premium ${category} collection crafted for comfort and style`}
           viewAllLink={`/${category}`}
           columns={3}
@@ -164,7 +164,7 @@ export function CategoryPageClient({
         subtitle={socialProofData.subtitle}
         items={socialProofData.items}
         layout={socialProofData.layout || 'grid-3'}
-        backgroundImage={socialProofData.backgroundImage?.asset?.url || '/images/default-social-proof.jpg'}
+        backgroundImage={socialProofData.backgroundImage?.asset?.url || '/homepage-hero.jpg'}
         overlayOpacity={socialProofData.overlayOpacity || 0.7}
       />
       <section className="container mx-auto px-4 py-8">
@@ -213,18 +213,20 @@ export function CategoryPageClient({
             </div>
           </div>
         </ErrorBoundary>
-        {visibleProducts < sortedProducts.length && (
-          
-          <motion.button
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
-            onClick={() => setVisibleProducts((prev) => prev + 6)}
-            className="mt-8 px-6 py-2 bg-primary text-gray-900 rounded-none font-sans text-body hover:bg-primary-dark hover:text-gray-900 dark:bg-primary-dark dark:text-gray-100 justify-center"
-          >
-            Load More {categoryData.name || category}
-          </motion.button>
-        )}
+       {visibleProducts < sortedProducts.length && (
+  <div className="flex justify-center mt-8">
+    <motion.button
+      variants={fadeInUp}
+      initial="hidden"
+      animate="visible"
+      onClick={() => setVisibleProducts((prev) => prev + 6)}
+      className="px-6 py-2 bg-primary text-gray-900 rounded-none font-sans text-body hover:bg-primary-dark hover:text-gray-900 dark:bg-primary-dark dark:text-gray-100"
+    >
+      Load More {categoryData.name || category}
+    </motion.button>
+  </div>
+)}
+
         <QuickViewDrawer
           isOpen={!!quickViewProduct}
           onClose={handleCloseQuickView}

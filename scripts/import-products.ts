@@ -20,7 +20,7 @@ export const client = createClient({
 });
 
 // Your actual Beds category ID
-const BEDS_CATEGORY_ID = 'ef652f54-78f2-40a0-aa89-66df40958835';
+const BEDS_CATEGORY_ID = '12ead605-3024-4717-9e4f-7137c32909a2';
 
 // Product data structure matching your Sanity schema
 interface ProductData {
@@ -63,443 +63,350 @@ interface ProductData {
   };
 }
 
-// Only 2 test bed products
 const sampleProducts: ProductData[] = [
-  // Your existing bed products here...
-  
-  // ADD THESE 10 CHAIR PRODUCTS:
+  // ADD THESE 8 DECOR PRODUCTS:
   {
     _type: 'product',
     basicInfo: {
-      name: 'Modern Accent Chair - Velvet',
-      slug: { _type: 'slug', current: 'modern-accent-chair-velvet' },
-      sku: 'MKO-CH-101'
+      name: 'Abstract Canvas Wall Art - Large',
+      slug: { _type: 'slug', current: 'abstract-canvas-wall-art-large' },
+      sku: 'MKO-DC-101'
     },
     pricingStatus: {
-      price: 299.99,
-      originalPrice: 349.99,
+      price: 199.99,
+      originalPrice: 249.99,
       stock: 15,
       status: 'inStock'
     },
     media: {
       images: []
     },
-    description: 'Elegant velvet accent chair with tapered legs and comfortable cushioning. Perfect for living rooms or bedrooms.',
+    description: 'Stunning abstract canvas wall art that adds modern elegance to any room. Hand-stretched canvas with vibrant colors.',
     specifications: {
-      material: 'Velvet upholstery, solid wood frame',
-      dimensions: '65L x 70W x 85H cm',
-      weight: '18 kg',
-      colors: ['#800020', '#00008B', '#228B22'] // Burgundy, Navy Blue, Forest Green
+      material: 'Canvas, wooden frame',
+      dimensions: '120L x 80W x 4H cm',
+      weight: '8 kg',
+      colors: ['#FF6B6B', '#4ECDC4', '#45B7D1'] // Coral, Teal, Blue
     },
     features: [
-      'Premium velvet fabric',
-      'Tapered wooden legs',
-      'High-density foam cushioning',
-      'Easy to assemble'
+      'Hand-stretched canvas',
+      'Gallery wrapped edges',
+      'Ready to hang',
+      'Fade-resistant inks'
     ],
     statusFlags: {
       isNew: true,
       isOnSale: true,
       isFeatured: true,
-      promotionText: 'New Arrival'
+      promotionText: 'Wall Art Collection'
     },
     rating: {
-      average: 4.7,
-      count: 23
+      average: 4.8,
+      count: 42
     },
     organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' }, // Replace with actual chairs category ID
-      tags: ['new', 'accent', 'living-room']
+      category: { _type: 'reference', _ref: BEDS_CATEGORY_ID },
+      tags: ['new', 'wall-art', 'modern']
     }
   },
   {
     _type: 'product',
     basicInfo: {
-      name: 'Ergonomic Office Chair - Executive',
-      slug: { _type: 'slug', current: 'ergonomic-office-chair-executive' },
-      sku: 'MKO-CH-102'
+      name: 'Decorative Floor Lamp - Modern',
+      slug: { _type: 'slug', current: 'decorative-floor-lamp-modern' },
+      sku: 'MKO-DC-102'
     },
     pricingStatus: {
-      price: 449.99,
-      originalPrice: 499.99,
+      price: 159.99,
       stock: 12,
       status: 'inStock'
     },
     media: {
       images: []
     },
-    description: 'Premium executive office chair with lumbar support, adjustable height, and breathable mesh back.',
+    description: 'Elegant floor lamp with tripod base and fabric shade. Provides ambient lighting and serves as a decorative statement piece.',
     specifications: {
-      material: 'Mesh, leather, metal base',
-      dimensions: '65L x 65W x 120H cm',
-      weight: '25 kg',
-      colors: ['#000000', '#808080', '#8B4513'] // Black, Gray, Brown
-    },
-    features: [
-      'Adjustable lumbar support',
-      'Breathable mesh back',
-      '360-degree swivel',
-      'Padded armrests',
-      'Height adjustable'
-    ],
-    statusFlags: {
-      isNew: false,
-      isOnSale: true,
-      isFeatured: true,
-      promotionText: 'Best Seller'
-    },
-    rating: {
-      average: 4.8,
-      count: 67
-    },
-    organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' },
-      tags: ['office', 'ergonomic', 'executive']
-    }
-  },
-  {
-    _type: 'product',
-    basicInfo: {
-      name: 'Mid-Century Modern Lounge Chair',
-      slug: { _type: 'slug', current: 'mid-century-modern-lounge-chair' },
-      sku: 'MKO-CH-103'
-    },
-    pricingStatus: {
-      price: 599.99,
-      stock: 8,
-      status: 'inStock'
-    },
-    media: {
-      images: []
-    },
-    description: 'Iconic mid-century modern design with walnut legs and premium fabric upholstery. Timeless elegance for any space.',
-    specifications: {
-      material: 'Premium fabric, solid walnut legs',
-      dimensions: '75L x 80W x 80H cm',
-      weight: '22 kg',
-      colors: ['#F5F5DC', '#808080', '#000000'] // Beige, Gray, Black
-    },
-    features: [
-      'Mid-century design',
-      'Solid walnut legs',
-      'Comfortable angled back',
-      'Durable construction'
-    ],
-    statusFlags: {
-      isNew: true,
-      isOnSale: false,
-      isFeatured: true
-    },
-    rating: {
-      average: 4.9,
-      count: 18
-    },
-    organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' },
-      tags: ['new', 'mid-century', 'lounge']
-    }
-  },
-  {
-    _type: 'product',
-    basicInfo: {
-      name: 'Wingback Chair - Classic',
-      slug: { _type: 'slug', current: 'wingback-chair-classic' },
-      sku: 'MKO-CH-104'
-    },
-    pricingStatus: {
-      price: 499.99,
-      originalPrice: 599.99,
-      stock: 6,
-      status: 'inStock'
-    },
-    media: {
-      images: []
-    },
-    description: 'Traditional wingback chair with high back and rolled arms. Perfect for reading nooks or formal living spaces.',
-    specifications: {
-      material: 'Linen blend, solid wood frame',
-      dimensions: '85L x 90W x 110H cm',
-      weight: '28 kg',
-      colors: ['#F5F5DC', '#8B4513', '#800020'] // Beige, Brown, Burgundy
-    },
-    features: [
-      'Classic wingback design',
-      'High back support',
-      'Rolled arms',
-      'Durable linen blend fabric'
-    ],
-    statusFlags: {
-      isNew: false,
-      isOnSale: true,
-      isFeatured: false
-    },
-    rating: {
-      average: 4.6,
-      count: 34
-    },
-    organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' },
-      tags: ['classic', 'traditional', 'reading']
-    }
-  },
-  {
-    _type: 'product',
-    basicInfo: {
-      name: 'Modern Rocking Chair - Nursery',
-      slug: { _type: 'slug', current: 'modern-rocking-chair-nursery' },
-      sku: 'MKO-CH-105'
-    },
-    pricingStatus: {
-      price: 349.99,
-      stock: 10,
-      status: 'inStock'
-    },
-    media: {
-      images: []
-    },
-    description: 'Comfortable modern rocking chair perfect for nurseries, breastfeeding, or relaxing. Smooth rocking motion.',
-    specifications: {
-      material: 'Upholstered fabric, curved wood base',
-      dimensions: '70L x 75W x 95H cm',
-      weight: '20 kg',
-      colors: ['#FFFFFF', '#F5F5DC', '#87CEEB'] // White, Beige, Light Blue
-    },
-    features: [
-      'Smooth rocking motion',
-      'Padded arms and seat',
-      'Compact nursery size',
-      'Stable curved base'
-    ],
-    statusFlags: {
-      isNew: true,
-      isOnSale: false,
-      isFeatured: true,
-      promotionText: 'Perfect for Nurseries'
-    },
-    rating: {
-      average: 4.7,
-      count: 42
-    },
-    organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' },
-      tags: ['new', 'nursery', 'rocking']
-    }
-  },
-  {
-    _type: 'product',
-    basicInfo: {
-      name: 'Industrial Bar Stool - Adjustable',
-      slug: { _type: 'slug', current: 'industrial-bar-stool-adjustable' },
-      sku: 'MKO-CH-106'
-    },
-    pricingStatus: {
-      price: 199.99,
-      originalPrice: 249.99,
-      stock: 20,
-      status: 'inStock'
-    },
-    media: {
-      images: []
-    },
-    description: 'Industrial-style bar stool with adjustable height and comfortable padded seat. Perfect for kitchen islands or home bars.',
-    specifications: {
-      material: 'Metal frame, faux leather seat',
-      dimensions: '45L x 45W x 65-95H cm',
+      material: 'Metal, fabric shade',
+      dimensions: '160H x 45W cm',
       weight: '12 kg',
       colors: ['#000000', '#808080', '#8B4513'] // Black, Gray, Brown
     },
     features: [
+      'Tripod stability base',
       'Adjustable height',
-      'Padded faux leather seat',
-      'Industrial metal frame',
-      'Footrest bar',
-      '360-degree swivel'
-    ],
-    statusFlags: {
-      isNew: false,
-      isOnSale: true,
-      isFeatured: false
-    },
-    rating: {
-      average: 4.5,
-      count: 89
-    },
-    organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' },
-      tags: ['bar', 'industrial', 'kitchen']
-    }
-  },
-  {
-    _type: 'product',
-    basicInfo: {
-      name: 'Scandinavian Dining Chair - Set of 2',
-      slug: { _type: 'slug', current: 'scandinavian-dining-chair-set' },
-      sku: 'MKO-CH-107'
-    },
-    pricingStatus: {
-      price: 399.99,
-      stock: 15,
-      status: 'inStock'
-    },
-    media: {
-      images: []
-    },
-    description: 'Minimalist Scandinavian dining chairs with curved backrest and comfortable seat. Sold as a set of 2.',
-    specifications: {
-      material: 'Solid beech wood, fabric seat',
-      dimensions: '45L x 50W x 80H cm',
-      weight: '15 kg (set of 2)',
-      colors: ['#F5F5DC', '#FFFFFF', '#8B4513'] // Beige, White, Brown
-    },
-    features: [
-      'Set of 2 chairs',
-      'Solid beech wood construction',
-      'Curved backrest for comfort',
-      'Scandinavian minimalist design'
-    ],
-    statusFlags: {
-      isNew: true,
-      isOnSale: false,
-      isFeatured: true
-    },
-    rating: {
-      average: 4.6,
-      count: 56
-    },
-    organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' },
-      tags: ['new', 'dining', 'scandinavian']
-    }
-  },
-  {
-    _type: 'product',
-    basicInfo: {
-      name: 'Folding Chair - Portable',
-      slug: { _type: 'slug', current: 'folding-chair-portable' },
-      sku: 'MKO-CH-108'
-    },
-    pricingStatus: {
-      price: 49.99,
-      stock: 50,
-      status: 'inStock'
-    },
-    media: {
-      images: []
-    },
-    description: 'Lightweight and portable folding chair perfect for events, camping, or extra seating. Easy to store.',
-    specifications: {
-      material: 'Steel frame, plastic seat',
-      dimensions: '45L x 45W x 80H cm (folded: 10cm)',
-      weight: '3.5 kg',
-      colors: ['#000000', '#FFFFFF', '#0000FF'] // Black, White, Blue
-    },
-    features: [
-      'Lightweight and portable',
-      'Easy fold mechanism',
-      'Durable steel frame',
-      'Stackable design'
-    ],
-    statusFlags: {
-      isNew: false,
-      isOnSale: false,
-      isFeatured: false
-    },
-    rating: {
-      average: 4.3,
-      count: 124
-    },
-    organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' },
-      tags: ['folding', 'portable', 'event']
-    }
-  },
-  {
-    _type: 'product',
-    basicInfo: {
-      name: 'Leather Club Chair - Executive',
-      slug: { _type: 'slug', current: 'leather-club-chair-executive' },
-      sku: 'MKO-CH-109'
-    },
-    pricingStatus: {
-      price: 899.99,
-      stock: 4,
-      status: 'inStock'
-    },
-    media: {
-      images: []
-    },
-    description: 'Premium executive leather club chair with deep seating and nailhead trim. Luxurious addition to any office or study.',
-    specifications: {
-      material: 'Genuine leather, solid wood frame',
-      dimensions: '90L x 95W x 100H cm',
-      weight: '35 kg',
-      colors: ['#8B4513', '#000000', '#800020'] // Brown, Black, Burgundy
-    },
-    features: [
-      'Genuine leather upholstery',
-      'Deep comfortable seating',
-      'Nailhead trim details',
-      'Solid wood frame'
+      'Energy efficient LED compatible',
+      'Soft diffused lighting'
     ],
     statusFlags: {
       isNew: false,
       isOnSale: false,
       isFeatured: true
-    },
-    rating: {
-      average: 4.9,
-      count: 27
-    },
-    organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' },
-      tags: ['premium', 'leather', 'executive']
-    }
-  },
-  {
-    _type: 'product',
-    basicInfo: {
-      name: 'Papasan Chair - Rattan',
-      slug: { _type: 'slug', current: 'papasan-chair-rattan' },
-      sku: 'MKO-CH-110'
-    },
-    pricingStatus: {
-      price: 279.99,
-      originalPrice: 329.99,
-      stock: 7,
-      status: 'inStock'
-    },
-    media: {
-      images: []
-    },
-    description: 'Comfortable papasan chair with rattan frame and plush cushion. Perfect for relaxing and reading.',
-    specifications: {
-      material: 'Rattan frame, cotton cushion',
-      dimensions: '100L x 100W x 90H cm',
-      weight: '18 kg',
-      colors: ['#D2B48C', '#F5F5DC', '#FFFFFF'] // Tan, Beige, White
-    },
-    features: [
-      'Natural rattan frame',
-      'Plush removable cushion',
-      '360-degree swivel base',
-      'Boho-chic style'
-    ],
-    statusFlags: {
-      isNew: true,
-      isOnSale: true,
-      isFeatured: false
     },
     rating: {
       average: 4.7,
       count: 38
     },
     organization: {
-      category: { _type: 'reference', _ref: 'YOUR_CHAIRS_CATEGORY_ID' },
-      tags: ['new', 'boho', 'rattan']
+      category: { _type: 'reference', _ref: BEDS_CATEGORY_ID },
+      tags: ['lighting', 'floor-lamp', 'decorative']
+    }
+  },
+  {
+    _type: 'product',
+    basicInfo: {
+      name: 'Vintage Wall Clock - Roman Numerals',
+      slug: { _type: 'slug', current: 'vintage-wall-clock-roman-numerals' },
+      sku: 'MKO-DC-103'
+    },
+    pricingStatus: {
+      price: 89.99,
+      originalPrice: 109.99,
+      stock: 20,
+      status: 'inStock'
+    },
+    media: {
+      images: []
+    },
+    description: 'Classic vintage wall clock with Roman numerals and silent movement. Adds timeless elegance to any wall.',
+    specifications: {
+      material: 'Wood, glass, quartz movement',
+      dimensions: '40D x 5H cm',
+      weight: '2.5 kg',
+      colors: ['#8B4513', '#000000', '#F5F5DC'] // Brown, Black, Beige
+    },
+    features: [
+      'Silent quartz movement',
+      'Roman numeral design',
+      'Battery operated (AA included)',
+      'Easy to hang'
+    ],
+    statusFlags: {
+      isNew: false,
+      isOnSale: true,
+      isFeatured: false
+    },
+    rating: {
+      average: 4.6,
+      count: 67
+    },
+    organization: {
+      category: { _type: 'reference', _ref: BEDS_CATEGORY_ID },
+      tags: ['vintage', 'clock', 'wall-decor']
+    }
+  },
+  {
+    _type: 'product',
+    basicInfo: {
+      name: 'Ceramic Table Vase Set - 3 Pieces',
+      slug: { _type: 'slug', current: 'ceramic-table-vase-set-3-pieces' },
+      sku: 'MKO-DC-104'
+    },
+    pricingStatus: {
+      price: 79.99,
+      stock: 25,
+      status: 'inStock'
+    },
+    media: {
+      images: []
+    },
+    description: 'Beautiful set of 3 ceramic vases in varying heights. Perfect for fresh or artificial flower arrangements.',
+    specifications: {
+      material: 'Ceramic, gloss finish',
+      dimensions: 'Tall: 30H cm, Medium: 22H cm, Small: 15H cm',
+      weight: '4 kg (set)',
+      colors: ['#FFFFFF', '#F5F5DC', '#87CEEB'] // White, Beige, Light Blue
+    },
+    features: [
+      'Set of 3 vases',
+      'Handcrafted ceramic',
+      'Gloss finish',
+      'Waterproof'
+    ],
+    statusFlags: {
+      isNew: true,
+      isOnSale: false,
+      isFeatured: true
+    },
+    rating: {
+      average: 4.5,
+      count: 29
+    },
+    organization: {
+      category: { _type: 'reference', _ref: BEDS_CATEGORY_ID },
+      tags: ['new', 'vases', 'ceramic']
+    }
+  },
+  {
+    _type: 'product',
+    basicInfo: {
+      name: 'Desk Lamp with USB Port - Adjustable',
+      slug: { _type: 'slug', current: 'desk-lamp-usb-port-adjustable' },
+      sku: 'MKO-DC-105'
+    },
+    pricingStatus: {
+      price: 69.99,
+      originalPrice: 89.99,
+      stock: 18,
+      status: 'inStock'
+    },
+    media: {
+      images: []
+    },
+    description: 'Modern desk lamp with adjustable arm and built-in USB charging port. Perfect for home office or study desk.',
+    specifications: {
+      material: 'Metal, plastic, LED',
+      dimensions: '45H x 35W x 15D cm',
+      weight: '1.8 kg',
+      colors: ['#000000', '#FFFFFF', '#808080'] // Black, White, Gray
+    },
+    features: [
+      'Adjustable gooseneck design',
+      'Built-in USB charging port',
+      'Energy efficient LED',
+      '3 brightness levels'
+    ],
+    statusFlags: {
+      isNew: false,
+      isOnSale: true,
+      isFeatured: false
+    },
+    rating: {
+      average: 4.4,
+      count: 53
+    },
+    organization: {
+      category: { _type: 'reference', _ref: BEDS_CATEGORY_ID },
+      tags: ['desk-lamp', 'office', 'USB-charging']
+    }
+  },
+  {
+    _type: 'product',
+    basicInfo: {
+      name: 'Decorative Throw Pillow Set - Bohemian',
+      slug: { _type: 'slug', current: 'decorative-throw-pillow-set-bohemian' },
+      sku: 'MKO-DC-106'
+    },
+    pricingStatus: {
+      price: 129.99,
+      stock: 30,
+      status: 'inStock'
+    },
+    media: {
+      images: []
+    },
+    description: 'Set of 4 bohemian-style throw pillows with intricate patterns. Adds color and texture to sofas and beds.',
+    specifications: {
+      material: 'Cotton cover, polyester filling',
+      dimensions: '18x18 inches (set of 4)',
+      weight: '3 kg (set)',
+      colors: ['#FF6B6B', '#4ECDC4', '#F7DC6F', '#BB8FCE'] // Coral, Teal, Yellow, Purple
+    },
+    features: [
+      'Set of 4 pillows',
+      'Removable covers',
+      'Machine washable',
+      'Hypoallergenic filling'
+    ],
+    statusFlags: {
+      isNew: true,
+      isOnSale: false,
+      isFeatured: true
+    },
+    rating: {
+      average: 4.7,
+      count: 48
+    },
+    organization: {
+      category: { _type: 'reference', _ref: BEDS_CATEGORY_ID },
+      tags: ['new', 'pillows', 'bohemian']
+    }
+  },
+  {
+    _type: 'product',
+    basicInfo: {
+      name: 'Wall Shelf Set - Floating',
+      slug: { _type: 'slug', current: 'wall-shelf-set-floating' },
+      sku: 'MKO-DC-107'
+    },
+    pricingStatus: {
+      price: 149.99,
+      originalPrice: 179.99,
+      stock: 14,
+      status: 'inStock'
+    },
+    media: {
+      images: []
+    },
+    description: 'Set of 3 floating wall shelves in varying lengths. Perfect for displaying books, plants, and decorative items.',
+    specifications: {
+      material: 'Solid wood, metal brackets',
+      dimensions: 'Long: 90cm, Medium: 60cm, Short: 30cm',
+      weight: '10 kg (set)',
+      colors: ['#8B4513', '#000000', '#FFFFFF'] // Brown, Black, White
+    },
+    features: [
+      'Set of 3 shelves',
+      'Hidden mounting system',
+      'Weight capacity: 15kg per shelf',
+      'Easy installation'
+    ],
+    statusFlags: {
+      isNew: false,
+      isOnSale: true,
+      isFeatured: false
+    },
+    rating: {
+      average: 4.6,
+      count: 37
+    },
+    organization: {
+      category: { _type: 'reference', _ref: BEDS_CATEGORY_ID },
+      tags: ['shelves', 'wall-storage', 'decorative']
+    }
+  },
+  {
+    _type: 'product',
+    basicInfo: {
+      name: 'Decorative Mirror - Sunburst Design',
+      slug: { _type: 'slug', current: 'decorative-mirror-sunburst-design' },
+      sku: 'MKO-DC-108'
+    },
+    pricingStatus: {
+      price: 219.99,
+      stock: 7,
+      status: 'inStock'
+    },
+    media: {
+      images: []
+    },
+    description: 'Stunning sunburst design mirror that adds glamour and light to any room. Creates the illusion of more space.',
+    specifications: {
+      material: 'Metal, glass mirror',
+      dimensions: '80D x 5H cm',
+      weight: '6.5 kg',
+      colors: ['#FFD700', '#C0C0C0'] // Gold, Silver
+    },
+    features: [
+      'Sunburst design',
+      'High-quality mirror glass',
+      'Secure hanging hardware',
+      'Adds light and space'
+    ],
+    statusFlags: {
+      isNew: true,
+      isOnSale: false,
+      isFeatured: true
+    },
+    rating: {
+      average: 4.9,
+      count: 23
+    },
+    organization: {
+      category: { _type: 'reference', _ref: BEDS_CATEGORY_ID },
+      tags: ['new', 'mirror', 'statement-piece']
     }
   }
 ];
-
 // Import function
 async function importProducts() {
   try {

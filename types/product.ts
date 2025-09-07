@@ -22,4 +22,5 @@ export interface Product {
   originalPrice?: number; // NEW: For showing a discount
     promotionText?: string;
 isFeatured: boolean;
+category?: Category; // New field for category data
 }
