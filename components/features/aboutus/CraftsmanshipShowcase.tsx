@@ -8,6 +8,8 @@ import { Button } from "@/components/atoms/Button";
 import { ZoomIn, Shield, Heart, Award } from "lucide-react";
 import MainHeadline from "@/components/atoms/MainHeadline";
 import AccentHeading from "@/components/atoms/AccentHeading";
+import BadgeText from "@/components/atoms/BadgeText";
+import { HandThumbUpIcon } from "@heroicons/react/24/outline";
 
 interface CraftItem {
   id: string;
@@ -30,52 +32,52 @@ interface CraftsmanshipShowcaseProps {
 }
 
 export function CraftsmanshipShowcase({
-  headline = "The MUKO Difference",
-  subtitle = "Exceptional craftsmanship meets timeless design",
+  headline = "The MUKO Standard",
+  subtitle = "Our commitment to quality you can trust",
   craftItems = [
     {
-      id: "materials",
-      title: "Premium Materials",
-      description: "We source only the finest sustainable hardwoods and luxury fabrics",
+      id: "sourcing",
+      title: "Global Sourcing",
+      description: "We partner with world-class manufacturers known for their excellence and ethical production.",
       image: "/homepage-hero.jpg",
       details: [
-        "Ethiopian grown hardwoods",
-        "European luxury fabrics",
-        "Natural organic finishes",
-        "Metal hardware tested for 50,000+ cycles"
+        "Rigorous manufacturer vetting process",
+        "Focus on sustainable and ethical production",
+        "Materials meet international safety standards",
+        "Direct partnerships ensure value"
       ],
       icon: Heart
     },
     {
-      id: "techniques",
-      title: "Traditional Techniques",
-      description: "Generations of craftsmanship refined for modern comfort",
+      id: "inspection",
+      title: "Stringent Inspection",
+      description: "Every piece undergoes a multi-point quality check before it reaches your home.",
       image: "/homepage-hero.jpg",
       details: [
-        "Hand-tied spring systems",
-        "Traditional joinery (no staples or glue)",
-        "Hand-applied finishes",
-        "8-step quality inspection process"
-      ],
-      icon: Award
-    },
-    {
-      id: "attention",
-      title: "Attention to Detail",
-      description: "Every stitch, joint, and finish receives meticulous care",
-      image: "/homepage-hero.jpg",
-      details: [
-        "0.1mm precision tolerance",
-        "Hand-stitched seams",
-        "Triple-reinforced frames",
-        "24-hour finish curing"
+        "Pre-shipment quality assurance audits",
+        "Post-delivery inspection in our warehouse",
+        "Structural integrity and stability checks",
+        "Finish and fabric quality verification"
       ],
       icon: ZoomIn
+    },
+    {
+      id: "testing",
+      title: "Performance Testing",
+      description: "We ensure durability by validating products against rigorous performance standards.",
+      image: "/homepage-hero.jpg",
+      details: [
+        "Frame stability and weight capacity tests",
+        "Fabric durability and abrasion resistance checks",
+        "Hardware and mechanism lifecycle testing",
+        "Safety and compliance certification"
+      ],
+      icon: Award
     }
   ],
   warranty = {
-    years: 10,
-    description: "comprehensive warranty on all frames and mechanisms"
+    years: 5,
+    description: "comprehensive warranty on frames and mechanisms for your peace of mind"
   },
   className = ""
 }: CraftsmanshipShowcaseProps) {
@@ -93,11 +95,17 @@ export function CraftsmanshipShowcase({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <AccentHeading size="sm" >
-            {subtitle}
-          </AccentHeading>
-          <MainHeadline className="font-sans text-heading font-bold text-gray-900 mb-4">
+          <BadgeText
+            gradient="custom"
+            customGradient="linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)"
+            rounded="lg"icon={<HandThumbUpIcon className="w-4 h-4" />} 
+            >
             {headline}
+            </BadgeText>
+         
+
+          <MainHeadline className="font-sans text-heading font-bold text-gray-900 mb-4">
+           {subtitle} 
           </MainHeadline>
           
         </motion.div>
@@ -160,7 +168,7 @@ export function CraftsmanshipShowcase({
             >
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary">100%</div>
-                <div className="text-xs font-medium text-gray-600">Handcrafted</div>
+                <div className="text-xs font-medium text-gray-600">Quality Checked</div>
               </div>
             </motion.div>
           </motion.div>
@@ -216,9 +224,9 @@ export function CraftsmanshipShowcase({
             <motion.div variants={fadeInUp} className="pt-4">
               <Button
                 variant="outline"
-                onClick={() => window.location.href = "/craftsmanship"}
+                onClick={() => window.location.href = "/contact"}
               >
-                Learn More About Our Process
+                Learn More About Our Standards
               </Button>
             </motion.div>
           </motion.div>
@@ -233,20 +241,20 @@ export function CraftsmanshipShowcase({
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-gray-200"
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">5000+</div>
-            <p className="font-sans text-sm text-gray-600">Pieces Crafted</p>
+            <div className="text-3xl font-bold text-primary mb-2">10,000+</div>
+            <p className="font-sans text-sm text-gray-600">Pieces Delivered</p>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">98%</div>
             <p className="font-sans text-sm text-gray-600">Customer Satisfaction</p>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">15</div>
-            <p className="font-sans text-sm text-gray-600">Master Artisans</p>
+            <div className="text-3xl font-bold text-primary mb-2">50+</div>
+            <p className="font-sans text-sm text-gray-600">Trusted Brands</p>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">0.1%</div>
-            <p className="font-sans text-sm text-gray-600">Defect Rate</p>
+            <p className="font-sans text-sm text-gray-600">Return Rate</p>
           </div>
         </motion.div>
       </div>

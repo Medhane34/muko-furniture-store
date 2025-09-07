@@ -7,6 +7,7 @@ import { Button } from "@/components/atoms/Button";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/atoms/Badge";
 import MainHeadline from "@/components/atoms/MainHeadline";
+import AccentHeading from "@/components/atoms/AccentHeading";
 
 interface AboutSneakpeakProps {
   badge?: string;
@@ -46,7 +47,7 @@ export function AboutSneakpeak({
             viewport={{ once: true }}
             className="w-full md:w-1/2"
           >
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+            <div className="relative aspect-[4/3] rounded-none overflow-hidden">
               <Image
                 src={imageUrl}
                 alt={imageAlt}
@@ -70,9 +71,10 @@ export function AboutSneakpeak({
               <motion.span 
                 variants={fadeInUp}
               >
-                <Badge color="primary">
-                  {badge}
-                </Badge>
+                <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)">
+                {badge}
+              </AccentHeading>
+                   
               </motion.span>
             )}
 
@@ -103,7 +105,7 @@ export function AboutSneakpeak({
                 <Button
                   variant="solid"
                   color="primary"
-                  rightIcon={ArrowRight}
+                  /* rightIcon={ArrowRight} */
                   onClick={() => window.location.href = ctaLink}
                   className="hover:scale-105 transition-transform"
                 >

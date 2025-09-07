@@ -23,19 +23,15 @@ const showrooms: Showroom[] = [
   },
   {
     id: 2,
-    name: "Getu Commercial Showroom",
+    name: "Dembel Meskel Flower",
     address: "Getu Commercial Center, 3rd Floor, Addis Ababa, Ethiopia",
   },
   {
     id: 3,
-    name: "Megenagna Showroom",
+    name: "Megenagna Salite Mehirt Showroom",
     address: "Megenagna, Zefmesh Grand Mall, Addis Ababa, Ethiopia",
   },
-  {
-    id: 4,
-    name: "CMC Showroom",
-    address: "CMC Area, Salitemihret Rd, Addis Ababa, Ethiopia",
-  },
+  
 ];
 
 // 3. Main Component

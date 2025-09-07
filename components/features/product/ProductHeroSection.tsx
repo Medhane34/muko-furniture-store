@@ -1,4 +1,4 @@
-
+// components/sections/product/ProductHeroSection.tsx
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -6,8 +6,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInUp } from '@/lib/motion';
 import { Product } from '@/types/product';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { X, Share2 } from 'lucide-react';
 import { Accordion, AccordionItem } from '@heroui/accordion';
+import { StarRating } from '@/components/atoms';
+import BadgeText from '@/components/atoms/BadgeText';
 
 interface HeroSectionProps {
   product: Product;
@@ -16,10 +18,51 @@ interface HeroSectionProps {
 export function ProductHeroSection({ product }: HeroSectionProps) {
   const [isZoomed, setIsZoomed] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const defaultContent =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+  
+  // Dummy data for enhancements
+  const keySellingPoints = [
+    "Handcrafted Quality",
+    "Free Addis Delivery",
+    "5-Year Warranty",
+    "Ethiopian Hardwood"
+  ];
 
-  console.log('ProductHeroSection: product.colors:', product.colors); // Debug
+  const accordionItems = [
+    {
+      key: "delivery",
+      title: "Delivery & Returns",
+      content: "Free delivery within Addis Ababa for orders over ETB 5,000. Delivery takes 3-5 business days. We offer a 30-day return policy for unused items in original packaging."
+    },
+    {
+      key: "care",
+      title: "Product Care",
+      content: "Clean with a soft, dry cloth. Avoid direct sunlight and moisture. For wood products, use specialized wood cleaner monthly to maintain finish."
+    },
+    {
+      key: "specifications",
+      title: "Specifications",
+      content: `Material: ${product.material || 'Solid Wood'}. Dimensions: ${product.dimensions || 'N/A'}. Weight: ${product.weight || 'N/A'}. Designed and crafted in Addis Ababa, Ethiopia.`
+    }
+  ];
+
+  // Function to handle social sharing
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: product.name,
+          text: product.description,
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.log('Error sharing:', error);
+      }
+    } else {
+      // Fallback: Copy to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      // You could add a toast notification here: "Link copied to clipboard!"
+    }
+  };
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -37,8 +80,9 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
     }
   };
 
-  console.log('HeroSection product:', product);
-  console.log('HeroSection isZoomed:', isZoomed);
+  // Get rating values
+  const ratingAverage = typeof product.rating === 'number' ? product.rating : (product.rating?.average ?? 4.5);
+  const ratingCount = typeof product.rating === 'object' && product.rating?.count !== undefined ? product.rating.count : 0;
 
   return (
     <>
@@ -48,13 +92,14 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
         animate="visible"
         className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"
       >
+        {/* Image Column (Unchanged) */}
         <div className="flex flex-col items-center sticky top-4 self-start">
-          <div className="relative w-full h-96 lg:max-h-[70vh]">
+          <div className="relative w-full h-96 lg:max-h-[70vh] rounded-none">
             <Image
               src={product.imageUrl || '/images/placeholder.jpg'}
               alt={product.name}
               fill
-              className="object-cover rounded-lg"
+              className="object-cover rounded-none"
               priority
             />
           </div>
@@ -62,10 +107,7 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
-            onClick={() => {
-              setIsZoomed(true);
-              console.log('Zoom Image clicked');
-            }}
+            onClick={() => setIsZoomed(true)}
             className="-mt-8 z-2 px-4 py-2 bg-primary text-gray-900 rounded-lg font-sans text-body hover:bg-primary-dark"
             aria-label="Zoom image"
           >
@@ -73,97 +115,112 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
           </motion.button>
         </div>
 
-        <div className="flex flex-col gap-4">
-          <motion.h1
-            variants={fadeInUp}
-            className="font-sans text-heading text-gray-900 dark:text-gray-100"
-          >
+        {/* Info Column - UPDATED LAYOUT */}
+        <div className="flex flex-col gap-6">
+          {/* Category Tag - NEW */}
+          <motion.p variants={fadeInUp} className="font-sans text-small text-primary font-semibold">
+            Living Room • Sofas
+          </motion.p>
+
+          {/* Product Name & Description */}
+          <motion.h1 variants={fadeInUp} className="font-sans text-heading text-text-light dark:text-text-dark text-3xl font-bold">
             {product.name}
           </motion.h1>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-600 dark:text-gray-300"
-          >
+          <motion.p variants={fadeInUp} className="font-sans text-body text-text-light/70 dark:text-text-dark/70">
             {product.description}
           </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-subheading font-bold text-gray-900 dark:text-gray-100"
-          >
-            ${product.price.toFixed(2)}
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-900 dark:text-gray-100"
-          >
-            Stock: {product.stock > 0 ? `${product.stock} available` : 'Out of stock'}
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-900 dark:text-gray-100"
-          >
-            Material: {product.material || 'N/A'}
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-900 dark:text-gray-100"
-          >
-            Dimensions: {product.dimensions || 'N/A'}
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="font-sans text-body text-gray-900 dark:text-gray-100"
-          >
-            Weight: {product.weight || 'N/A'}
-          </motion.p>
-          {product.colors && product.colors.length > 0 ? (
-            <motion.div
-              variants={fadeInUp}
-              className="flex flex-wrap gap-2 mt-2"
-              aria-label={`Available colors: ${product.colors.join(', ')}`}
-            >
-              <span className="font-sans text-body text-gray-900 dark:text-gray-100">
-                Colors:
-              </span>
-              {product.colors.slice(0, 4).map((color, index) => (
-                <div
-                  key={index}
-                  className="w-6 h-6 rounded-full border border-gray-300"
-                  style={{ backgroundColor: color }}
-                  aria-hidden="true"
-                  title={color} // Debug: Show hex on hover
-                />
-              ))}
+
+          {/* Price & Rating Group - UPDATED */}
+          <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-6 p-4 rounded-lg">
+            <div className="flex items-center gap-4">
+              <p className="font-sans text-subheading font-bold text-text-light dark:text-text-dark">
+                ETB {product.price.toFixed(2)}
+              </p>
+              <br/>
+              <div className="flex items-center gap-2">
+                <StarRating rating={ratingAverage} size={14} />
+                <span className="text-sm text-text-light/70 dark:text-text-dark/70">
+                  ({ratingCount} reviews)
+                </span>
+              </div>
+            </div>
+            {/* Stock Status - MOVED TO NEW LINE */}
+            <p className={`font-sans text-body w-full mt-2 ${product.stock > 0 ? 'text-success' : 'text-danger'}`}>
+              {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+            </p>
+          </motion.div>
+
+          {/* Key Selling Points - Badges */}
+          <motion.div variants={fadeInUp} className="flex flex-wrap gap-2">
+            {keySellingPoints.map((point, index) => (
+              <BadgeText key={index}>
+                {point}
+              </BadgeText>
+            ))}
+          </motion.div>
+
+          {/* Color Swatches - MOVED HERE with proper label */}
+          {product.colors && product.colors.length > 0 && (
+            <motion.div variants={fadeInUp} className="flex flex-col gap-2">
+              <p className="font-sans text-small font-semibold text-text-light/70 dark:text-text-dark/70">Available Colors</p>
+              <div className="flex flex-wrap gap-2">
+                {product.colors.slice(0, 6).map((color, index) => (
+                  <div
+                    key={index}
+                    className="w-8 h-8 rounded-full border-2 border-default-200 hover:border-primary transition-colors cursor-pointer"
+                    style={{ backgroundColor: color }}
+                    aria-hidden="true"
+                    title={color}
+                  />
+                ))}
+              </div>
             </motion.div>
-          ) : (
-            <motion.p
-              variants={fadeInUp}
-              className="font-sans text-body text-gray-900 dark:text-gray-100"
-            >
-              Colors: N/A
-            </motion.p>
           )}
-          <Accordion>
-            <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
-              {defaultContent}
-            </AccordionItem>
-            <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
-              {defaultContent}
-            </AccordionItem>
-            <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
-              {defaultContent}
-            </AccordionItem>
-          </Accordion>
-          <motion.button
-            variants={fadeInUp}
-            className="px-6 py-2 bg-primary text-gray-900 rounded-lg font-sans text-body hover:bg-primary-dark w-max"
-            aria-label="Inquire about product"
-          >
-            Inquire
-          </motion.button>
+
+          {/* Specifications Group - UPDATED (removed colors) */}
+          <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg">
+            <div>
+              <p className="font-sans text-small font-semibold text-text-light/70 dark:text-text-dark/70">Material</p>
+              <p className="font-sans text-body text-text-light dark:text-text-dark">{product.material || 'Solid Wood'}</p>
+            </div>
+            <div>
+              <p className="font-sans text-small font-semibold text-text-light/70 dark:text-text-dark/70">Dimensions</p>
+              <p className="font-sans text-body text-text-light dark:text-text-dark">{product.dimensions || 'N/A'}</p>
+            </div>
+            <div>
+              <p className="font-sans text-small font-semibold text-text-light/70 dark:text-text-dark/70">Weight</p>
+              <p className="font-sans text-body text-text-light dark:text-text-dark">{product.weight || 'N/A'}</p>
+            </div>
+          </motion.div>
+
+          {/* Accordion - Enhanced Content */}
+          <motion.div variants={fadeInUp}>
+            <Accordion variant="splitted">
+              {accordionItems.map((item) => (
+                <AccordionItem key={item.key} aria-label={item.title} title={item.title}>
+                  {item.content}
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
+
+          {/* Action Buttons Group */}
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 mt-4">
+            <button className="flex-1 px-6 py-3 bg-primary text-gray-900 rounded-lg font-sans font-semibold hover:bg-primary-dark transition-colors">
+              Inquire About Product
+            </button>
+            <button 
+              onClick={handleShare}
+              className="flex items-center justify-center gap-2 px-6 py-3 border-2 border-default-200 text-text-light dark:text-text-dark rounded-lg font-sans font-semibold hover:border-primary transition-colors"
+            >
+              <Share2 size={18} />
+              Share
+            </button>
+          </motion.div>
         </div>
       </motion.div>
 
+      {/* Zoom Modal (Unchanged) */}
       <AnimatePresence>
         {isZoomed && (
           <motion.div

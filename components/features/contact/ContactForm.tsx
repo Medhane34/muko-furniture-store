@@ -43,7 +43,7 @@ export function ContactForm({
   };
 
   // Placeholder for image path - REPLACE WITH YOUR ACTUAL IMAGE PATH
-  const formImage = '/homepage-hero.jpg';
+  const formImage = '/features/contact/contact-form.png';
 
   return (
     <section className={`py-16 lg:py-24 bg-background-light dark:bg-background-dark ${theme ? (theme === 'dark' ? 'dark' : '') : ''}`}>

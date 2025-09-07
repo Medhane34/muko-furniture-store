@@ -214,12 +214,13 @@ export function CategoryPageClient({
           </div>
         </ErrorBoundary>
         {visibleProducts < sortedProducts.length && (
+          
           <motion.button
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
             onClick={() => setVisibleProducts((prev) => prev + 6)}
-            className="mt-8 px-6 py-2 bg-primary text-gray-900 rounded-lg font-sans text-body hover:bg-primary-dark hover:text-gray-900 dark:bg-primary-dark dark:text-gray-100"
+            className="mt-8 px-6 py-2 bg-primary text-gray-900 rounded-none font-sans text-body hover:bg-primary-dark hover:text-gray-900 dark:bg-primary-dark dark:text-gray-100 justify-center"
           >
             Load More {categoryData.name || category}
           </motion.button>

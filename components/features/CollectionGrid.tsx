@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { CategoryCard } from "@/components/molecules/CategoryCard";
 import { Badge } from "@/components/atoms/Badge";
 import MainHeadline from "../atoms/MainHeadline";
+import AccentHeading from "../atoms/AccentHeading";
 
 interface Category {
   id: string;
@@ -18,37 +19,37 @@ const categories: Category[] = [
   {
     id: "beds",
     title: "Beds",
-    description: "Dreamy beds for modern homes.",
-    imageSrc: "/homepage-hero.jpg",
-    href: "/categories/beds",
+    description: "Dreamy beds for sleep.",
+    imageSrc: "/features/homepage/beds-hero-2.png",
+    href: "/beds",
   },
   {
     id: "sofas",
     title: "Sofas",
     description: "Comfort meets style.",
-    imageSrc: "/homepage-hero.jpg",
-    href: "/categories/sofas",
+    imageSrc: "/features/homepage/sofa-hero-1.jpg",
+    href: "/sofa",
   },
   {
     id: "dining",
     title: "Dining",
     description: "Elevate every meal.",
-    imageSrc: "/homepage-hero.jpg",
-    href: "/categories/dining",
+    imageSrc: "/features/homepage/dinning-3.png",
+    href: "/dining",
   },
   {
     id: "chairs",
     title: "Chairs",
     description: "Seating for every space.",
-    imageSrc: "/homepage-hero.jpg",
-    href: "/categories/chairs",
+    imageSrc: "/features/homepage/chairs-hero-1.jpg",
+    href: "/chairs",
   },
   {
     id: "accessories", // Fixed typo from "accesories" and changed title from duplicate "Chairs"
     title: "Accessories",
     description: "Enhance your space with style.",
-    imageSrc: "/homepage-hero.jpg",
-    href: "/categories/accessories",
+        imageSrc: "/features/homepage/accesories-hero-1.png",
+    href: "/sofa",
   },
 ];
 
@@ -73,15 +74,13 @@ export const CollectionGrid: React.FC = () => {
     >
       {/* Header with Headline and Badge */}
       <div className="text-center mb-12">
-        <Badge color="primary" className="mb-4">
+        <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)">
           New Collections
-        </Badge>
+        </AccentHeading>
         <MainHeadline  className="font-bold text-text-light dark:text-text-dark mb-4">
           Shop by Category
         </MainHeadline>
-        <p className="font-sans text-subheading text-text-light/90 dark:text-text-dark/90 max-w-2xl mx-auto">
-          Discover our curated collections for every room in your home
-        </p>
+      
       </div>
 
       {/* 2x3 Grid Layout */}
@@ -123,7 +122,7 @@ export const CollectionGrid: React.FC = () => {
         >
           <div 
             className="h-full flex items-center justify-center bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer p-8"
-            onClick={() => window.location.href = '/categories'}
+            onClick={() => window.location.href = '/all'}
           >
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">+</div>

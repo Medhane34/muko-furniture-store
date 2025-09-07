@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { Button } from '@/components/atoms/Button';
 import { Badge } from '@/components/atoms/Badge';
+import BadgeText from '../atoms/BadgeText';
+import { HandThumbUpIcon } from '@heroicons/react/24/outline';
 
 export interface HeroSectionProps {
   imageUrl: string;
@@ -93,12 +95,14 @@ export function HeroSection({
         <div className={`py-56 ${getContentWidthClass(contentWidth)}`}>
           {/* Badge */}
           {badgeText && (
-            <Badge 
-              color="primary" 
-              className="mb-4 md:mb-6"
+            <BadgeText
+            gradient="custom"
+            customGradient="linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)"
+            rounded="lg"icon={<HandThumbUpIcon className="w-4 h-4" />} 
             >
               {badgeText}
-            </Badge>
+            </BadgeText>
+           
           )}
           
           {/* Headline with highlighted last two words */}

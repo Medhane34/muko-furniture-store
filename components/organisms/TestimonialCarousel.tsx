@@ -2,12 +2,14 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { CheckIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 import { Badge } from "@/components/atoms/Badge";
 import { fadeInUp } from "@/lib/motion";
 import Image from "next/image";
 import MainHeadline from "../atoms/MainHeadline";
+import BadgeText from "../atoms/BadgeText";
+import { UserIcon } from "@heroicons/react/24/outline";
 
 interface Testimonial {
   quote: string;
@@ -19,30 +21,30 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "The HeroUI framework is an absolute game-changer. It saved us countless hours on development and allowed our team to focus on what matters most: building great products. The component library is intuitive and beautiful.",
-    author: "Alex Chen",
-    title: "Lead Product Designer",
+      "I was hesitant about buying imported furniture online, but Muko made the process seamless. The quality of our new living room set exceeded expectations - it's both beautiful and incredibly durable. The delivery team was professional and careful with everything.",
+    author: "Alemnesh Taddesse",
+    title: "Homeowner, Bole",
     imageUrl: "/avatars/avatar-1.png",
   },
   {
     quote:
-      "I've tried numerous design systems, but HeroUI's integration with Tailwind is the most seamless experience I've had. The documentation is clear, and the flexibility to customize every aspect is unparalleled.",
-    author: "Samantha Lee",
-    title: "Senior Frontend Engineer",
+      "As an interior designer, I appreciate Muko's curated collections. They offer pieces I can't find anywhere else in Addis. Their customer service team helped me source the perfect statement pieces for my client's modern apartment. The quality is consistently excellent.",
+    author: "Sara Mengistu",
+    title: "Interior Designer",
     imageUrl: "/avatars/avatar-1.png",
   },
   {
     quote:
-      "As a startup founder, speed is everything. Using HeroUI, we went from concept to a production-ready MVP in record time. The pre-built components are a life-saver.",
-    author: "David Rodriguez",
-    title: "Founder & CEO",
+      "We furnished our entire office with Muko furniture and couldn't be happier. The ergonomic chairs and modern desks have held up perfectly with daily use. The warranty gave us peace of mind, and the bulk order discount made it affordable.",
+    author: "Michael Getachew",
+    title: "Office Manager, Tech Company",
     imageUrl: "/avatars/avatar-1.png",
   },
   {
     quote:
-      "The attention to detail in the HeroUI design system is incredible. From the subtle animations to the thoughtful color palette, it’s clear a lot of care went into this. It's my go-to for all new projects.",
-    author: "Emily Carter",
-    title: "UX Consultant",
+      "The dining table we purchased from Muko has become the heart of our home. It's stunningly beautiful and has survived countless family gatherings with young children. The scratch-resistant surface really works! Muko's quality is worth every birr.",
+    author: "Yordanos Abebe",
+    title: "Mother of Three, CMC",
     imageUrl: "/avatars/avatar-1.png",
   },
 ];
@@ -85,13 +87,18 @@ export const TestimonialCarousel = () => {
       <div className="container mx-auto px-4 flex flex-col items-center overflow-hidden">
         <div className="text-center mb-12">
           <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <Badge color="primary" className="mb-4">
-              Testimonials
-            </Badge>
+            <BadgeText
+              gradient="custom"
+              customGradient="linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)"
+              rounded="lg"icon={<UserIcon className="w-4 h-4" />} 
+              >
+               Customer Stories
+              </BadgeText>
+          
           </motion.div>
           <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <MainHeadline gradientStyle="partial" size="lg">
-              What Our Clients Say
+              Loved by Ethiopian Homes
             </MainHeadline>
           </motion.div>
         </div>

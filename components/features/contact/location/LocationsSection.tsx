@@ -25,8 +25,8 @@ const showrooms: Showroom[] = [
     id: 1,
     name: "Bole Main Showroom",
     isMain: true,
-    address: "Bole Road, Next to Friendship Center, Addis Ababa",
-    phone: "+251 11 987 6543",
+    address: "Bole Road to edna mall, Addis Ababa",
+    phone: "+251 911 22 71 04",
     operatingHours: [
       { days: "Mon - Fri", hours: "8:30 AM - 7:00 PM" },
       { days: "Saturday", hours: "9:00 AM - 6:00 PM" },
@@ -36,7 +36,7 @@ const showrooms: Showroom[] = [
   },
   {
     id: 2,
-    name: "Getu Commercial Showroom",
+    name: "Dembel Meskel Flower",
     isMain: false,
     address: "Getu Commercial Center, 3rd Floor, Addis Ababa",
     phone: "+251 11 123 4567",
@@ -48,27 +48,15 @@ const showrooms: Showroom[] = [
   },
   {
     id: 3,
-    name: "Megenagna Showroom",
+    name: "Megenagna Salite Mehirt Showroom",
     isMain: false,
-    address: "Megenagna, Zefmesh Grand Mall, Addis Ababa",
+    address: "Megenagna, salite Merhirt , Addis Ababa",
     phone: "+251 11 555 7890",
     operatingHours: [
       { days: "Mon - Sun", hours: "10:00 AM - 8:00 PM" },
     ],
     features: ["Open 7 Days", "Family Packages", "Mall Parking"]
   },
-  {
-    id: 4,
-    name: "CMC Showroom",
-    isMain: false,
-    address: "CMC Area, Salitemihret Rd, Addis Ababa",
-    phone: "+251 11 246 8135",
-    operatingHours: [
-      { days: "Mon - Fri", hours: "8:00 AM - 6:00 PM" },
-      { days: "Saturday", hours: "8:00 AM - 5:00 PM" },
-    ],
-    features: ["Custom Orders", "Industrial Style", "Expert Staff"]
-  }
 ];
 
 // 3. Main Parent Component

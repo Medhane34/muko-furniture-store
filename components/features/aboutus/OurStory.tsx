@@ -29,40 +29,40 @@ interface OurStoryProps {
 }
 
 export function OurStory({
-  headline = "Our Story",
+  headline = "Our Story of Trusted Curation",
   subtitle = "Our Story",
   foundingYear = "2015",
-  founderName = "Michael Kebede",
-  founderRole = "Founder & Master Craftsman",
+  founderName = "Kokeb & Tati ",
+  founderRole = "Founders",
   storyContent = [
-    "It all started in a small workshop in Addis Ababa, where Michael combined his passion for traditional Ethiopian craftsmanship with modern design principles.",
-    "What began as custom orders for friends and family quickly grew as word spread about the exceptional quality and attention to detail.",
-    "Today, we're proud to serve thousands of Ethiopian homes while maintaining the same commitment to quality that started it all."
+    "Muko Home Center began with a clear vision: to bridge the gap between international furniture quality and the Ethiopian home. Founder Michael Kebede recognized a desire for diverse, well-crafted, and stylish pieces that were otherwise difficult to source.",
+    "We meticulously build relationships with trusted manufacturers across the globe, selecting only pieces that meet our rigorous standards for durability, design, and value. Our reputation grew not from a workshop, but from our unwavering eye for quality and commitment to customer delight.",
+    "Today, we are proud to have helped furnish thousands of homes in Addis Ababa and beyond. Our story is defined by trust—your trust in us to bring the best of global furniture to your doorstep, supported by reliable service and expertise."
   ],
   milestone = [
     {
       year: "2015",
-      title: "Workshop Beginnings",
-      description: "Started in a small Addis Ababa garage"
+      title: "Our Vision Began",
+      description: "Founded with a mission to import quality furniture"
     },
     {
       year: "2018", 
       title: "First Showroom",
-      description: "Opened our first showroom in Bole"
+      description: "Opened our doors in Bole to showcase our collection"
     },
     {
       year: "2020",
       title: "Online Launch",
-      description: "Launched e-commerce platform"
+      description: "Launched our e-commerce platform for Ethiopia"
     },
     {
       year: "2023",
-      title: "5000+ Homes",
-      description: "Furnished over 5000 Ethiopian homes"
+      title: "5,000+ Homes",
+      description: "Furnished over 5,000 homes across Ethiopia"
     }
   ],
   imageSrc = "/homepage-hero.jpg",
-  imageAlt = "MUKO Furniture early workshop",
+  imageAlt = "Michael Kebede, founder of Muko Home Center, in the showroom",
   ctaText = "Meet Our Team",
   ctaLink = "/about/team",
   className = ""
@@ -80,7 +80,7 @@ export function OurStory({
           className="text-center mb-16"
         >
           <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)">
-            Our Story 
+            Our Journey 
           </AccentHeading>
           <MainHeadline className="font-sans text-heading font-bold mb-4">
             {headline}
@@ -98,7 +98,7 @@ export function OurStory({
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative aspect-[4/5] rounded-none overflow-hidden shadow-2xl">
               <Image
                 src={imageSrc}
                 alt={imageAlt}
@@ -175,21 +175,21 @@ export function OurStory({
                 <div className="p-2 bg-primary/10 rounded-full">
                   <MapPin className="text-primary" size={20} />
                 </div>
-                <span className="font-sans text-sm font-medium dark:text-text-white">Proudly Ethiopian</span>
+                <span className="font-sans text-sm font-medium dark:text-text-white">Globally Sourced</span>
               </div>
               
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-primary/10 rounded-full">
                   <Heart className="text-primary" size={20} />
                 </div>
-                <span className="font-sans text-sm font-medium dark:text-text-white">Craftsmanship</span>
+                <span className="font-sans text-sm font-medium dark:text-text-white">Quality Assured</span>
               </div>
               
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-primary/10 rounded-full">
                   <Users className="text-primary" size={20} />
                 </div>
-                <span className="font-sans text-sm font-medium dark:text-text-white">Family-Owned</span>
+                <span className="font-sans text-sm font-medium dark:text-text-white">Customer First</span>
               </div>
             </motion.div>
 

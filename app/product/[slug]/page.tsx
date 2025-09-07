@@ -16,7 +16,7 @@ interface ProductPageProps {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   console.log('ProductPage: Processing slug:', slug); // Debug: Log slug
 
   const sanityProduct = await fetchProductBySlug(slug);

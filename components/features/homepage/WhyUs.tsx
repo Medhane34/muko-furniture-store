@@ -2,9 +2,12 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
-import { LucideIcon } from "lucide-react";
+import { CheckIcon, LucideIcon } from "lucide-react";
 import { Badge } from "@/components/atoms/Badge";
 import MainHeadline from "@/components/atoms/MainHeadline";
+import AccentHeading from "@/components/atoms/AccentHeading";
+import BadgeText from "@/components/atoms/BadgeText";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 interface WhyUsItem {
   icon: LucideIcon;
@@ -60,9 +63,14 @@ export function WhyUs({
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <Badge color="primary" className="mb-4">
-              Our Advantage
-            </Badge>
+            <BadgeText
+              gradient="custom"
+              customGradient="linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)"
+              rounded="lg"icon={<Bars3Icon className="w-4 h-4" />} 
+              size="md"
+              >
+              Excellence
+              </BadgeText>
             {heading && (
               <MainHeadline 
                 gradientStyle="partial"
@@ -72,11 +80,11 @@ export function WhyUs({
                 {heading}
               </MainHeadline>
             )}
-            {subheading && (
+            {/* {subheading && (
               <p className="font-sans text-subheading text-text-light/80 dark:text-text-dark/80 max-w-2xl mx-auto">
                 {subheading}
               </p>
-            )}
+            )} */}
           </motion.div>
         )}
 

@@ -27,9 +27,9 @@ const contactMethods: ContactMethod[] = [
     id: 1,
     type: 'phone',
     title: 'Call Us',
-    value: '+251 11 123 4567',
+    value: '+251911227104',
     description: 'Speak directly with our team',
-    link: 'tel:+251111234567',
+    link: 'tel:+251911227104',
     ctaText: 'Call Now',
   },
   {

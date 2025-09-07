@@ -34,9 +34,12 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
         <div className="relative w-full h-full aspect-[4/3] sm:aspect-square md:aspect-[4/3] lg:aspect-[4/3]">
           {/* Background Image */}
           <Image
+          
             src={imageSrc}
             alt={`Image for ${title} category`}
-            fill
+            layout="fill"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+
             className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
           />
           {/* Text and Overlay */}

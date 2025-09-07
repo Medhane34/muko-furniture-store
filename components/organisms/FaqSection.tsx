@@ -5,6 +5,7 @@ import { Accordion, AccordionItem } from "@heroui/accordion";
 import { Badge } from "@/components/atoms/Badge";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
 import MainHeadline from "../atoms/MainHeadline";
+import AccentHeading from "../atoms/AccentHeading";
 
 export interface FaqItem {
   question: string;
@@ -40,9 +41,10 @@ const FaqSection: React.FC<FaqSectionProps> = ({
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <Badge color="primary" className="mb-4">
-            Support
-          </Badge>
+         <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)">
+          Support
+        </AccentHeading>
+        
           {heading && (
             <MainHeadline 
               

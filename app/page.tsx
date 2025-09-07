@@ -14,7 +14,6 @@ import { ProductCard,  } from "@/components/molecules";
 import MainHeadline from '@/components/atoms/MainHeadline';
 import Highlight from '@/components/atoms/MainHeadline';
 
-import BadgeText from '@/components/atoms/BadgeText';
 import { TagIcon, ClockIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { AboutSneakpeak } from "@/components/features/homepage/AboutSneakpeak";
 import CollectionGrid from "@/components/features/CollectionGrid";
@@ -31,31 +30,33 @@ export default function Home() {
   const whyUsItems = [
     {
       icon: Target,
-      title: "Data-Driven Strategies",
-      description: "We use analytics and insights to create campaigns that deliver measurable results and ROI for your business."
+      title: "Curated Quality",
+      description: "Globally Sourced, Locally Trusted."
     },
     {
       icon: Zap,
-      title: "Lightning Fast Development",
-      description: "Our modern tech stack ensures your website loads quickly and performs exceptionally across all devices."
+      title: "Unbeatable Value",
+      description: "Superior Quality, Fair Price."
     },
     {
       icon: Users,
-      title: "Local Expertise",
-      description: "Deep understanding of the Ethiopian market and consumer behavior to create relevant digital solutions."
+      title: "Guaranteed Trust",
+      description: "Reliable Warranty & Support."
     },
     {
       icon: Shield,
-      title: "Ongoing Support",
-      description: "Continuous maintenance, updates, and optimization to keep your digital presence ahead of the competition."
+      title: "Expert Service",
+      description: "From Selection to Delivery."
     }
   ];
 
   const faqs = [
-  { question: "How soon can I expect results?", answer: "Most customers see results within 2–4 weeks after launch." },
-  { question: "Do you create ad visuals and copy?", answer: "Yes! Our team handles all creative, copywriting, and design." },
-  { question: "What if the ads don’t work?", answer: "We optimize and test until you get results. No long-term contracts." },
-  { question: "Is there a minimum budget?", answer: "We recommend a minimum ad spend of 5,000 ETB/month for best results." },
+  { question: "Where does Muko source its furniture from?", answer: " We partner with a curated selection of reputable manufacturers and brands from around the world, including Turkey, China, Vietnam, and Europe. Our focus is on importing furniture that offers the perfect balance of exceptional quality, modern design, and enduring value for the Ethiopian market." },
+  { question: "What is your delivery process and area?", answer: "We offer reliable delivery services throughout Addis Ababa and its surrounding areas. Once your order is ready, our professional team will contact you to schedule a convenient delivery time. We handle your furniture with care and can often place it in your chosen room." },
+  { question: "Do you offer assembly service?", answer: "Yes, we do! For most items, our delivery team can provide basic assembly service to get your new furniture set up in your home. Please let us know at the time of purchase or scheduling if you require this service." },
+  { question: "What if an item arrives damaged or has a defect?", answer: "We stand behind our products. All our furniture is covered by a manufacturer's warranty against defects. If you receive a damaged item or discover a defect, please contact our customer service team immediately with photos. We will arrange for a repair, replacement, or refund according to our warranty policy." },
+  { question: "Can I return a product if I don't like it?", answer: " Due to the nature of imported goods, we have a specific returns policy. Returns are typically accepted for unused items in their original packaging within a specified period. We highly encourage visiting our showroom to see products in person or consulting with our staff before purchasing to ensure you love your choice." },
+
 ];
 
 //testimonials data 
@@ -95,18 +96,21 @@ const testimonialsData = [
     <HeroSection
           imageUrl="/features/ui/homepage-hero.jpg"
           imageAlt="Modern furniture collection showcasing sofas, chairs, and tables in a beautifully designed living space"
-          badgeText="New Collection 2024"
-          headline="Transform Your Home with Elegant Furniture"
-          subheadline="Discover handcrafted pieces that blend comfort, style, and functionality for your perfect living space"
+          badgeText="Welcome"
+          headline="Design Your Dream Living Space."
+          subheadline="At Muko, we believe your home should be a reflection of your finest taste. Explore our curated collections of premium furniture, designed in Addis Ababa to bring elegance, comfort, and functionality to your everyday life."
           ctaText="Explore Collection"
-          ctaLink="/collection"
+          ctaLink="#colllections"
           minHeight="xl"
           contentWidth="wide"
-          overlayOpacity={30} />
+          overlayOpacity={50} />
       
+      <div className="div" id="colllections">
       <CollectionGrid />
+      </div>
+      
        <WhyUs
-        heading="Why Partner with Aligoo Digital?"
+        heading="The Muko Difference. Why Choose Us?"
         subheading="We combine global expertise with local understanding to deliver exceptional results"
         items={whyUsItems}
         columns={4}
@@ -115,10 +119,10 @@ const testimonialsData = [
       />
 {/* About Sneakpeak */}
       <AboutSneakpeak
-        badge="Since 2023"
-        headline="Transforming Ethiopian Businesses Digitally"
-        description="Aligoo Digital combines cutting-edge technology with deep local market understanding to deliver exceptional results for our clients across Addis Ababa and beyond."
-        imageUrl="/homepage-hero.jpg"
+        badge="Since 2010"
+        headline="Bringing the World's Finest Furniture Home."
+        description="For years, Muko Home Center has been a trusted name in Addis Ababa, dedicated to importing exceptional furniture from renowned international brands. We carefully select each piece for its quality,design, and value, ensuring your home reflects a standard of global elegance and comfort. Our commitment is to your complete satisfaction, backed by reliable service and care."
+        imageUrl="/features/homepage/about-us-muko.png"
         imageAlt="Aligoo Digital Agency Team"
         ctaText="Learn About Our Journey"
         ctaLink="/about"
@@ -128,13 +132,13 @@ const testimonialsData = [
 
       
 <FaqSection 
-heading="FAQs About Our Facebook Ads Service" faqs={faqs} 
+heading="Your Questions, Answered. Shopping with Confidence." faqs={faqs} 
   className="mt-12"
 />
     <CTASection
-        badge="Start Your Journey"
-        heading="Ready to Elevate Your Digital Presence?"
-        subheading="Join 100+ Ethiopian businesses that trust us with their digital success"
+        badge="Guidance"
+        heading="Expert Help Is Just a Click Away."
+        subheading="JNot sure where to start? Our furniture experts are here to help you choose the perfect pieces for your home and budget."
         ctaText="Get Free Consultation"
         ctaLink="/contact"
         backgroundImage="/homepage-hero.jpg"

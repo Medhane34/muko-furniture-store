@@ -33,59 +33,59 @@ interface ValuesCommitmentProps {
 }
 
 export function ValuesCommitment({
-  headline = "Our Commitment to Excellence",
-  subtitle = "The principles that guide every piece we create and every customer we serve",
+  headline = "Our Commitment to You",
+  subtitle = "The principles that guide every piece we select and every customer we serve",
   values = [
     {
-      icon: TreePine,
-      title: "Sustainable Craftsmanship",
-      description: "Environmentally responsible practices from forest to furniture",
-      features: [
-        "Ethically sourced Ethiopian hardwoods",
-        "Zero-waste manufacturing",
-        "Natural, non-toxic finishes",
-        "Carbon-neutral shipping"
-      ],
-      color: 'green'
-    },
-    {
       icon: Award,
-      title: "Uncompromising Quality",
-      description: "Never cutting corners on materials or craftsmanship",
+      title: "Curated Excellence",
+      description: "Rigorous selection of furniture that meets our high standards for design and durability",
       features: [
-        "15-year warranty on all pieces",
-        "8-step quality inspection",
-        "Traditional joinery techniques",
-        "Lifetime repair service"
+        "Partnerships with quality international brands",
+        "Focus on timeless design and functionality",
+        "Materials tested for longevity and safety",
+        "Style that transcends trends"
       ],
       color: 'primary'
     },
     {
-      icon: Users,
-      title: "Community Impact", 
-      description: "Supporting Ethiopian artisans and communities",
+      icon: Shield,
+      title: "Trust & Assurance",
+      description: "Standing behind every product with reliable service and support",
       features: [
-        "Fair wages for all craftspeople",
-        "Apprenticeship programs",
-        "Local material sourcing",
-        "Community workshop space"
+        "Comprehensive warranty on all products",
+        "Transparent pricing with no hidden costs",
+        "Dedicated customer service team",
+        "Hassle-free return policy"
       ],
       color: 'blue'
     },
     {
+      icon: Users,
+      title: "Ethiopian Community", 
+      description: "Supporting local employment and making quality furniture accessible",
+      features: [
+        "Creating local jobs in retail and logistics",
+        "Investing in Ethiopian customer service talent",
+        "Making global design accessible in Addis Ababa",
+        "Supporting local interior design partnerships"
+      ],
+      color: 'green'
+    },
+    {
       icon: Heart,
       title: "Customer Happiness",
-      description: "Building relationships that last generations",
+      description: "Building relationships that transform how you live in your home",
       features: [
-        "White-glove delivery service",
-        "Lifetime customer support",
-        "Custom design consultations",
-        "Heirloom repair services"
+        "Professional delivery and setup service",
+        "Personalized design consultations",
+        "After-sales support and maintenance guidance",
+        "Continuous collection based on your feedback"
       ],
       color: 'amber'
     }
   ],
-  commitmentStatement = "We don't just build furniture; we create heirlooms that carry stories, values, and Ethiopian craftsmanship into homes for generations to come.",
+  commitmentStatement = "We don't just import furniture; we deliver trusted quality, exceptional service, and beautiful living spaces that Ethiopian families enjoy for years to come.",
   className = ""
 }: ValuesCommitmentProps) {
   
@@ -108,9 +108,10 @@ export function ValuesCommitment({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <AccentHeading size="sm">
-            {subtitle}
-          </AccentHeading>
+          <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)">
+          {subtitle}
+        </AccentHeading>
+        
           <MainHeadline >
             {headline}
           </MainHeadline>
@@ -195,44 +196,44 @@ export function ValuesCommitment({
           className="text-center"
         >
           <h4 className="font-sans font-semibold text-text-black dark:text-text-white mb-8">
-            Certified & Recognized
+            Trusted & Recognized
           </h4>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            {/* Ethiopian Forestry Certification */}
-            <div className="text-center p-4">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <TreePine className="text-green-600" size={24} />
-              </div>
-              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Sustainable Forestry</p>
-              <p className="font-sans text-xs text-gray-600">Certified</p>
-            </div>
-
-            {/* Fair Trade */}
-            <div className="text-center p-4">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Users className="text-blue-600" size={24} />
-              </div>
-              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Fair Trade</p>
-              <p className="font-sans text-xs text-gray-600">Practices</p>
-            </div>
-
-            {/* Quality Excellence */}
+            {/* International Quality Standards */}
             <div className="text-center p-4">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Award className="text-primary" size={24} />
               </div>
-              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Quality</p>
+              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">International</p>
+              <p className="font-sans text-xs text-gray-600">Quality Standards</p>
+            </div>
+
+            {/* Customer Service Excellence */}
+            <div className="text-center p-4">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Users className="text-blue-600" size={24} />
+              </div>
+              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Service</p>
               <p className="font-sans text-xs text-gray-600">Excellence</p>
             </div>
 
-            {/* Local Business */}
+            {/* Ethiopian Business */}
             <div className="text-center p-4">
-              <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Shield className="text-amber-600" size={24} />
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Shield className="text-green-600" size={24} />
               </div>
               <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Proudly</p>
               <p className="font-sans text-xs text-gray-600">Ethiopian</p>
+            </div>
+
+            {/* Reliable Partner */}
+            <div className="text-center p-4">
+              <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Star className="text-amber-600" size={24} />
+              </div>
+              <p className="font-sans text-sm font-medium text-text-black dark:text-text-white ">Reliable</p>
+              <p className="font-sans text-xs text-gray-600">Partner</p>
             </div>
           </div>
         </motion.div>
@@ -248,7 +249,7 @@ export function ValuesCommitment({
           <Button
             onClick={() => window.location.href = "/our-values"}
           >
-            Learn More About Our Values
+            Discover Our Values
           </Button>
         </motion.div>
       </div>
