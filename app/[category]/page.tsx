@@ -117,8 +117,14 @@ async function fetchCategoryData(category: string) {
   };
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { category } = await params;
+export default async function CategoryPage({ 
+  params 
+}: { 
+  params: Promise<{ category: string }> 
+}) {
+  // Type assertion to tell TypeScript we know what we're doing
+  const { category } = await params as unknown as { category: string };
+   
   const data = await fetchCategoryData(category);
 
   return (

@@ -2,6 +2,7 @@
   "name": "next-app-template",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "@daveyplate/next-rate-limit": "^2.0.1",
+    "@eslint/js": "^9.35.0",
     "@heroicons/react": "^2.2.0",
     "@heroui/accordion": "^2.2.22",
     "@heroui/button": "2.2.24",

@@ -122,7 +122,7 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
         <div className="flex flex-col gap-2">
           {/* Category Tag - NEW */}
           <motion.p variants={fadeInUp} className="font-sans text-small text-primary font-semibold">
-            {product.category.name}
+            {product.category?.name}
           </motion.p>
 
           {/* Product Name & Description */}

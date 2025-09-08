@@ -1,3 +1,10 @@
+
+// types/product.ts
+export interface Category {
+  name: string;
+  slug?: { current: string };
+}
+
 export interface Product {
   _id: string;
   name: string;
@@ -14,13 +21,13 @@ export interface Product {
   colors?: string[];
   features?: string[];
   reviews?: { rating: number; comment: string; user: string }[];
-   rating?: {
+  rating?: {
     average: number;
     count: number;
   };
-  sku: string;           // New required field
-  originalPrice?: number; // NEW: For showing a discount
-    promotionText?: string;
-isFeatured: boolean;
-category?: Category; // New field for category data
+  sku: string;
+  originalPrice?: number;
+  promotionText?: string;
+  isFeatured: boolean;
+  category?: Category; // Now properly typed with Category interface
 }

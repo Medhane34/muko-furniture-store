@@ -1,6 +1,8 @@
-const { heroui } = require("@heroui/theme");
+// tailwind.config.js (ESM)
+import { heroui } from "@heroui/theme";
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,34 +10,38 @@ module.exports = {
     './lib/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./config/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
+
       colors: {
         primary: {
           DEFAULT: "#FFE066",
           dark: "#FFD700",
         },
         text: {
-        light: "#1F2937", // dark gray for light theme
-        dark: "#F9FAFB",  // near white for dark theme
-      },
-      background: {
-        light: "#F9FAFB",
-        dark: "#080404",
-      },
-        // Add gradient colors for easy reference
+          light: "#1F2937",
+          dark: "#F9FAFB",
+        },
+        background: {
+          light: "#F9FAFB",
+          dark: "#080404",
+        },
         gradient: {
           from: "#FF3366",
           to: "#FF9933",
           secondaryFrom: "#4361EE",
           secondaryTo: "#3A0CA3",
         },
-        // Add badge-specific gradients
+      },
+
+      /* backgroundImage must be at the same level as colors (not nested inside colors) */
       backgroundImage: {
         'gradient-badge-primary': 'linear-gradient(90deg, #FF3366 0%, #FF9933 100%)',
         'gradient-badge-secondary': 'linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)',
@@ -44,14 +50,11 @@ module.exports = {
         'gradient-badge-error': 'linear-gradient(90deg, #EF4444 0%, #DC2626 100%)',
       },
 
-      // box shadow for dark theme 
       boxShadow: {
         'xl-dark': '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2)',
       },
 
-      },
       fontSize: {
-        // Your existing font sizes...
         heading: [
           "1.5rem",
           {
@@ -93,7 +96,7 @@ module.exports = {
           },
         ],
       },
-      // Add animations
+
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
@@ -101,6 +104,7 @@ module.exports = {
         'badge-pulse': 'badgePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'badge-bounce': 'badgeBounce 1s infinite',
       },
+
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
@@ -123,6 +127,7 @@ module.exports = {
           '50%': { transform: 'translateY(-3px)' },
         },
       },
+
       screens: {
         xs: "480px",
         sm: "640px",
@@ -133,6 +138,5 @@ module.exports = {
       },
     },
   },
-  darkMode: "class",
-  plugins: [heroui()],
+  plugins: [ heroui() ],
 };

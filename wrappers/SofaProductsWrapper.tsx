@@ -124,7 +124,7 @@ export default function SofaProductsWrapper({
               Showing {products.length} of {filteredProducts.length} products
             </div>
             <SortControls 
-              currentSort={sortOption} 
+              sortOption={sortOption} 
               onSortChange={onSortChange} 
             />
           </div>

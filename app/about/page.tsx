@@ -13,7 +13,7 @@ import { Heart, Award, ZoomIn, TreePine, Users, Shield } from "lucide-react";
 export default function AboutPage() {
   return (
     <>
-<HeroSection
+    <HeroSection
       imageUrl="/features/about/about-us-hero.png"
       imageAlt="Modern furniture collection showcasing sofas, chairs, and tables in a beautifully designed living space"
       badgeText="Trust"

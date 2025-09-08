@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@heroui/link";
@@ -6,9 +7,10 @@ import clsx from "clsx";
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/organisms/Footer";
+import { fontSans } from "@/config/fonts";
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +29,7 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
 };
+
 
 export default function RootLayout({
   children,

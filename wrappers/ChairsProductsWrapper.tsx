@@ -1,4 +1,4 @@
-import { ProductGrid, SortOption } from "@/components/organisms/ProductGrid";
+/* import { ProductGrid, SortOption } from "@/components/organisms/ProductGrid";
 import { chairProducts, ChairProduct } from "@/lib/mocks/chairProducts";
 
 export default function ChairsProductsWrapper({ sortOption }: { sortOption: SortOption }) {
@@ -6,4 +6,4 @@ export default function ChairsProductsWrapper({ sortOption }: { sortOption: Sort
   const products: ChairProduct[] = chairProducts;
   console.log("ChairsProductsWrapper sortOption:", sortOption); // Debug
   return <ProductGrid products={products} sortOption={sortOption} columns={4} rows={3} />;
-}
+} */
