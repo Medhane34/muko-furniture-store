@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { Form } from '@heroui/form';
 import { Input, Textarea } from '@heroui/input';
 import { Button } from '@/components/atoms/Button';
-import Image from 'next/image'; // Import Next.js Image component
+import {Image} from "@heroui/image";
 
 interface ContactFormProps {
   heading?: string;
@@ -56,12 +56,13 @@ export function ContactForm({
             <Image
               src={formImage}
               alt="Muko Furniture - Beautiful modern living room setup"
-              fill
-              className="object-cover"
-              priority
+              width={600}
+              height={700}
+              className="object-cover rounded-none"
+              
             />
             {/* Overlay with Text */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent flex items-end p-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent flex items-end p-8 z-40">
               <div className="text-background-light">
                 <h3 className="text-subheading font-bold mb-2">Experience the Quality</h3>
                 <p className="text-body">

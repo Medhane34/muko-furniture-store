@@ -96,12 +96,12 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
       >
         {/* Image Column (Unchanged) */}
         <div className="flex flex-col items-center sticky top-4 self-start">
-          <div className="relative w-full h-96 lg:max-h-[70vh] rounded-none">
+          <div className="relative w-full h-96 lg:max-h-[70vh] rounded-none ">
             <Image
               src={product.imageUrl || '/images/placeholder.jpg'}
               alt={product.name}
               fill
-              className="object-cover rounded-none"
+              className="object-cover rounded-none "
               priority
             />
           </div>

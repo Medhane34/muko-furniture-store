@@ -12,7 +12,7 @@ import globals from "globals";
 import tsParser from "@typescript-eslint/parser";
 
 export default defineConfig({
-  ignorePatterns: [
+  ignores: [
     ".now/*",
     "**/*.css",
     "**/.changeset",

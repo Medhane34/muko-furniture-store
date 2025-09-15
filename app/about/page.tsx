@@ -29,7 +29,7 @@ export default function AboutPage() {
               headline="Our Story of Trusted Curation"
               subtitle="A journey of passion, craftsmanship, and Ethiopian pride"
               foundingYear="2015"
-              founderName="Kokeb & Tati"
+              founderName="Mr. Kokeb Geressy and Mrs. Muluberhan Gebeywe."
               founderRole="Founders"
               storyContent={[
               "Muko Home Center began with a clear vision: to bridge the gap between international furniture quality and the Ethiopian home. Founder Michael Kebede recognized a desire for diverse, well-crafted, and stylish pieces that were otherwise difficult to source.",
@@ -57,7 +57,7 @@ export default function AboutPage() {
             title: "5,000+ Homes",
             description: "Furnished over 5,000 homes across Ethiopia"
           }  ]}
-              imageSrc="/homepage-hero.jpg"
+              imageSrc="/features/homepage/home-cover-building-2.jpg"
               imageAlt="MUKO Furniture founder in workshop"
               ctaText="Meet Our Artisans"
               ctaLink="/about/team" />

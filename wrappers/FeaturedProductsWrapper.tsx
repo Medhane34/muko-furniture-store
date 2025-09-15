@@ -44,7 +44,7 @@ export function FeaturedProductsWrapper({ categorySlug, ...props }: FeaturedProd
     <>
       {loading ? (
         <div className="flex justify-center py-38">
-        <Spinner classNames={{label: "text-foreground mt-4 text-center"}} label="spinner" variant="spinner" /> 
+        <Spinner classNames={{label: "text-foreground mt-4 text-center"}} label="loading featured products" variant="spinner" /> 
         </div>
               
       ) : error ? (

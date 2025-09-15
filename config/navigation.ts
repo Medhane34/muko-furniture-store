@@ -120,14 +120,14 @@ export const navigationConfig: NavigationItem[] = [
     // ... (featured and promo can be added here) ...
   },
   {
-    label: "Home Office",
-    href: "/collections/home-office",
+    label: "Bathroom",
+    href: "/bath",
     subCategories: [
-      { label: "All Home Office", href: "/collections/home-office" },
-      { label: "Desks", href: "/collections/desks" },
-      { label: "Office Chairs", href: "/collections/office-chairs" },
-      { label: "Filing Cabinets", href: "/collections/filing-cabinets" },
-      { label: "Bookcases", href: "/collections/office-bookcases" },
+      { label: "All Bathroom", href: "/bath" },
+      { label: "Shower Box", href: "/bath" },
+      { label: "Shower Heads", href: "/bath" },
+      { label: "Washsing Basins", href: "/bath" },
+      { label: "Bidet ", href:"/bath"},
     ],
     // ... (featured and promo can be added here) ...
   },
@@ -159,9 +159,9 @@ export const navigationConfig: NavigationItem[] = [
   },
   {
     label: "Decor",
-    href: "/collections/decor",
+    href: "/decor",
     subCategories: [
-      { label: "All Decor", href: "/collections/decor" },
+      { label: "All Decor", href: "/decor" },
       { label: "Rugs", href: "/collections/rugs" },
       { label: "Mirrors", href: "/collections/mirrors" },
       { label: "Lighting", href: "/collections/lighting" },

@@ -6,13 +6,13 @@ const ContactInfo = () => (
     <p className="text-sm text-gray-400">
       Email:{" "}
       <a href="mailto:info@mukofurniture.com" className="hover:text-primary">
-        info@mukofurniture.com
+        info@mukohomecenter.com
       </a>
     </p>
     <p className="text-sm text-gray-400">
       Phone:{" "}
-      <a href="tel:+251900000000" className="hover:text-primary">
-        (+251) 900 00 00 00
+      <a href="tel:+251911227104" className="hover:text-primary">
+        (+251)911 22 71 04
       </a>
     </p>
     <p className="text-sm text-gray-400">Addis Ababa, Ethiopia</p>

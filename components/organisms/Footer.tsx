@@ -6,10 +6,13 @@ import Link from "next/link";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { buttonVariants, fadeInUp, staggerContainer } from "@/lib/motion";
 import { SocialIcons, ContactInfo } from "@/components/molecules";
+import BadgeText from "../atoms/BadgeText";
+import { CheckIcon } from "@heroicons/react/24/outline";
+import AccentHeading from "../atoms/AccentHeading";
 
 // Atoms
 const Logo = () => (
-  <span className="text-2xl font-bold text-primary">Muko Furniture</span>
+  <span className="text-2xl font-bold text-primary">Muko Home Center</span>
 );
 
 
@@ -75,7 +78,7 @@ const Footer = () => (
           title="Shop"
           links={[
             { label: "Beds", href: "/beds" },
-            { label: "Sofas", href: "/sofa" },
+            { label: "Decor", href: "/decor" },
             { label: "Dining Tables", href: "/dining" },
             { label: "Chairs", href: "/chairs" },
             { label: "All Products", href: "/all" },
@@ -107,8 +110,12 @@ const Footer = () => (
           &copy; {new Date().getFullYear()} Muko Furniture. All rights reserved.
         </div>
         <div className="mt-2 md:mt-0 flex flex-wrap justify-center gap-6">
-          <Link href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link>
-          <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+       <Link href="https://aligoo-digital.agency/" className="hover:text-primary transition-colors"> <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%) " 
+>
+          Web Design By Aligoo 
+        </AccentHeading> 
+        </Link>
+{/* <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link> */}
         </div>
       </div>
     </div>

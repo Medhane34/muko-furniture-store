@@ -45,11 +45,11 @@ export function FeaturedProductsSection({
         {/* Heading Sidebar (20% on desktop, full width on mobile) */}
         <div className="w-full lg:w-1/5">
           <div className="sticky top-24 space-y-6">
-         <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)" className='justify-start'>
+         <AccentHeading size="sm" gradient="linear-gradient(90deg, #4361EE 0%, #3A0CA3 100%)" className='justify-start' >
            Curated 
         </AccentHeading>
-        <MainHeadline>
-       {title}
+        <MainHeadline size='lg' className='text-left text-text-black dark:text-text-primary' highlightColor='primary'>
+        Featured <span className='text-md'>{title}</span> 
         </MainHeadline>
             
         <BodyText>{subtitle}</BodyText>
@@ -68,7 +68,7 @@ export function FeaturedProductsSection({
                 </Link>
               </Button>
             )}
-          </div>od
+          </div>
         </div>
 
         {/* Product Grid (80% on desktop, full width on mobile) */}

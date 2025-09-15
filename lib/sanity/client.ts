@@ -15,8 +15,8 @@ export async function fetchSanityData<T = any>(query: string, params: Record<str
   try {
     const data = await client.fetch(query, params, {
       // Optional: Configure caching or revalidation
-      cache: 'no-store', // Ensures fresh data; adjust based on needs (e.g., 'force-cache' for CDN)
-    });
+/*       cache: 'no-store', // Ensures fresh data; adjust based on needs (e.g., 'force-cache' for CDN)
+ */    });
     return data;
   } catch (error) {
     console.error(`Error fetching Sanity data for query: ${query}`, error);

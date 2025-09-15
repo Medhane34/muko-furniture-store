@@ -46,10 +46,10 @@ const categories: Category[] = [
   },
   {
     id: "accessories", // Fixed typo from "accesories" and changed title from duplicate "Chairs"
-    title: "Accessories",
+    title: "Decor",
     description: "Enhance your space with style.",
         imageSrc: "/features/homepage/accesories-hero-1.png",
-    href: "/sofa",
+    href: "/decor",
   },
 ];
 

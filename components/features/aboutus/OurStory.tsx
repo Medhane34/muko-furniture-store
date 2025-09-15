@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
-import Image from "next/image";
 import { Button } from "@/components/atoms/Button";
 import { Calendar, Users, MapPin, Heart } from "lucide-react";
 import { BodyText } from "@/components/atoms";
 import MainHeadline from "@/components/atoms/MainHeadline";
 import AccentHeading from "@/components/atoms/AccentHeading";
+import {Image} from "@heroui/image";
 
 interface OurStoryProps {
   headline?: string;
@@ -32,7 +32,7 @@ export function OurStory({
   headline = "Our Story of Trusted Curation",
   subtitle = "Our Story",
   foundingYear = "2015",
-  founderName = "Kokeb & Tati ",
+  founderName = "Mr. Kokeb Geressy and Mrs. Muluberhan Gebeywe. ",
   founderRole = "Founders",
   storyContent = [
     "Muko Home Center began with a clear vision: to bridge the gap between international furniture quality and the Ethiopian home. Founder Michael Kebede recognized a desire for diverse, well-crafted, and stylish pieces that were otherwise difficult to source.",
@@ -102,12 +102,14 @@ export function OurStory({
               <Image
                 src={imageSrc}
                 alt={imageAlt}
-                fill
-                className="object-cover"
+                width={500}
+                height={600}
+
+                className="object-cover rounded-none"
               />
               
               {/* Decorative overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent text-text-light dark:text-text-dark" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent text-text-light dark:text-text-dark"  />
             </div>
             
             {/* Founder badge overlay */}
@@ -116,7 +118,7 @@ export function OurStory({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg max-w-xs"
+              className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg max-w-xs z-40"
             >
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />

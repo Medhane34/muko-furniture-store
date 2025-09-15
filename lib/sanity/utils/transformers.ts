@@ -70,9 +70,9 @@ export function transformSanityProduct(sanityProduct: SanityProduct): Product {
   const imageUrl = sanityProduct.media?.images?.[0]?.asset?.url || '/images/placeholder.jpg';
 
   // Debug log
-  console.log('transformSanityProduct: Raw product:', JSON.stringify(sanityProduct, null, 2));
+  /* console.log('transformSanityProduct: Raw product:', JSON.stringify(sanityProduct, null, 2));
   console.log('transformSanityProduct: Raw statusFlags:', sanityProduct.statusFlags);
-
+ */
   return {
     _id: sanityProduct._id,
     name: sanityProduct.basicInfo?.name || 'Unnamed Product',
@@ -102,7 +102,7 @@ export function transformSanityProducts(sanityProducts: SanityProduct[]): Produc
   return sanityProducts
     .filter((item) => item != null) // Remove null/undefined items
     .map((sanityProduct) => {
-      console.log('transformSanityProducts: Processing product ID:', sanityProduct._id);
-      return transformSanityProduct(sanityProduct);
+/*       console.log('transformSanityProducts: Processing product ID:', sanityProduct._id);
+ */      return transformSanityProduct(sanityProduct);
     });
 }

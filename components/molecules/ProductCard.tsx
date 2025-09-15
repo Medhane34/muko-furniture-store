@@ -40,10 +40,10 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) { // ✅
     return () => clearTimeout(minLoadTime);
   }, [imageUrl]); // Re-run if imageUrl changes
 
-  console.log('ProductCard: product.promotionText:', promotionText); // Debug
-
+/*   console.log('ProductCard: product.promotionText:', promotionText); // Debug
+ *//* 
 console.log('ProductCard: product.promotionText:', promotionText); // Debug
-  console.log('ProductCard: promotionText truthiness:', !!promotionText); // Debug
+  console.log('ProductCard: promotionText truthiness:', !!promotionText); // Debug */
   const handleClick = () => {
     router.push(`/product/${product.slug}`);
   };

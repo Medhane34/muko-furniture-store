@@ -30,13 +30,13 @@ export default function RelatedProductsSection({
     .filter(product => product.slug !== currentProductSlug)
     .slice(0, maxProducts);
 
-  console.log('RelatedProductsSection category:', category); // Debug
+ /*  console.log('RelatedProductsSection category:', category); // Debug
   console.log('RelatedProductsSection currentProductSlug:', currentProductSlug); // Debug
   console.log('RelatedProductsSection relatedProducts:', relatedProducts.map(p => p._id)); // Debug
-
+ */
   if (relatedProducts.length === 0) {
-    console.warn('RelatedProductsSection: No related products found'); // Debug
-    return null;
+/*     console.warn('RelatedProductsSection: No related products found'); // Debug
+ */    return null;
   }
 
   return (

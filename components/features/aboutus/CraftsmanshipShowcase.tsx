@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
-import Image from "next/image";
+import {Image} from "@heroui/image";
 import { useState } from "react";
 import { Button } from "@/components/atoms/Button";
 import { ZoomIn, Shield, Heart, Award } from "lucide-react";
@@ -151,7 +151,7 @@ export function CraftsmanshipShowcase({
               <Image
                 src={craftItems[activeTab].image}
                 alt={craftItems[activeTab].title}
-                fill
+                height={600}
                 className="object-cover rounded-none"
               />
               
@@ -164,7 +164,7 @@ export function CraftsmanshipShowcase({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="absolute -top-4 -right-4 bg-white rounded-lg p-3 shadow-lg"
+              className="absolute -top-4 -right-4 bg-white rounded-lg p-3 shadow-lg z-40"
             >
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary">100%</div>

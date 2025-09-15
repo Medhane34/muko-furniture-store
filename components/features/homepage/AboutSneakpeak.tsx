@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
-import Image from "next/image";
 import { Button } from "@/components/atoms/Button";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/atoms/Badge";
 import MainHeadline from "@/components/atoms/MainHeadline";
 import AccentHeading from "@/components/atoms/AccentHeading";
+import { ImageWithSkeleton } from "@/components/molecules/ImageWithSkeleton";
+import {Image} from "@heroui/image";
 
 interface AboutSneakpeakProps {
   badge?: string;
@@ -51,10 +52,17 @@ export function AboutSneakpeak({
               <Image
                 src={imageUrl}
                 alt={imageAlt}
-                fill
-                className="object-cover"
+                className="object-cover rounded-none"
                 loading="lazy"
-              />
+              /> 
+             {/*  <ImageWithSkeleton
+              
+              src={imageUrl}
+              alt={imageAlt}
+              width={500}
+              height={500}
+              className="object-cover"
+              /> */}
             </div>
           </motion.div>
 

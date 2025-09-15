@@ -47,8 +47,8 @@ export function CategoryPageClient({
 /*   const [isLoading, setIsLoading] = useState(true); // loading state management
  */
   // Debugging: Log products
-  console.log('CategoryPageClient products:', products);
-
+/*   console.log('CategoryPageClient products:', products);
+ */
   const handleQuickView = (product: Product) => {
     setQuickViewProduct(product);
   };
@@ -149,7 +149,7 @@ export function CategoryPageClient({
       />
       <section className="container mx-auto px-4 py-8">
         <FeaturedProductsWrapper
-          title={` Featured ${categoryData.name || category}`}
+          title={`${categoryData.name || category}`}
           subtitle={`Discover our premium ${category} collection crafted for comfort and style`}
           viewAllLink={`/${category}`}
           columns={3}

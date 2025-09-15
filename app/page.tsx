@@ -25,6 +25,7 @@ import { CTASection } from "@/components/organisms/CTASection";
 import { TestimonialSection } from "@/components/organisms/TestimonialSection";
 import { TestimonialCarousel } from "@/components/organisms/TestimonialCarousel";
 import { HeroSection } from "@/components/organisms/HeroSection";
+import { HeroCarousel } from "@/components/test/HeroCarousel";
 
 export default function Home() {
   const whyUsItems = [
@@ -93,8 +94,9 @@ const testimonialsData = [
 
   return (
     <>
+    <HeroCarousel/>
     <HeroSection
-          imageUrl="/features/ui/homepage-hero.jpg"
+          imageUrl="/features/homepage/home-page-hero.jpg"
           imageAlt="Modern furniture collection showcasing sofas, chairs, and tables in a beautifully designed living space"
           badgeText="Welcome"
           headline="Design Your Dream Living Space."

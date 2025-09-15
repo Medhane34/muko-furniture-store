@@ -55,15 +55,15 @@ export async function generateStaticParams() {
   const query = `*[_type == "product" && defined(basicInfo.slug.current)] { "slug": basicInfo.slug.current }`;
   try {
     const slugs = await sanityClient.fetch<{ slug: string }[]>(query);
-    console.log('generateStaticParams: Generated slugs:', JSON.stringify(slugs, null, 2));
-    const params = slugs
+/*     console.log('generateStaticParams: Generated slugs:', JSON.stringify(slugs, null, 2));
+ */    const params = slugs
       .filter(({ slug }) => slug && typeof slug === 'string')
       .map(({ slug }) => ({ slug }));
-    console.log('generateStaticParams: Generated params:', JSON.stringify(params, null, 2));
-    return params;
+/*     console.log('generateStaticParams: Generated params:', JSON.stringify(params, null, 2));
+ */    return params;
   } catch (error) {
-    console.error('generateStaticParams: Error fetching slugs:', error);
-    return [];
+/*     console.error('generateStaticParams: Error fetching slugs:', error);
+ */    return [];
   }
 }
 
