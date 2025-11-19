@@ -6,7 +6,7 @@ import { CheckIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 import { Badge } from "@/components/atoms/Badge";
 import { fadeInUp } from "@/lib/motion";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import MainHeadline from "../atoms/MainHeadline";
 import BadgeText from "../atoms/BadgeText";
 import { UserIcon } from "@heroicons/react/24/outline";

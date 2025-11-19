@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useState } from "react";
 import { Button } from "@/components/atoms/Button";
 import { Instagram, Mail, MapPin, Award, Clock, Users } from "lucide-react";
@@ -149,7 +149,7 @@ export function TeamShowcase({
                   <Image
                     src={member.image}
                     alt={member.name}
-                    fill
+                    
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   
@@ -273,7 +273,7 @@ export function TeamShowcase({
             <Image
               src="/team/workshop-overview.jpg"
               alt="MUKO Furniture workshop in Addis Ababa"
-              fill
+              
               className="object-cover"
             />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">

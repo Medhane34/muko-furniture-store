@@ -2,7 +2,7 @@
 "use client";
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Badge from "@/components/atoms/Badge";
 import BodyText from "@/components/atoms/BodyText";
 import { button as buttonStyles } from "@/components/primitives";

@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import { cardVariants } from "@/lib/motion";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useRouter } from "next/navigation";
 import { StarRating } from '@/components/atoms/StarRating';
 import { Product } from '@/types/product';
@@ -38,7 +38,7 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) { // ✅
     }, 200); // Minimum 200ms
 
     return () => clearTimeout(minLoadTime);
-  }, [imageUrl]); // Re-run if imageUrl changes
+  }, [imageUrl]); // Re-run if imageUrl changesver
 
 /*   console.log('ProductCard: product.promotionText:', promotionText); // Debug
  *//* 
@@ -79,7 +79,7 @@ console.log('ProductCard: product.promotionText:', promotionText); // Debug
          <Image
             src={imageUrl}
             alt={name}
-            fill
+            layout="fill"
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           onLoadingComplete={() => {
                 if (loadStartTime.current) {

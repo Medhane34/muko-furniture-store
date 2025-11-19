@@ -25,7 +25,7 @@ import {
   SearchIcon,
   Logo,
 } from "@/components/icons";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { DesktopNavigation } from "./organisms/navigation/DesktopNavigation";
 import { navigationConfig } from "@/config/navigation";
 import { MobileNavigation } from "./organisms/navigation/MobileNavigation";
@@ -74,8 +74,8 @@ export const Navbar = () => {
         <Image
           src="/muko_logo.png"
           alt="Muko Furniture Logo"
-          width={150}
-          height={150}
+          width={50}
+          height={50}
           className="object-cover"
         />
       </NextLink>

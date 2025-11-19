@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInUp } from '@/lib/motion';
 import { Product } from '@/types/product';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { X, Share2 } from 'lucide-react';
 import { Accordion, AccordionItem } from '@heroui/accordion';
 import { StarRating } from '@/components/atoms';
@@ -100,7 +100,7 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
             <Image
               src={product.imageUrl || '/images/placeholder.jpg'}
               alt={product.name}
-              fill
+              layout='fill'
               className="object-cover rounded-none "
               priority
             />
@@ -243,7 +243,7 @@ export function ProductHeroSection({ product }: HeroSectionProps) {
               <Image
                 src={product.imageUrl || '/images/placeholder.jpg'}
                 alt={product.name}
-                fill
+                layout='fill'
                 className="object-contain"
               />
               <button

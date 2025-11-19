@@ -3,7 +3,7 @@
 import React from 'react';
 import { NavigationItem } from '@/config/navigation';
 import NextLink from 'next/link';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Link } from '@heroui/link';
 
 interface MegaMenuProps {
@@ -79,7 +79,7 @@ export const MegaMenu = ({ category }: MegaMenuProps) => {
                   <Image
                     src={promo.imageSrc}
                     alt={promo.title}
-                    fill
+                    layout='fill'
                     className="object-cover"
                   />
                 </div>

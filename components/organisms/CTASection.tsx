@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Button } from "@/components/atoms/Button";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/atoms/Badge";
@@ -44,7 +44,7 @@ export function CTASection({
           <Image
             src={backgroundImage}
             alt=""
-            fill
+            layout="fill"
             sizes="100vw"
             className="object-cover z-0"
             loading="lazy"

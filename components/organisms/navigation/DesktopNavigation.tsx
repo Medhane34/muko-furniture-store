@@ -52,11 +52,10 @@ export const DesktopNavigation = ({ navItems }: DesktopNavigationProps) => {
               >
                 {item.label}
               </Link>
-
               <AnimatePresence>
                 {isOpen && (
                   /* Fixed container that covers entire screen */
-                  <div
+                  (<div
                     ref={dropdownRef}
                     className="fixed inset-0 top-[var(--navbar-height)] z-50 pointer-events-none"
                     onMouseEnter={() => handleMouseEnter(item.label)} // Keep open on dropdown hover
@@ -68,7 +67,6 @@ export const DesktopNavigation = ({ navItems }: DesktopNavigationProps) => {
                       aria-hidden="true"
                       onClick={() => setOpenMenu(null)}
                     />
-
                     {/* Centered content container */}
                     <div className="w-screen">
                       <motion.div
@@ -82,7 +80,7 @@ export const DesktopNavigation = ({ navItems }: DesktopNavigationProps) => {
                         <MegaMenu category={item} />
                       </motion.div>
                     </div>
-                  </div>
+                  </div>)
                 )}
               </AnimatePresence>
             </li>

@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from "next/image";
 import { Button } from '@/components/atoms/Button';
 import { Badge } from '@/components/atoms/Badge';
 import BadgeText from '../atoms/BadgeText';
@@ -76,7 +76,7 @@ export function HeroSection({
         <Image
           src={imageUrl}
           alt={imageAlt}
-          fill
+         layout="fill"
           className="object-cover"
           priority
           sizes="100vw"

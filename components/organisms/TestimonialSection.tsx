@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Quote } from "lucide-react";
 
 interface Testimonial {
@@ -127,7 +127,7 @@ export function TestimonialSection({
                     <Image
                       src={testimonial.image}
                       alt={testimonial.name}
-                      fill
+                      layout="fill"
                       className="object-cover"
                     />
                     

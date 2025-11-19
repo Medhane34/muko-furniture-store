@@ -94,8 +94,8 @@ const testimonialsData = [
 
   return (
     <>
-    <HeroCarousel/>
-    <HeroSection
+    
+     <HeroSection
           imageUrl="/features/homepage/home-page-hero.jpg"
           imageAlt="Modern furniture collection showcasing sofas, chairs, and tables in a beautifully designed living space"
           badgeText="Welcome"
@@ -105,7 +105,8 @@ const testimonialsData = [
           ctaLink="#colllections"
           minHeight="xl"
           contentWidth="wide"
-          overlayOpacity={50} />
+          overlayOpacity={50}
+           /> 
       
       <div className="div" id="colllections">
       <CollectionGrid />
@@ -137,7 +138,7 @@ const testimonialsData = [
 heading="Your Questions, Answered. Shopping with Confidence." faqs={faqs} 
   className="mt-12"
 />
-    <CTASection
+   {/*  <CTASection
         badge="Guidance"
         heading="Expert Help Is Just a Click Away."
         subheading="JNot sure where to start? Our furniture experts are here to help you choose the perfect pieces for your home and budget."
@@ -145,7 +146,7 @@ heading="Your Questions, Answered. Shopping with Confidence." faqs={faqs}
         ctaLink="/contact"
         backgroundImage="/homepage-hero.jpg"
       
-      />
+      /> */}
       {/* <TestimonialSection
         title="Success Stories from Ethiopian Businesses"
         subtitle="See how we've helped local companies thrive in the digital space"

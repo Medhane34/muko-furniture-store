@@ -111,13 +111,13 @@ export default function SofaProductsWrapper({
     <>
       {loading ? (
         // Show loading state
-        <div className="text-center py-8">Loading sofas...</div>
+        (<div className="text-center py-8">Loading sofas...</div>)
       ) : error ? (
         // Show error state
-        <div className="text-center py-8 text-red-600">{error}</div>
+        (<div className="text-center py-8 text-red-600">{error}</div>)
       ) : (
         // Main content when data is loaded
-        <div className="flex flex-col gap-6">
+        (<div className="flex flex-col gap-6">
           {/* Top Bar with Sort Controls */}
           <div className="flex justify-between items-center">
             <div className="text-sm text-gray-600">
@@ -128,7 +128,6 @@ export default function SofaProductsWrapper({
               onSortChange={onSortChange} 
             />
           </div>
-
           {/* Main Content Area - Sidebar + Grid */}
           <div className="flex flex-col md:flex-row gap-8">
             <div className="w-full md:w-1/4 lg:w-1/5">
@@ -152,7 +151,7 @@ export default function SofaProductsWrapper({
               />
             </div>
           </div>
-        </div>
+        </div>)
       )}
     </>
   );
